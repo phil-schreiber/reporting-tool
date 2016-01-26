@@ -1,0 +1,1 @@
+<div id="messages">{{ flashSession.output() }}</div>
