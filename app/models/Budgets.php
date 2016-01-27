@@ -11,8 +11,8 @@ class Budgets extends Model
 {
     public function initialize()
     {
-        $this->belongsTo('uid', 'reportingtool\Models\Permissions', 'resourceid', array(
-            'alias' => 'permission'
+        $this->belongsTo('uid', 'reportingtool\Models\Usergroups', 'resourceid', array(
+            'alias' => 'usergroup'
         ));
 		
 		
