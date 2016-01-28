@@ -12,15 +12,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-		 {{ get_title() }}
-        {{ stylesheet_link('css/normalize.css') }}
-		{{ stylesheet_link('css/bootstrap.css') }}
-		{{ stylesheet_link('css/jsplumb.css') }}
-        {{ stylesheet_link('css/main.css') }}     
+		 {{ get_title() }}        
+	{{ stylesheet_link('css/bootstrap.min.css') }}		
+        {{ stylesheet_link('css/font-awesome/css/font-awesome.css') }}
+        {{ stylesheet_link('css/smart-forms.css') }}		
+        {{ stylesheet_link('css/smart-addons.css') }}		
+        {{ stylesheet_link('css/MegaNavbar.css') }}		
+        {{ stylesheet_link('css/denkfabrikscheme.css') }}		
+        {{ stylesheet_link('css/owl.carousel.css') }}		
+        {{ stylesheet_link('css/styles.css') }}     
 		{{ assets.outputCss() }}
 		
-		<script data-main="{{ baseurl }}js/vendor/plugins" src="{{ baseurl }}js/require.js"></script>
+		
 		{{ assets.outputJs() }}
+                <script data-main="{{ baseurl }}js/vendor/plugins" src="{{ baseurl }}js/require.js"></script>
 		
 	
     </head>

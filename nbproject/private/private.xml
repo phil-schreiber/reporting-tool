@@ -3,24 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Permissions.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/library/Acl/Acl.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/library/Auth/Auth.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Resources.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/controllers/ProfilesController.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/public/js/vendor/plugins.js</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/controllers/ProjectsController.php</file>
             <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Budgets.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/config/services.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/config/routes.php</file>
             <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Feusers.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Profiles.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Addresses_feuserscategories_lookup.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/Module.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Languages.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/config/config.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/views/index/overview.volt</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Addresses.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/controllers/ControllerBase.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/controllers/ProjecttypesController.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Projects.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/views/partials/top-menu.volt</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/public/js/vendor/main.js</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Projecttypes.php</file>
             <file>file:/C:/xampp/htdocs/reporting-tool/app/messages/de.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/views/index.volt</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/views/partials/top-menu.volt</file>
             <file>file:/C:/xampp/htdocs/reporting-tool/schemas/reportingtool.sql</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/controllers/ControllerBase.php</file>
         </group>
     </open-files>
 </project-private>

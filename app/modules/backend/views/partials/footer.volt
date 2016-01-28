@@ -1,6 +1,6 @@
-<div id="footer" align="center" class="container-fluid">
+<footer>
 	<hr>
 	<div id="footer-container" class="row-fluid">
-		<span class='version'>BayWa Newsletter Tool {{ version }} | &copy; denkfabrik groupcom GmbH 2015</span>
+		<span class='version'>denkfabrik reporting tool {{ version }} | &copy; denkfabrik groupcom GmbH 2016</span>
 	</div>
-</div>
+</footer>

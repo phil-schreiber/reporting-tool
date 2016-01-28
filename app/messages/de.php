@@ -1,5 +1,7 @@
 <?php
 
 $messages = array(
-	"feuser" => "Nutzer"
+	"feuser" => "Nutzer",
+        "currentProjects" => "Aktuelle Projekte",
+        "projects" => "Projekte"
    );
