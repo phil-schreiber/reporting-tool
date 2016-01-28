@@ -30,9 +30,7 @@ CREATE TABLE feusers (
 
 
 
-LOCK TABLES feusers WRITE;
-INSERT INTO feusers VALUES (1,0,NOW(),NOW(),0,0,0,'denkfabrik','$2a$10$3d34c49b983bab20eeba8uqotZMs4qmE74REKms2xR8vL0d1/M7k.','','','','schreiber@denkfabrik-group.com','','','',0,'',1,1,1,0,0,0,0);
-UNLOCK TABLES;
+
 
 
 --
