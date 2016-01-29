@@ -17,7 +17,7 @@
             {{- link_to(language~'/projects', tr('currentProjects')~' <span class="caret"></span>', 'title': tr('currentProjects')) -}}             
             <ul class="dropdown-menu">
               {% for projecttype in projecttypes %}  
-                {{- link_to(language~'/projects/?type='~projecttype.uid, projecttype.title~' <span class="caret"></span>', 'title': tr('currentProjects')) -}}         
+              <li>{{- link_to(language~'/projects/?type='~projecttype.uid, projecttype.title, 'title': projecttype.title) -}}</li>
               {% endfor %}
               
             </ul>

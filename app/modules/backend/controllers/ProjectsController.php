@@ -1,31 +1,32 @@
 <?php
 namespace reportingtool\Modules\Modules\Backend\Controllers;
-use reportingtool\Models\Projecttypes;
+use reportingtool\Models\Projects,
+    reportingtool\Models\Usergroups;
 	
 
 /**
- * Class ProjecttypesController
+ * Class ProjectsController
  *
  * @package reporting-tool\Controllers
  */
-class ProjecttypesController extends ControllerBase
+class ProjectsController extends ControllerBase
 {
 	public function indexAction(){            
-            $projectTypes=  Projecttypes::find(array(
+            $projects=  Projects::find(array(
                     'conditions' => 'deleted = 0 AND hidden = 0',
                     'order' => 'tstamp DESC'                  
             ));
-
-            $this->view->setVar('projecttypes',$projectTypes);                        
+            
+            $this->view->setVar('projects',$projects);                        
 	}
         
         public function createAction(){
             if($this->request->isPost()){
                 $time = time();
-                $projecttype = new Projecttypes();
-                $projecttype->assign(array(
+                $project = new Projecttypes();
+                $project->assign(array(
                     'cruser_id' => $this->session->get('auth')['uid'],
-                    'usergroup' => $this->session->get('auth')['usergroup'],
+                    'usergroup' => $this->request->hasPost('usergroup') ? $this->request->getPost('usergroup') : 0,
                     'time' => $time,
                     'crdate' => $time,
                     'title' => $this->request->getPost('title'),
@@ -38,6 +39,13 @@ class ProjecttypesController extends ControllerBase
                     $this->flash->success($this->translate('successCreate'));
                     $this->view->disable();
                 }
+            }else{
+                $usergroups=Usergroups::find(array(
+                    'conditions' =>array(
+                        'deleted=0 AND hidden =0'
+                    )
+                 ));
+                 $this->view->setVar('usergroups',$usergroups);
             }
         }
         

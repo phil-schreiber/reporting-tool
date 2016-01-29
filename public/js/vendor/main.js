@@ -4,12 +4,16 @@ var mainModule = (function (jq) {
       viewportH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
   var baseurl;
   var dummyEmpty=function(){};
-  
+  var lang=jq('#lang').val();
   
  
   return {
       
-    
+    init:function(){
+      jq('.datepicker').datetimepicker({
+		lang:lang
+	});  
+    },
  
     // A public function utilizing privates
     ajaxIt: function(controller,action,formdata,successhandler, parameters) {
@@ -37,6 +41,5 @@ var mainModule = (function (jq) {
  
 })(jQuery);
 
-mainModule.ajaxIt('irgendwohin'
-        
-        );
+mainModule.init();
+	

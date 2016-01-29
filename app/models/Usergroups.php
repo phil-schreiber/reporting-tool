@@ -1,16 +1,17 @@
 <?php
-namespace nltool\Models;
+namespace reportingtool\Models;
 
 use Phalcon\Mvc\Model;
+Model::setup(['notNullValidations' => false]);
 
 /**
- * nltool\Models\Profiles
+ * nltool\Models\Usergroups
  * All the profile levels in the application. Used in conjenction with ACL lists
  */
 class Usergroups extends Model
 {
 
   public function initialize(){
-		$this->hasManyToMany("uid", "nltool\Models\Templateobjects_usergroups_lookup", "uid_foreign", "uid_local", "nltool\Models\Templateobjects", "uid",array('alias' => 'templateobjects'));
+		$this->hasMany("uid", "reportingtool\Models\Projects", "pid",array('alias' => 'projects'));
 	}
 }

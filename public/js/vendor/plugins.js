@@ -9,6 +9,9 @@ require.config({
 });
 
 require(['jquery'], function( jQuery ) {	
-	require(['main']);	    					
+        require(['datetimepicker'],function(){
+            require(['main']);	    					
+        });
+	
 });
 

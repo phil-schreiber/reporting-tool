@@ -5,7 +5,9 @@ use Phalcon\Mvc\Controller as Controller,
 	Phalcon\Mvc\Dispatcher,
 	Phalcon\DI\FactoryDefault as PhDi,
 	Phalcon\Exception,
-	reportingtool\Models\Languages as Languages;
+	reportingtool\Models\Languages as Languages,
+        reportingtool\Models\Projecttypes;
+
 
 class ControllerBase extends Controller
 {
@@ -65,7 +67,11 @@ class ControllerBase extends Controller
 			$href     = $url .  str_replace("/{$lang}", "{$key}", $uri);
 			$languagesAvailable .= "<option value='{$href}'{$selected}>{$value}</option>";
 		}
-
+                $projectTypes = Projecttypes::find(array(
+                   'conditions' => 'deleted =0 AND hidden =0'
+                ));
+                
+                $this->view->setVar('projecttypes',$projectTypes);
 		$this->view->setVar('controller', $controllerName);
 		$this->view->setVar('language', $lang);
 		$this->view->setVar('baseurl', $baseUrl);
