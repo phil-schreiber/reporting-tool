@@ -47,9 +47,13 @@ class ProjecttypesController extends ControllerBase
                 $projecttype=Projecttypes::findFirstByUid($projecttypeUid);
                 if($projecttype){
                     $projecttype->assign(array(
+                       'tstamp' => time(),
                        'title' => $this->request->hasPost('title') ? $this->request->getPost('title') : '',
                        'description' => $this->request->hasPost('description') ? $this->request->getPost('description') : ''
                     ));
+                    if(!$projecttype->update()){
+                        $this->flash->error($projecttype->getMessages());
+                    }
                 }
             }else{
                 $projecttypeUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;

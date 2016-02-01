@@ -45,19 +45,28 @@ class ProjectsController extends ControllerBase
 			echo($returnJson);
 			die();
 		}else{
-                    $projectType=$this->request->getQuery('type','int');
-			$distributors = Distributors::find(array(
-				"conditions" => "deleted=0 AND hidden=0 AND usergroup = ?1",
-				"bind" => array(1 => $this->session->get('auth')['usergroup']),
-				"order" => "tstamp DESC"
-			));
-			$environment= $this->config['application']['debug'] ? 'development' : 'production';
-			$baseUri=$this->config['application'][$environment]['staticBaseUri'];
-			$path=$baseUri.$this->view->language.'/distributors/update/';
-			$this->view->setVar('path',$path);
-			$this->view->setVar('projects',$projects);
+                    
+                    $projects = Projects::find(array(
+                            "conditions" => "deleted=0 AND hidden=0 AND usergroup = ?1 AND status < ?2",
+                            "bind" => array(1 => $this->session->get('auth')['usergroup'],2 => 4),
+                            "order" => "crdate DESC"
+                    ));
+                    $environment= $this->config['application']['debug'] ? 'development' : 'production';
+                    $baseUri=$this->config['application'][$environment]['staticBaseUri'];
+                    $path=$baseUri.$this->view->language.'/projects/update/';
+                    $this->view->setVar('path',$path);
+                    $this->view->setVar('projects',$projects);
 		}
 	}
+        
+        public function updateAction(){
+            $projectUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;
+            
+            $project=Projects::findFirstByUid($projectUid);
+            
+            $this->view->setVar('project',$project);
+            
+        }
 
 	
 	

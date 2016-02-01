@@ -28,6 +28,17 @@ $router->add(
 );
 
 $router->add(
+	'/{language:[a-z]{2}}/:controller/:action[/]{0,1}', 
+	array(
+		'language' => 1,
+		'controller' => 2,
+		'action' => 3,		
+		'module'=>'frontend',
+		'namespace'  => 'reportingtool\Modules\Modules\Frontend\Controllers',
+	)
+);
+
+$router->add(
 	'/{language:[a-z]{2}}/:controller/:action/:int[/]{0,1}', 
 	array(
 		'language' => 1,

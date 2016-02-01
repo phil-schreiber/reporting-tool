@@ -15,8 +15,7 @@ use reportingtool\Notifications\Checker as NotificationsChecker;
 //use Sum\Oauth2 AS Oauth2;
 use reportingtool\Auth\Auth;
 use reportingtool\Acl\Acl;
-use reportingtool\Helper\Mailrenderer,
-	reportingtool\Helper\Domrenderer;
+use reportingtool\Helper\Littlehelpers;
 
 
 
@@ -250,13 +249,11 @@ $di->set('acl', function(){
 	return new Acl();
 });
 
-$di->set('mailrenderer', function(){
-	return new Mailrenderer();
+$di->set('littlehelpers', function(){
+	return new Littlehelpers();
 });
 
-$di->set('domparser', function(){
-	return new Domrenderer();
-});
+
 
 $di->set('triggerevents',function(){
 	$eventsManager = new EventsManager();

@@ -7,7 +7,7 @@
 		<div class="listelementContainer">
 
 			
-			{{ form('backend/'~language~'/projecttypes/create/', 'method': 'post') }}
+			{{ form('backend/'~language~'/projects/create/', 'method': 'post') }}
 
 				<label>{{ tr('title') }}</label><br>
 				{{ text_field("title", "size": 32) }}
@@ -31,7 +31,7 @@
 				{{select('projecttype',projecttypes,"using":['uid','title'])}}
                                 <br><br>
                                 <label>{{ tr('topic') }}</label><br>
-				{{ text_area("topic") }}
+				{{ text_field("topic") }}
                                 <br><br>
                                 <label>{{ tr('estcost') }}</label><br>
 				{{ text_field("estcost") }} {{tr('h')}}

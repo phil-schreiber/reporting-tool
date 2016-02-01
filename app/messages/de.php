@@ -6,6 +6,7 @@ $messages = array(
         "projecttypes" => "Projekttypen",
         "currentProjects" => "Aktuelle Projekte",
         "projects" => "Projekte",
+        "project" => "Projekt",
         "budgets" => "Budgets",
         "permissions" => "Berechtigungen",
         "profiles" => "Profile",
@@ -43,7 +44,11 @@ $messages = array(
         "estcost" => "geschätzter Aufwand",
         "currentcost" => "gegenwärtiger Aufwand",
         "deadline" => "angepeilte Deadline",
-        "h" => "Stunden"
+        "h" => "Stunden",
+        "projectsTitle" => "Übersicht über die d.velop Veröffentlichungen",
+        "filterResults" => "Ergebnisse filtern",
+        "projectsDesc" => "Lassen Sie sich aktuelle Projekte anzeigen und filtern",
+        "show" => "ansehen"
         
     
    );

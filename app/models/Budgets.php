@@ -15,6 +15,6 @@ class Budgets extends Model
             'alias' => 'usergroup'
         ));
 		
-		
+	$this->hasManyToMany();
     }
 }
