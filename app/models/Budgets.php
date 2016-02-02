@@ -15,6 +15,7 @@ class Budgets extends Model
             'alias' => 'usergroup'
         ));
 		
-	$this->hasManyToMany();
+	$this->hasManyToMany("uid", "nltool\Models\Segmentobjects_addresses_lookup", "uid_foreign","uid_local","nltool\Models\Segmentobjects","uid",array('alias' => 'segments'));
+        $this->hasMany("uid", "nltool\Models\Sendoutobjects", "campaignuid",array('alias' => 'sendoutobjects'));
     }
 }
