@@ -71,6 +71,9 @@ class Auth extends Component
 	
 	private function _registerSession($user)
     {
+            
+        
+        
         $this->session->set('auth', array(
             'uid' => $user->uid,            
 			'username' => $user->username,

@@ -51,10 +51,8 @@ class ProjectsController extends ControllerBase
                             "bind" => array(1 => $this->session->get('auth')['usergroup'],2 => 4),
                             "order" => "crdate DESC"
                     ));
-                    $environment= $this->config['application']['debug'] ? 'development' : 'production';
-                    $baseUri=$this->config['application'][$environment]['staticBaseUri'];
-                    $path=$baseUri.$this->view->language.'/projects/update/';
-                    $this->view->setVar('path',$path);
+                   
+                    $this->view->setVar('path',$this->path);
                     $this->view->setVar('projects',$projects);
 		}
 	}

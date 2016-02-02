@@ -123,7 +123,10 @@ class ControllerBase extends Controller
 		
 		 // Check if the user have permission to the current option
             $actionName = $dispatcher->getActionName();
-		
+            
+            $environment= $this->config['application']['debug'] ? 'development' : 'production';
+            $this->baseUri=$this->config['application'][$environment]['staticBaseUri'];
+            $this->path=$this->baseUri.$this->view->language.$controllerName.'/'.$actionName.'/';
 			
             if (!$this->acl->isAllowed($role, $controllerName, $actionName)) {
 

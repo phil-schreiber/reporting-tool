@@ -17,7 +17,20 @@ use reportingtool\Auth\Auth;
 use reportingtool\Acl\Acl;
 use reportingtool\Helper\Littlehelpers;
 
-
+$di->set('session', function() use ($config) {
+    $environment= $config['application']['debug'] ? 'development' : 'production';
+    $baseUri = $config['application'][$environment]['staticBaseUri'];
+    
+    session_set_cookie_params(3600,$baseUri,$_SERVER['HTTP_HOST']);
+    
+    $session = new \Phalcon\Session\Adapter\Files(
+             array(
+                'uniqueId' => 'reportingtool-'
+              )
+         );
+    $session->start();
+    return $session;
+});
 
 /**
  * The URL component is used to generate all kind of urls in the application
@@ -173,11 +186,9 @@ $di->set('security', function(){
 }, true);
 
 
-$di->set('session', function() {
-    $session = new Phalcon\Session\Adapter\Files();
-    $session->start();
-    return $session;
-});
+
+
+
 /**
  * View cache
  */

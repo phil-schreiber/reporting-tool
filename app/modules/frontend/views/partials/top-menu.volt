@@ -44,6 +44,9 @@
           <li class="xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Aufwand</a></li>
           <li class="xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Leads</a> </li>
           <li class="xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Abstimmung</a> </li>
+          <li class="xs-hover">
+              {{- link_to(language~'/budgets', tr('budget'), 'title': tr('budget')) -}}             
+          </li>
           <li>{{ link_to('session/logout/', 'logout','title': 'Logout', "class": "logout") }}</li>			
         </ul>
         
