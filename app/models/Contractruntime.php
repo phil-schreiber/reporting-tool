@@ -4,10 +4,10 @@ namespace reportingtool\Models;
 use Phalcon\Mvc\Model;
 
 /**
- * reportingtool\Models\Budgets
+ * reportingtool\Models\Contractruntime
  * 
  */
-class Budgets extends Model
+class Contractruntime extends Model
 {
     /**
      * @var integer
@@ -47,30 +47,29 @@ class Budgets extends Model
 	/**
 	 * @var integer
 	 */
-	public $usergroup = 0;
+	public $active = 0;
         
         /**
 	 * @var integer
 	 */
-	public $amount = 0;
-    
-        /**
+	public $startdate = 0;
+	
+	/**
 	 * @var integer
 	 */
-	public $contractruntimeuid = 0;
+	public $enddate = 0;
+                
     
     public function initialize()
     {
+       
+		
+	//$this->hasManyToMany("uid", "reportingtool\Models\Contractruntime_usergroups_lookup", "uid_local","uid_foreign","reportingtool\Models\Usergroups","uid",array('alias' => 'usergroups'));
         $this->belongsTo('usergroup', 'reportingtool\Models\Usergroups', 'uid', array(
             'alias' => 'usergroup'
         ));
         
-        $this->belongsTo('contractruntimeuid', 'reportingtool\Models\Contractruntime', 'uid', array(
-            'alias' => 'contractruntime'
-        ));
-		
-	$this->hasManyToMany("uid", "reportingtool\Models\Budgets_projecttypes_lookup", "uid_local","uid_foreign","reportingtool\Models\Projecttypes","uid",array('alias' => 'projecttypes'));
-        $this->hasMany("uid", "reportingtool\Models\Budgets_projecttypes_lookup", "uid_local",array('alias' => 'budgetcount'));
+        $this->hasOne('uid','reportingtool\Models\Budgets','contractruntimeuid', array('alias'=>'budget'));
     }
     
     

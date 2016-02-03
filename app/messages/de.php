@@ -50,7 +50,13 @@ $messages = array(
         "projectsDesc" => "Lassen Sie sich aktuelle Projekte anzeigen und filtern",
         "show" => "ansehen",
         "budgets" => "Budgets",
-        "budget" => "Budget"
+        "budget" => "Budget",
+        "icon" => "Icon",
+        "contractruntime" => "Vertragslaufzeit",
+        "active" => "aktiv",
+        "inactive" => "inaktiv",
+        "startdate" => "Startdatum",
+        "enddate" => "Enddatum"
         
     
    );

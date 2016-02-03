@@ -16,6 +16,9 @@
                                 <label>{{ tr('description') }}</label><br>
 				{{ text_area("description","value":projecttype.description) }}
                                 <br><br>
+                                <label>{{ tr('icon') }}</label><br>
+				{{ text_field("icon") }}
+                                <br><br>
                                 {{ hidden_field('uid',"value":projecttype.uid) }}
 				 {{ submit_button(tr('ok')) }}
 

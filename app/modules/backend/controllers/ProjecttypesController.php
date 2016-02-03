@@ -29,13 +29,14 @@ class ProjecttypesController extends ControllerBase
                     'time' => $time,
                     'crdate' => $time,
                     'title' => $this->request->getPost('title'),
-                    'description' => $this->request->getPost('description')
+                    'description' => $this->request->getPost('description'),
+                    'icon' =>$this->request->getPost('icon')
                 ));                
                 if(!$projecttype->save()){
-                    $this->flash->error($projecttype->getMessages());
+                    $this->flashSession->error($projecttype->getMessages());
                 }else{
                     $this->response->redirect('backend/'.$this->view->language.'/projecttypes/update/'.$projecttype->uid.'/'); 
-                    $this->flash->success($this->translate('successCreate'));
+                    $this->flashSession->success($this->translate('successCreate'));
                     $this->view->disable();
                 }
             }
@@ -49,10 +50,11 @@ class ProjecttypesController extends ControllerBase
                     $projecttype->assign(array(
                        'tstamp' => time(),
                        'title' => $this->request->hasPost('title') ? $this->request->getPost('title') : '',
-                       'description' => $this->request->hasPost('description') ? $this->request->getPost('description') : ''
+                       'description' => $this->request->hasPost('description') ? $this->request->getPost('description') : '',
+                        'icon' =>$this->request->hasPost('icon') ? $this->request->getPost('icon') : '',
                     ));
                     if(!$projecttype->update()){
-                        $this->flash->error($projecttype->getMessages());
+                        $this->flashSession->error($projecttype->getMessages());
                     }
                 }
             }else{

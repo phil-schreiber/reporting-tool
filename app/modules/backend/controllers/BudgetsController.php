@@ -1,30 +1,30 @@
 <?php
 namespace reportingtool\Modules\Modules\Backend\Controllers;
-use reportingtool\Models\Projects,
+use reportingtool\Models\Budgets,
     reportingtool\Models\Usergroups;
 	
 
 /**
- * Class ProjectsController
+ * Class BudgetsController
  *
  * @package reporting-tool\Controllers
  */
-class ProjectsController extends ControllerBase
+class BudgetsController extends ControllerBase
 {
 	public function indexAction(){            
-            $projects=  Projects::find(array(
+            $budgets=  Budgets::find(array(
                     'conditions' => 'deleted = 0 AND hidden = 0',
                     'order' => 'tstamp DESC'                  
             ));
             
-            $this->view->setVar('projects',$projects);                        
+            $this->view->setVar('budgets',$budgets);                        
 	}
         
         public function createAction(){
             if($this->request->isPost()){
                 $time = time();
                
-                $project = new Projects();
+                $project = new Budgets();
                 $project->assign(array(
                     'cruser_id' => $this->session->get('auth')['uid'],
                     'usergroup' => $this->request->hasPost('usergroup') ? $this->request->getPost('usergroup') : 0,
@@ -65,7 +65,8 @@ class ProjectsController extends ControllerBase
                 if($project){
                     $project->assign(array(
                        'usergroup' => $this->request->hasPost('usergroup') ? $this->request->getPost('usergroup') : 0,
-                    'tstamp' =>time(),                    
+                    'tstamp' => $time,
+                    'crdate' => $time,
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
                     'starttime' => $this->request->hasPost('starttime') ? $this->littlehelpers->processDate($this->request->getPost('starttime')) : 0,
