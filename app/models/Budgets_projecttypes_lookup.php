@@ -50,5 +50,9 @@ class Budgets_projecttypes_lookup extends Model
         $this->belongsTo('uid_foreign', 'reportingtool\Models\Projecttypes', 'uid', 
             array('alias' => 'projecttypes')
         );
+        
+         $this->hasOne('uid_foreign', 'reportingtool\Models\Projecttypes', 'uid', array(
+            'alias' => 'projecttype'
+        ));
     }
 }
