@@ -12,7 +12,7 @@
  {{tr('filterResults')}}</button>
  </div>
         <div class="col-xs-12">
-        <div class="col-xs-12 border-box smart-forms">
+        <div class="col-xs-12 border-box smart-forms" id="filters">
         <p><strong>{{tr('projectsDesc')}}</strong></p>
         
         
@@ -40,7 +40,7 @@
                                 {% for projecttype in projecttypes %}
                                 <div class="col-xs-6 col-sm-3 utilisation_6 utilisation_7 utilisation_1">
                                     <label class="option block spacer-t10">
-                                        <input name="sorten" type="radio" value="{{projecttype.uid}}" data-filter=".category_{{projecttype.uid}}">
+                                        <input name="sorten" type="radio" value="{{projecttype.uid}}" data-filter="{{projecttype.uid}}">
                                         <span class="radio"></span> {{projecttype.title}}
                                     </label>
                                 </div>
@@ -75,9 +75,9 @@
     </div>
     </div>
     
-    <div class="col-xs-12 smart-forms">
+    <div class="col-xs-12 smart-forms isotope">
         {% for project in projects %}
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-sm-4 element-item" data-category="{{project.projecttype}}">
            	<div class="price-box ">
                 <img src="{{baseurl}}img/{{project.getType().icon}}" class="category_icon" />
                 

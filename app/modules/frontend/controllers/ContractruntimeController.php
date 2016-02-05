@@ -20,20 +20,38 @@ class ContractruntimeController extends ControllerBase
                 )
             ));
             $projects=Projects::find(array(
-               'conditions' => 'deleted=0 AND hidden =0 AND usergroup =?1',
+               'conditions' => 'deleted=0 AND hidden =0 AND usergroup =?1 AND crdate > ?2',
                 'bind' => array(
-                    1 => $this->session->get('auth')['usergroup']
-                )
+                    1 => $this->session->get('auth')['usergroup'],
+                    2 => $contract->startdate
+                    
+                ),
+                'columns' => "count(uid) AS count,projecttype",
+                'group' => 'projecttype'
             ));
-            $budget=$contract->getBudget();
-            $specs=$budget->getBudgetcount();
-            foreach($specs as $spec){
-                var_dump($spec->amount);
+            
+            $projectCount=array();
+            foreach($projects as $project){
                 
-                var_dump($spec->getProjecttype()->title);
+                $projectCount[$project->projecttype]=$project->count;
             }
             
+            $budget=$contract->getBudget();
+            $specs=$budget->getBudgetcount();
+            $specscount=array();
+            foreach($specs as $spec){
+                $title=$spec->getProjecttype()->title;
+                
+                $specscount[$spec->uid_foreign]=array(
+                  'amount' => $spec->amount,
+                  'title' => $title
+                );
+                
+            }
+            
+            $this->view->setVar('projectcount',$projectCount);
             $this->view->setVar('contract',$contract);
+            $this->view->setVar('specscount',$specscount);
 		
 	}
         
