@@ -8,4 +8,10 @@ class Tag extends \Phalcon\Tag
        
         return round($input, 2);
     }
+    
+    static public function arrayKeyExists($key,$array)
+    {
+       
+        return array_key_exists($key, $array);
+    }
 }

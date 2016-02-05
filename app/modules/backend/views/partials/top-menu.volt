@@ -1,14 +1,14 @@
 {%- if session.get('auth') -%}
 <div id="navigation">
   <nav class="navbar denkfabrikscheme no-border no-active-arrow no-open-arrow dropdown-onhover" id="main_navbar" role="navigation">
-    <div class="container"> 
+    
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-left">
+        <ul class="nav navbar-nav">
          {% if linkAllowed(session.get('auth'),'projects','index') %}		
             {% if 'projects' == dispatcher.getControllerName() %}                            
              <li class="dropdown-short xs-hover active">
@@ -54,7 +54,7 @@
        
         
       </div>
-    </div>
+    
   </nav>
   
   <nav class="navbar no-border no-active-arrow no-open-arrow dropdown-onhover" role="navigation">

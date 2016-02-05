@@ -85,6 +85,12 @@ $di->set(
 		$volt->getCompiler()->addFunction('tr', function ($key) {
 			return "reportingtool\Modules\Modules\Backend\Controllers\ControllerBase::translate({$key})";
 		});
+                $volt->getCompiler()->addFunction(
+                    'arrayKeyExists',
+                    function ($resolvedArgs, $exprArgs) {
+                        return 'reportingtool\Helper\Tag::arrayKeyExists(' . $resolvedArgs . ')';
+                    }
+                );
 
         $volt->getCompiler()->addFunction('number_format', function($resolvedArgs) {
             return 'number_format(' . $resolvedArgs . ')';

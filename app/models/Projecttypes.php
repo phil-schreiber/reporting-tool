@@ -49,7 +49,15 @@ class Projecttypes extends Model
 	 */
 	public $title = '';
         
+        /*
+	 * @var string
+	 */
         public $description = '';        
+        
+        /*
+	 * @var string
+	 */
+        public $icon = '';        
     
     public function initialize()
     {

@@ -101,3 +101,11 @@ background: #fff;
 input[type="checkbox"], input[type="radio"]{
 	width:auto;
 }
+
+.selectTable td{
+    padding:0.5vw;
+}
+
+input.amountInput{
+   width:3vw; 
+}

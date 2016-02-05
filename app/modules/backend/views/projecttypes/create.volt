@@ -16,6 +16,9 @@
                                 <label>{{ tr('description') }}</label><br>
 				{{ text_area("description") }}
                                 <br><br>
+                                <label>{{ tr('icon') }}</label><br>
+				{{ text_field("icon") }}
+                                <br><br>
 				 {{ submit_button(tr('ok')) }}
 
 			</form>
