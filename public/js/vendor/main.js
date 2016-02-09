@@ -45,10 +45,11 @@ var mainModule = (function (jq) {
   return {
       
     init:function(){
+        console.log('dfh');
       jq('.datepicker').datetimepicker({
 		lang:lang
 	}); 
-        console.log('dfh');
+        
       initIsotope();
        
 
@@ -89,11 +90,11 @@ var mainModule = (function (jq) {
   };
  
 })(jQuery);
-window.onload=function(){
-    mainModule.init();
+
+mainModule.init();
     
   
-}
+
 
 	
   
