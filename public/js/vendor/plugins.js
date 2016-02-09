@@ -1,10 +1,10 @@
 require.config({
 	
     paths: {        
-        jquery: 'jquery-1.11.1.min',//'jquery-1.10.2.min',		
+        jquery: 'jquery-2.2.0.min',//'jquery-1.10.2.min',		
 	datetimepicker:'jquery.datetimepicker',
 	datatables:'jquery.dataTables',	
-        isotope:'jquery.isotope',
+        isotope:'isotope.pkgd',
         main: 'main',
     }
 });

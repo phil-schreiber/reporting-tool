@@ -8,18 +8,7 @@ var mainModule = (function (jq) {
   var baseurl;
   var dummyEmpty=function(){};
   var lang=jq('#lang').val();
-  var isotopeCont=jq('.isotope').isotope({
-                itemSelector: '.element-item',
-                layoutMode: 'fitRows',
-                getSortData: {
-                  name: '.name',
-                  symbol: '.symbol',
-                  number: '.number parseInt',
-                  category: '[data-category]'
-                  
-                }
-              });
-
+  var isotopeCont;
   var filterFns = {
         // show if number is greater than 50
         numberGreaterThan50: function() {
@@ -32,28 +21,41 @@ var mainModule = (function (jq) {
           return name.match( /ium$/ );
         }
       };
-      
+  var initIsotope=function(){
+        isotopeCont=jq('.isotope').isotope({
+                itemSelector: '.element-item',
+                layoutMode: 'fitRows',
+                getSortData: {
+                  name: '.name',
+                  symbol: '.symbol',
+                  number: '.number parseInt',
+                  category: '[data-category]'
+                  
+                }
+              });
+              console.log('dsfhg');
+        jq('#filters').on( 'change', 'input', function(e) {
+           console.log(e);
+           var filterValue = jq( this ).attr('data-filter');
+           // use filterFn if matches value
+           filterValue = filterFns[ filterValue ] || filterValue;
+           isotopeCont.isotope({ filter: filterValue });
+        });
+    };
   return {
       
     init:function(){
       jq('.datepicker').datetimepicker({
 		lang:lang
 	}); 
-        
+        console.log('dfh');
+      initIsotope();
        
 
         
         
     },
-    initIsotope:function(){
-        jq('#filters').on( 'change', 'input', function(e) {
-           console.log(e);
-        var filterValue = jq( this ).attr('data-filter');
-        // use filterFn if matches value
-        filterValue = filterFns[ filterValue ] || filterValue;
-        isotopeCont.isotope({ filter: filterValue });
-      });
-    },
+    
     // A public function utilizing privates
     ajaxIt: function(controller,action,formdata,successhandler, parameters) {
             parameters = typeof parameters !== 'undefined' ? '/'+parameters : '';
@@ -87,7 +89,11 @@ var mainModule = (function (jq) {
   };
  
 })(jQuery);
+window.onload=function(){
+    mainModule.init();
+    
+  
+}
 
-mainModule.init();
 	
   
