@@ -1,14 +1,13 @@
 
-
   
-var mainModule = (function (jq) {
+var mainModule = function (jq, is) {
  
   var viewportW = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
       viewportH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
   var baseurl;
   var dummyEmpty=function(){};
   var lang=jq('#lang').val();
-  var isotopeCont;
+  
   var filterFns = {
         // show if number is greater than 50
         numberGreaterThan50: function() {
@@ -22,38 +21,68 @@ var mainModule = (function (jq) {
         }
       };
   var initIsotope=function(){
-        isotopeCont=jq('.isotope').isotope({
+        var isotopeCont=new is('#isotope',{
                 itemSelector: '.element-item',
-                layoutMode: 'fitRows',
-                getSortData: {
-                  name: '.name',
-                  symbol: '.symbol',
-                  number: '.number parseInt',
-                  category: '[data-category]'
-                  
-                }
+                layoutMode: 'fitRows'                
               });
-              console.log('dsfhg');
-        jq('#filters').on( 'change', 'input', function(e) {
-           console.log(e);
-           var filterValue = jq( this ).attr('data-filter');
-           // use filterFn if matches value
-           filterValue = filterFns[ filterValue ] || filterValue;
-           isotopeCont.isotope({ filter: filterValue });
+        var selectFilters = [];      
+        var radioFilter='';
+        jq('#filters').on( 'change', 'select', function(e) {           
+           var filterValue = jq( this ).val();                                        
+           if(filterValue){
+            selectFilters.push('.'+filterValue);
+            selectFilters.push(radioFilter);
+            var filterStrng = selectFilters.join('');            
+                isotopeCont.arrange({ filter: filterStrng  });
+           }else{
+               selectFilters=[];
+               isotopeCont.arrange({ filter: '*'});
+           }
+        });
+        jq('#filters').on( 'change', 'input[type="radio"]', function(e) {           
+            var filterValue= jq(this).val();
+            var filterStrng = selectFilters.join('');            
+                isotopeCont.arrange({ filter: filterStrng+'.'+filterValue  });
+        });
+        
+        jq('#filters').on('change','input[type="text"]',function(e){
+            var filterValue= jq(this).val().split('.');
+            var tstamp=Date.parse(filterValue[1]+'-'+filterValue[0]+'-'+filterValue[2])/1000;
+            var largerThan=true;
+            if(jq(this).attr('id')==='enddate'){
+                tstamp+=86399;
+                largerThan=false;
+            }
+            
+            isotopeCont.arrange({
+                filter: function(  ) {
+                    var returnVal=false;
+                    
+                    var number = jq(this).attr('data-tstamp');
+                    console.log(number);
+                    if(largerThan){
+                        returnVal=parseInt( number, 10 ) > tstamp;
+                    }else{
+                        returnVal=parseInt( number, 10 ) < tstamp;
+                    }
+                    return returnVal;
+                  }
+            })
+            
         });
     };
   return {
       
     init:function(){
-        console.log('dfh');
+        
       jq('.datepicker').datetimepicker({
-		lang:lang
+		lang:lang,
+                timepicker:false,
+                format:'d.m.Y'
 	}); 
-        
+      jq("#topic").chosen({max_selected_options: 5});
       initIsotope();
-       
-
-        
+   
         
     },
     
@@ -89,9 +118,9 @@ var mainModule = (function (jq) {
     
   };
  
-})(jQuery);
+};
 
-mainModule.init();
+
     
   
 

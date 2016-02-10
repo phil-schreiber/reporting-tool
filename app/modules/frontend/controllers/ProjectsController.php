@@ -17,9 +17,15 @@ class ProjectsController extends ControllerBase
                             "bind" => array(1 => $this->session->get('auth')['usergroup'],2 => 4),
                             "order" => "crdate DESC"
                     ));
-                   
+                   $topics=array();
+                    foreach($projects as $project){
+                        $topics[]=$project->topic;
+                    }
+                    $topics=array_unique($topics);
                     $this->view->setVar('path',$this->path);
                     $this->view->setVar('projects',$projects);
+                    $this->view->setVar('topics',$topics);
+                    
 		
 	}
         

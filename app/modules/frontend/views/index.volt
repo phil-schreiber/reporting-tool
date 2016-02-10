@@ -21,6 +21,7 @@
         {{ stylesheet_link('css/denkfabrikscheme.css') }}		
         {{ stylesheet_link('css/owl.carousel.css') }}	
         {{ stylesheet_link('css/jquery.datetimepicker.css') }}		        
+        {{ stylesheet_link('css/chosen.min.css') }}		        
         {{ stylesheet_link('css/styles.css') }}     
 		{{ assets.outputCss() }}
 		

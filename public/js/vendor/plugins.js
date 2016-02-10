@@ -5,18 +5,25 @@ require.config({
 	datetimepicker:'jquery.datetimepicker',
 	datatables:'jquery.dataTables',	
         isotope:'isotope.pkgd',
-        main: 'main',
-    }
+        chosen:'chosen.jquery',
+        main: 'main'
+    },
+    shim: {
+    'datetimepicker':['jquery'],
+    'datatables':['jquery'],
+    'isotope':['jquery'],
+    'chosen':['jquery'],
+    'main':['jquery','datatables','datetimepicker','isotope','chosen']
+      }
 });
 
-require(['jquery'], function( jQuery ) {	
+require(['jquery','datetimepicker','isotope','main'], function( $,datetimepicker,isotope ) {	       
     
-        require(['datetimepicker'],function(){
-            require(['isotope'],function(){
-                require(['main']);	    					
-            });
+        $( document ).ready( function(jQuery) {
+            var main=new mainModule($,isotope);
+            main.init();
+            
             
         });
-	
 });
 

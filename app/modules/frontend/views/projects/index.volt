@@ -19,7 +19,14 @@
          <div class="frm-row">
                                     <div class="section colm colm12">
                                         <label class="field">
-                                            <input name="vorname" class="gui-input address_field" id="vorname" type="text" placeholder="Themenauswahl">
+                                            <select multiple id="topic" data-placeholder="Themenauswahl">
+                                                {% for topic in topics %}
+                                                    <option value="{{topic}}">
+                                                        {{topic}}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                            
                                            
 
                                         </label>
@@ -40,7 +47,7 @@
                                 {% for projecttype in projecttypes %}
                                 <div class="col-xs-6 col-sm-3 utilisation_6 utilisation_7 utilisation_1">
                                     <label class="option block spacer-t10">
-                                        <input name="sorten" type="radio" value="{{projecttype.uid}}" data-filter="{{projecttype.uid}}">
+                                        <input name="sorten" type="radio" value="cat_{{projecttype.uid}}">
                                         <span class="radio"></span> {{projecttype.title}}
                                     </label>
                                 </div>
@@ -57,7 +64,7 @@
                     <div class="frm-row">
                                     <div class="section colm colm6">
                                         <label class="field">
-                                            <input name="startdate" class="gui-input address_field" id="vorname" type="text" placeholder="Startdatum">
+                                            <input name="startdate" class="gui-input datepicker" id="startdate" type="text" placeholder="Von">
                                            
 
                                         </label>
@@ -65,7 +72,7 @@
                                     
                                     <div class="section colm colm6">
                                         <label class="field ">
-                                            <input name="enddate" class="gui-input address_field" id="nachname" type="text" placeholder="Enddatum">
+                                            <input name="enddate" class="gui-input datepicker" id="enddate" type="text" placeholder="Bis">
                                            
                                         </label>
                                     </div><!-- end section -->
@@ -75,9 +82,9 @@
     </div>
     </div>
     
-    <div class="col-xs-12 smart-forms isotope">
+    <div class="col-xs-12 smart-forms" id="isotope">
         {% for project in projects %}
-        <div class="col-xs-12 col-sm-4 element-item" data-category="{{project.projecttype}}">
+        <div class="col-xs-12 col-sm-4 element-item {{project.topic}} cat_{{project.projecttype}}" data-tstamp="{{project.tstamp}}">
            	<div class="price-box ">
                 <img src="{{baseurl}}img/{{project.getType().icon}}" class="category_icon" />
                 
