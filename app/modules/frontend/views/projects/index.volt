@@ -10,7 +10,7 @@
         <form>
     	<div class="col-xs-12 text-right">
             
-        <button type="reset" class="btn btn-primary sm-right"><i class="fa fa-plus-circle"></i>
+        <button type="reset" class="btn btn-primary sm-right"><i class="fa fa-minus-circle"></i>
  {{tr('resetFilters')}}</button>
  </div>
         <div class="col-xs-12">
