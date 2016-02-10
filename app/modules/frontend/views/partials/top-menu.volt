@@ -14,24 +14,11 @@
             {% else %}     
             <li class="dropdown-short xs-hover">
             {% endif %}
-            {{- link_to(language~'/projects', tr('currentProjects')~' <span class="caret"></span>', 'title': tr('currentProjects')) -}}             
-            <ul class="dropdown-menu">
-              {% for projecttype in projecttypes %}  
-              <li>{{- link_to(language~'/projects/?type='~projecttype.uid, projecttype.title, 'title': projecttype.title) -}}</li>
-              {% endfor %}
-              
-            </ul>
+            {{- link_to(language~'/projects', tr('currentProjects'), 'title': tr('currentProjects')) -}}             
+           
           </li>
           {% endif %}
-          <li class="dropdown-short xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Projekt-Archiv<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a title="" href="#">d.velop-Lösungen</a></li>
-              <li><a title="" href="#">Success Stories</a></li>
-              <li><a title="" href="#">Events</a></li>
-              <li><a title="" href="#">Research</a></li>
-              <li><a title="" href="#">Response-Elemente</a></li>
-            </ul>
-          </li>
+          
           <li class="dropdown-short xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="aktuelles-erkunden/">Veröffentlichungen<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a title="" href="#">Pressemitteilungen</a></li>

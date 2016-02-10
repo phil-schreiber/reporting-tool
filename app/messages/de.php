@@ -47,6 +47,7 @@ $messages = array(
         "h" => "Stunden",
         "projectsTitle" => "Übersicht über die d.velop Veröffentlichungen",
         "filterResults" => "Ergebnisse filtern",
+        "resetFilters" => "Filter zurücksetzen",
         "projectsDesc" => "Lassen Sie sich aktuelle Projekte anzeigen und filtern",
         "show" => "ansehen",
         "budgets" => "Budgets",

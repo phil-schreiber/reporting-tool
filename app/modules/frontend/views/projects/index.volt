@@ -7,9 +7,11 @@
     
     
     <div class="col-xs-12">
+        <form>
     	<div class="col-xs-12 text-right">
-        <button class="btn btn-primary sm-right"><i class="fa fa-plus-circle"></i>
- {{tr('filterResults')}}</button>
+            
+        <button type="reset" class="btn btn-primary sm-right"><i class="fa fa-plus-circle"></i>
+ {{tr('resetFilters')}}</button>
  </div>
         <div class="col-xs-12">
         <div class="col-xs-12 border-box smart-forms" id="filters">
@@ -80,6 +82,7 @@
         
         </div>
     </div>
+            </form>
     </div>
     
     <div class="col-xs-12 smart-forms" id="isotope">

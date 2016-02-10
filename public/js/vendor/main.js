@@ -39,7 +39,11 @@ var mainModule = function (jq, is) {
                isotopeCont.arrange({ filter: '*'});
            }
         });
+        jq('button[type="reset"]').on('click',function(e){
+            isotopeCont.arrange({ filter: '*'  });
+        });
         jq('#filters').on( 'change', 'input[type="radio"]', function(e) {           
+            radioFilter=jq(this).val();
             var filterValue= jq(this).val();
             var filterStrng = selectFilters.join('');            
                 isotopeCont.arrange({ filter: filterStrng+'.'+filterValue  });
@@ -56,16 +60,27 @@ var mainModule = function (jq, is) {
             
             isotopeCont.arrange({
                 filter: function(  ) {
-                    var returnVal=false;
-                    
-                    var number = jq(this).attr('data-tstamp');
-                    console.log(number);
+                    var addFiltersResult = false;
+                    if(radioFilter.length >0){
+                        if(jQuery(this).hasClass(radioFilter)){
+                            addFiltersResult=true;
+                        }
+                        
+                    }else{
+                        addFiltersResult = true;
+                    }
+
+                    var returnVal=false;                    
+                    var number = jq(this).attr('data-tstamp');                    
                     if(largerThan){
                         returnVal=parseInt( number, 10 ) > tstamp;
                     }else{
                         returnVal=parseInt( number, 10 ) < tstamp;
                     }
-                    return returnVal;
+                    if(addFiltersResult && returnVal){
+                        return true;
+                    }
+                    
                   }
             })
             
