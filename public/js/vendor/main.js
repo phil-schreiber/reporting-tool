@@ -1,26 +1,5 @@
-
-  
-var mainModule = function (jq, is) {
- 
-  var viewportW = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-      viewportH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-  var baseurl;
-  var dummyEmpty=function(){};
-  var lang=jq('#lang').val();
-  
-  var filterFns = {
-        // show if number is greater than 50
-        numberGreaterThan50: function() {
-          var number = $(this).find('.number').text();
-          return parseInt( number, 10 ) > 50;
-        },
-        // show if name ends with -ium
-        ium: function() {
-          var name = $(this).find('.name').text();
-          return name.match( /ium$/ );
-        }
-      };
-  var initIsotope=function(){
+var isotopeModule = function(jq,is){
+    
         var isotopeCont=new is('#isotope',{
                 itemSelector: '.element-item',
                 layoutMode: 'fitRows'                
@@ -85,10 +64,22 @@ var mainModule = function (jq, is) {
             })
             
         });
-    };
+    
+};
+  
+var mainModule = function (jq, is) {
+ 
+  var viewportW = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+      viewportH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  var baseurl;
+  var dummyEmpty=function(){};
+  var lang=jq('#lang').val();
+  
+
+  
   return {
       
-    init:function(){
+    mainController:function(){
         
       jq('.datepicker').datetimepicker({
 		lang:lang,
@@ -96,7 +87,7 @@ var mainModule = function (jq, is) {
                 format:'d.m.Y'
 	}); 
       jq("#topic").chosen({max_selected_options: 5});
-      initIsotope();
+      new isotopeModule(jq,is);
    
         
     },

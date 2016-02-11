@@ -21,7 +21,7 @@ require(['jquery','datetimepicker','isotope','main'], function( $,datetimepicker
     
         $( document ).ready( function(jQuery) {
             var main=new mainModule($,isotope);
-            main.init();
+            main.mainController();
             
             
         });
