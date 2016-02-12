@@ -78,6 +78,7 @@ class ControllerBase extends Controller
 		$this->view->setVar('controller', $controllerName);
 		$this->view->setVar('language', $lang);
 		$this->view->setVar('baseurl', $baseUrl);
+                
 		$this->view->setVar('languages_available', $languagesAvailable);
 		
 		
@@ -131,8 +132,8 @@ class ControllerBase extends Controller
             
             $environment= $this->config['application']['debug'] ? 'development' : 'production';
             $this->baseUri=$this->config['application'][$environment]['staticBaseUri'];
-            $this->path=$this->baseUri.$this->view->language.$controllerName.'/'.$actionName.'/';
-			
+            $this->path=$this->baseUri.'backend/'.$this->view->language.$controllerName.'/'.$actionName.'/';
+		$this->view->setVar('path', $this->path);	
             if (!$this->acl->isAllowed($role, $controllerName, $actionName)) {
 
                 $this->flash->notice('You don\'t have access to this module: ' . $controllerName . ':' . $actionName);

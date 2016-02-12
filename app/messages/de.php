@@ -57,7 +57,11 @@ $messages = array(
         "active" => "aktiv",
         "inactive" => "inaktiv",
         "startdate" => "Startdatum",
-        "enddate" => "Enddatum"
+        "enddate" => "Enddatum",
+        "url" => "URL",
+        "type" => "Typ",
+        "reach" => "Reichweite",
+        "logo" => "Logo"
         
     
    );

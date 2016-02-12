@@ -1,6 +1,8 @@
 <?php
 namespace reportingtool\Helper;
-use Phalcon\Mvc\User\Component;
+use Phalcon\Mvc\User\Component,
+        Phalcon\Image,
+	Phalcon\Image\Adapter\GD as GDAdapter;
 
 
 /*
@@ -25,4 +27,30 @@ class Littlehelpers extends Component{
      }
      return $senddate;
  }
+ 
+ public function saveImages($filearray,$controllername,$uid){
+     $time=time();
+     $saveFilename='';
+     foreach ($filearray as $file){
+						$nameArray=explode('.',$file->getName());
+						$filetype=$nameArray[(count($nameArray)-1)];
+						$tmpFile='../app/cache/tmp/'.$time.'_'.$file->getName();
+						$file->moveTo($tmpFile);
+						
+						$thumbFilenameS='../public/media/'.$controllername.'_'.$uid.'_S.'.$filetype;
+						$thumbFilenameL='../public/media/'.$controllername.'_'.$uid.'_L.'.$filetype;
+						$saveFilename='public/media/'.$controllername.'_'.$uid.'_L.'.$filetype;
+						
+						$imageS = new GDAdapter($tmpFile);
+						$imageS->resize(300,10000);
+						$imageS->save($thumbFilenameS);
+						$imageL = new GDAdapter($tmpFile);
+						$imageL->resize(600,10000);
+						$imageL->save($thumbFilenameL);
+                      
+						 unlink($tmpFile);
+              }
+     return $saveFilename;
+ }
+ 
 }                
