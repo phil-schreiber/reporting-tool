@@ -132,7 +132,7 @@ class ControllerBase extends Controller
             
             $environment= $this->config['application']['debug'] ? 'development' : 'production';
             $this->baseUri=$this->config['application'][$environment]['staticBaseUri'];
-            $this->path=$this->baseUri.'backend/'.$this->view->language.$controllerName.'/'.$actionName.'/';
+            $this->path=$this->baseUri.'backend/'.$lang.'/'.$controllerName;
 		$this->view->setVar('path', $this->path);	
             if (!$this->acl->isAllowed($role, $controllerName, $actionName)) {
 

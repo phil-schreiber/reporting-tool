@@ -19,17 +19,10 @@
           </li>
           {% endif %}
           
-          <li class="dropdown-short xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="aktuelles-erkunden/">Veröffentlichungen<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a title="" href="#">Pressemitteilungen</a></li>
-              <li><a title="" href="#">Artikel</a></li>
-              <li><a title="" href="#">Interviews</a></li>
-              <li><a title="" href="#">Research</a></li>
-             
-            </ul>
+          <li class="dropdown-short xs-hover">{{- link_to(language~'/clippings', "Veröffentlichungen", 'title': "Veröffentlichungen") -}}             
+            
           </li>
-          <li class="xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Aufwand</a></li>
-          <li class="xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Leads</a> </li>
+                    
           <li class="xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Abstimmung</a> </li>
           <li class="xs-hover">
               {{- link_to(language~'/contractruntime', 'Vertrag und Budget', 'title': 'Vertrag und Budget') -}}             
@@ -54,20 +47,7 @@
 					<a class="navbar-brand navbar-left" href="#"><img width="130" src="{{baseurl}}img/logo_df.svg"></a>
 				</div>
                 
-                
-                <ul class="nav navbar-nav navbar-right">
-        				<li>
-        				<form class="navbar-form-expanded navbar-form navbar-left visible-lg-block visible-md-block visible-xs-block" role="search">
-        					<div class="input-group">
-        						<input name="query" class="form-control" type="text" placeholder="Schnellsuche" data-width="120px" data-width-expanded="200px">
-        						<span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i>&nbsp;</button></span>
-        					</div>
-        				</form>
-                        </li>
-        				
-        				
-        				
-        			</ul>
+             
       
       
     </div>

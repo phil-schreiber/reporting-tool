@@ -23,12 +23,12 @@ class MediumController extends ControllerBase
         
         public function createAction(){
             if($this->request->isPost()){
-                var_dump($this->request->getUploadedFiles());
+                
                 $time = time();
                 $medium = new Medium();
                 $medium->assign(array(
                     'cruser_id' => $this->session->get('auth')['uid'],                    
-                    'time' => $time,
+                    'tstamp' => $time,
                     'crdate' => $time,
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
@@ -42,32 +42,32 @@ class MediumController extends ControllerBase
                 }else{
                     $medium->icon =$this->littlehelpers->saveImages($this->request->getUploadedFiles(),'medium',$medium->uid);
                     $medium->update();
-                   // $this->response->redirect('backend/'.$this->view->language.'/medium/update/'.$medium->uid.'/'); 
+                    $this->response->redirect('backend/'.$this->view->language.'/medium/update/'.$medium->uid.'/'); 
                     $this->flashSession->success($this->translate('successCreate'));
-                    //$this->view->disable();
+                    $this->view->disable();
                 }
             }
         }
         
         public function updateAction(){
             if($this->request->isPost()){
-                $projecttypeUid=$this->request->hasPost('uid') ? $this->request->getPost('uid') : 0;
-                $projecttype=Medium::findFirstByUid($projecttypeUid);
-                if($projecttype){
-                    $projecttype->assign(array(
+                $mediumUid=$this->request->hasPost('uid') ? $this->request->getPost('uid') : 0;
+                $medium=Medium::findFirstByUid($mediumUid);
+                if($medium){
+                    $medium->assign(array(
                        'tstamp' => time(),
                        'title' => $this->request->hasPost('title') ? $this->request->getPost('title') : '',
                        'description' => $this->request->hasPost('description') ? $this->request->getPost('description') : '',
                         'icon' =>$this->request->hasPost('icon') ? $this->request->getPost('icon') : '',
                     ));
-                    if(!$projecttype->update()){
-                        $this->flashSession->error($projecttype->getMessages());
+                    if(!$medium->update()){
+                        $this->flashSession->error($medium->getMessages());
                     }
                 }
             }else{
-                $projecttypeUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;
-                $projecttype=Medium::findFirstByUid($projecttypeUid);
-                $this->view->setVar('projecttype',$projecttype);
+                $mediumUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;
+                $medium=Medium::findFirstByUid($mediumUid);
+                $this->view->setVar('medium',$medium);
             }
         }
 

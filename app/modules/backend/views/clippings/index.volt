@@ -6,7 +6,7 @@
 {% if customerselect %}
 <h2>Kunden auswählen</h2>
 <form method="POST">
-    <select name="customer">
+    <select name="usergroup">
             {% for usergroup in usergroups %}
             <option value="{{usergroup.uid}}">{{usergroup.title}}</option>
             {% endfor %}
@@ -14,6 +14,7 @@
     <input type="submit" value="Ok">
 </form>
 {% else %}
+<a href="{{path}}/create/{{usergroup.uid}}">Neues Clipping für {{usergroup.title}}</a>
 <table>
     
 </table>    

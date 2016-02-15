@@ -66,12 +66,40 @@ var isotopeModule = function(jq,is){
         });
     
 };
-  
+
+var projectClippings=function(jq){
+    var projectuid=jq('#projectuid').val();
+	
+    var dt = jq('#clippings').dataTable({
+            "bProcessing": true,	        
+            "sAjaxSource": baseurl+"projects/update/",
+            "bServerSide": true,        
+            "sServerMethod": 'POST',
+            "oLanguage": {
+                    "sSearch": "Suchen:",
+                    "sLengthMenu": "_MENU_ Einträge anzeigen",
+                    /*"sInfo": "Es werden Einträge _START_ bis _END_ von insgesamt _TOTAL_ angezeigt",
+                    "sInfoEmpty": "keine passenden Veranstaltungen gefunden",*/
+                    "sInfoFiltered":"(gefiltert von _MAX_  Einträgen)",
+                    "oPaginate":{
+                            "sPrevious" : "Vorherige",
+                            "sNext" : "Nächste"
+                            }
+            },
+                     "fnServerParams": function ( aoData ) {
+
+                             aoData.push( { "name": "projectuid","value":projectuid} );
+                     }
+            });
+    
+}
+
+var baseurl;
 var mainModule = function (jq, is) {
  
   var viewportW = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
       viewportH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-  var baseurl;
+  
   var dummyEmpty=function(){};
   var lang=jq('#lang').val();
   
@@ -80,15 +108,19 @@ var mainModule = function (jq, is) {
   return {
       
     mainController:function(){
-        
+      baseurl=jq('#baseurl').val();
       jq('.datepicker').datetimepicker({
 		lang:lang,
                 timepicker:false,
                 format:'d.m.Y'
 	}); 
       jq("#topic").chosen({max_selected_options: 5});
-      new isotopeModule(jq,is);
-   
+      if(jq('#controller').val()==='projects' && jq('#action').val()==='index'){
+        new isotopeModule(jq,is);
+        }
+      if(jq('#controller').val()==='projects' && jq('#action').val()==='update'){
+          new projectClippings(jq);
+      }
         
     },
     

@@ -73,6 +73,11 @@ class Medium extends Model
 	 * @var string
 	 */
         public $icon = ''; 
+        
+        /*
+	 * @var integer
+	 */
+        public $mediumstatus = 0; 
     
     public function initialize()
     {

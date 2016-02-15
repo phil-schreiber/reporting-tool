@@ -61,7 +61,13 @@ $messages = array(
         "url" => "URL",
         "type" => "Typ",
         "reach" => "Reichweite",
-        "logo" => "Logo"
-        
+        "logo" => "Logo",
+        "clipping" => "Clipping",
+        "clippings" => "Clippings",
+        "overview" => "Übersicht",
+        "clippingOverview" => "Clippings-Übersicht",
+        "publicationdate" => "Veröffentlichungsdatum",
+        "clippingtype" => "Clipping-Typ",
+        "file" => "Datei"
     
    );

@@ -69,6 +69,7 @@ class ControllerBase extends Controller
                    'conditions' => 'deleted =0 AND hidden =0'
                 ));
                 
+                
                 $this->view->setVar('projecttypes',$projectTypes);
 		$this->view->setVar('controller', $controllerName);
 		$this->view->setVar('language', $lang);
@@ -123,7 +124,7 @@ class ControllerBase extends Controller
 		
 		 // Check if the user have permission to the current option
             $actionName = $dispatcher->getActionName();
-            
+            $this->view->setVar('action',$dispatcher->getActionName() );
             $environment= $this->config['application']['debug'] ? 'development' : 'production';
             $this->baseUri=$this->config['application'][$environment]['staticBaseUri'];
             $this->path=$this->baseUri.$this->view->language.$controllerName.'/'.$actionName.'/';

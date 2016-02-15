@@ -25,7 +25,7 @@
 				{{ text_field("endtime", "size": 32, "class":"datepicker") }}
 				<br><br>
                                 <label>{{ tr('status') }}</label><br>
-                                {{select('status',[ '4' : tr('completed'),'3' : tr('live'),'2' : tr('incoordination'), '1' : tr('inpreparation'), '0' : tr('new')], 'value':0)}}
+                                {{select('status',[ '3' : tr('completed'),'2' : tr('live'),'1' : tr('incoordination'), '0' : tr('inpreparation') ], 'value':0)}}
                                 <br><br>
                                 <label>{{ tr('projecttype') }}</label><br>
 				{{select('projecttype',projecttypes,"using":['uid','title'])}}

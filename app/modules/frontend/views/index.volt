@@ -21,6 +21,7 @@
         {{ stylesheet_link('css/denkfabrikscheme.css') }}		
         {{ stylesheet_link('css/owl.carousel.css') }}	
         {{ stylesheet_link('css/jquery.datetimepicker.css') }}		        
+        {{ stylesheet_link('css/jquery.dataTables.css') }}		                        
         {{ stylesheet_link('css/chosen.min.css') }}		        
         {{ stylesheet_link('css/styles.css') }}     
 		{{ assets.outputCss() }}
@@ -45,6 +46,7 @@
        {%- if session.get('auth') -%}
 	   <input id="suredel" value="{{tr('suredel')}}" type="hidden">
 	   <input id="controller" value="{{controller}}" type="hidden">
+           <input id="action" value="{{action}}" type="hidden">
 	   <input id="lang" value="{{language}}" type="hidden">
 		
 		{%- endif -%}

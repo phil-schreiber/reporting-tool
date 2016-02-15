@@ -28,6 +28,16 @@ class Littlehelpers extends Component{
      return $senddate;
  }
  
+ public function processDateOnly($rawdate){
+     
+       
+        $dateDataArr=explode('.',$rawdate);
+        $senddate=mktime(0,0,0,$dateDataArr[1],$dateDataArr[0],$dateDataArr[2]);
+     
+     return $senddate;
+ }
+ 
+ 
  public function saveImages($filearray,$controllername,$uid){
      $time=time();
      $saveFilename='';
@@ -52,5 +62,7 @@ class Littlehelpers extends Component{
               }
      return $saveFilename;
  }
+ 
+ 
  
 }                

@@ -1,18 +1,33 @@
 <?php
 namespace reportingtool\Modules\Modules\Backend\Controllers;
-use reportingtool\Models\Medium;
+use reportingtool\Models\Clippings,
+    reportingtool\Models\Usergroups,
+    reportingtool\Models\Projects,
+    reportingtool\Models\Medium;
 	
 
 /**
- * Class ProjecttypesController
+ * Class ClippingsController
  *
  * @package reporting-tool\Controllers
  */
-class MediumController extends ControllerBase
+class ClippingsController extends ControllerBase
 {
 	public function indexAction(){            
             if($this->request->isPost()){
                 
+                $clippings=Clippings::find(array(
+                   'conditions'  => 'deleted = 0 AND hidden =0 AND usergroup = ?1',
+                    'bind' => array(
+                        1 => $this->request->getPost('usergroup')
+                    ),
+                    'order' => 'tstamp DESC,pid ASC'
+                    
+                ));
+                $usergroup=Usergroups::findFirstByUid($this->request->getPost('usergroup'));
+                $this->view->setVar('usergroup',$usergroup);   
+                $this->view->setVar('clippings',$clippings);   
+                $this->view->setVar('customerselect',false);   
             }else{
                 $usergroups=  Usergroups::find(array(
                         'conditions' => 'deleted = 0 AND hidden = 0',
@@ -26,48 +41,117 @@ class MediumController extends ControllerBase
         public function createAction(){
             if($this->request->isPost()){
                 $time = time();
-                $projecttype = new Projecttypes();
-                $projecttype->assign(array(
+                $usergroup=Usergroups::findFirstByUid($this->request->getPost('usergroup'));
+                
+                $filename=$this->saveFile($this->request->getUploadedFiles(),$time,$usergroup);
+                
+                $clipping = new Clippings();
+                $clipping->assign(array(
+                    'pid' => $this->request->getPost('project'),
                     'cruser_id' => $this->session->get('auth')['uid'],
-                    'usergroup' => $this->session->get('auth')['usergroup'],
-                    'time' => $time,
+                    'usergroup' => $this->request->getPost('usergroup'),
+                    'tstamp' => $this->littlehelpers->processDate($this->request->getPost('tstamp')),
                     'crdate' => $time,
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
-                    'icon' =>$this->request->getPost('icon')
+                    'clippingtype' =>$this->request->getPost('clippingtype'),                    
+                    'mediumuid' => $this->request->getPost('medium'),
+                    'url' => $this->request->getPost('url'),
+                    'filelink'=>$filename
                 ));                
-                if(!$projecttype->save()){
-                    $this->flashSession->error($projecttype->getMessages());
+                if(!$clipping->save()){
+                    $this->flashSession->error($clipping->getMessages());
                 }else{
-                    $this->response->redirect('backend/'.$this->view->language.'/projecttypes/update/'.$projecttype->uid.'/'); 
+                    $this->response->redirect('backend/'.$this->view->language.'/clippings/update/'.$clipping->uid.'/'); 
                     $this->flashSession->success($this->translate('successCreate'));
                     $this->view->disable();
                 }
+            }else{
+                $usergroupUid=$this->dispatcher->getParam("uid");
+                $usergroup=Usergroups::findFirstByUid($usergroupUid);
+                
+                $projects= Projects::find(array(
+                   'conditions' => 'deleted=0 AND hidden =0 AND usergroup =?1',
+                   'bind' => array(
+                       1=>$usergroupUid
+                   )
+                ));
+                
+                $medium=Medium::find(array(
+                    'conditions' => 'deleted=0 AND hidden=0'
+                ));
+                
+                $this->view->setVar('medium',$medium);
+                $this->view->setVar('usergroup',$usergroup);
+                $this->view->setVar('projects',$projects);
             }
         }
         
         public function updateAction(){
             if($this->request->isPost()){
-                $projecttypeUid=$this->request->hasPost('uid') ? $this->request->getPost('uid') : 0;
-                $projecttype=Projecttypes::findFirstByUid($projecttypeUid);
-                if($projecttype){
-                    $projecttype->assign(array(
-                       'tstamp' => time(),
-                       'title' => $this->request->hasPost('title') ? $this->request->getPost('title') : '',
-                       'description' => $this->request->hasPost('description') ? $this->request->getPost('description') : '',
-                        'icon' =>$this->request->hasPost('icon') ? $this->request->getPost('icon') : '',
-                    ));
-                    if(!$projecttype->update()){
-                        $this->flashSession->error($projecttype->getMessages());
-                    }
+                $time = time();
+                $usergroup=Usergroups::findFirstByUid($this->request->getPost('usergroup'));
+                
+                $filename=$this->saveFile($this->request->getUploadedFiles(),$time,$usergroup);
+                $clippingUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;
+                $clipping=Clippings::findFirstByUid($clippingUid);
+                $clipping->assign(array(
+                    'cruser_id' => $this->session->get('auth')['uid'],
+                    'usergroup' => $this->request->getPost('usergroup'),
+                    'tstamp' => $this->littlehelpers->processDateOnly($this->request->getPost('tstamp')),
+                    'crdate' => $time,
+                    'title' => $this->request->getPost('title'),
+                    'description' => $this->request->getPost('description'),
+                    'clippingtype' =>$this->request->getPost('clippingtype'),                    
+                    'mediumuid' => $this->request->getPost('medium'),
+                    'url' => $this->request->getPost('url'),
+                    'filelink'=>$filename
+                ));                
+                if(!$clipping->update()){
+                    $this->flashSession->error($clipping->getMessages());
+                }else{
+                    $this->response->redirect('backend/'.$this->view->language.'/clippings/update/'.$clipping->uid.'/'); 
+                    $this->flashSession->success($this->translate('successCreate'));
+                    $this->view->disable();
                 }
             }else{
-                $projecttypeUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;
-                $projecttype=Projecttypes::findFirstByUid($projecttypeUid);
-                $this->view->setVar('projecttype',$projecttype);
+                $clippingUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;
+                $clipping=Clippings::findFirstByUid($clippingUid);
+                $usergroup=Usergroups::findFirstByUid($clipping->usergroup);
+                $projects= Projects::find(array(
+                   'conditions' => 'deleted=0 AND hidden =0 AND usergroup =?1',
+                   'bind' => array(
+                       1=>$usergroup->uid
+                   )
+                ));
+                
+                $medium=Medium::find(array(
+                    'conditions' => 'deleted=0 AND hidden=0'
+                ));
+                
+                $this->view->setVar('medium',$medium);
+                $this->view->setVar('usergroup',$usergroup);
+                $this->view->setVar('projects',$projects);
+                $this->view->setVar('clipping',$clipping);
             }
         }
 
-	
+        private function saveFile($filearray,$time,$usergroup){
+            
+            $saveFilename='';
+            $filepath='../public/media/clippings/'.$usergroup->title;
+            
+            if(!is_dir($filepath)){
+                mkdir($filepath);
+            }
+                foreach ($filearray as $file){
+                    $nameArray=explode('.',$file->getName());
+                    $filetype=array_pop($nameArray);
+                    
+                    $saveFilename=$filepath.'/'.  str_replace(' ','_',implode('.',$nameArray)).'_'.$time.'.'.$filetype;                    
+                    $file->moveTo($saveFilename);
+                }
+            return substr($saveFilename,2);
+        }
 	
 }
