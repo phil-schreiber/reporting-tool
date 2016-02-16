@@ -69,7 +69,7 @@ var isotopeModule = function(jq,is){
 
 var projectClippings=function(jq){
     var projectuid=jq('#projectuid').val();
-	
+    
     var dt = jq('#clippings').dataTable({
             "bProcessing": true,	        
             "sAjaxSource": baseurl+"projects/update/",
@@ -86,13 +86,50 @@ var projectClippings=function(jq){
                             "sNext" : "Nächste"
                             }
             },
-                     "fnServerParams": function ( aoData ) {
+            "fnServerParams": function ( aoData ) {
 
-                             aoData.push( { "name": "projectuid","value":projectuid} );
-                     }
+                    aoData.push( { "name": "projectuid","value":projectuid} );
+            }
             });
     
-}
+};
+
+var clippings=function(jq){
+   
+   var filters=[];
+    jq('#filterForm').on( 'submit', function(e) {           
+        e.preventDefault();
+        filters=jq(this).serializeArray();                
+        
+        dt.fnDraw();
+     });	
+	
+    var dt = jq('#clippings').dataTable({
+            "bProcessing": true,	        
+            "sAjaxSource": baseurl+"clippings/index/",
+            "bServerSide": true,        
+            "sServerMethod": 'POST',
+            "oLanguage": {
+                    "sSearch": "Suchen:",
+                    "sLengthMenu": "_MENU_ Einträge anzeigen",
+                    /*"sInfo": "Es werden Einträge _START_ bis _END_ von insgesamt _TOTAL_ angezeigt",
+                    "sInfoEmpty": "keine passenden Veranstaltungen gefunden",*/
+                    "sInfoFiltered":"(gefiltert von _MAX_  Einträgen)",
+                    "oPaginate":{
+                            "sPrevious" : "Vorherige",
+                            "sNext" : "Nächste"
+                            }
+            },
+            "fnServerParams": function ( aoData ) {
+                filters.forEach(function(el){                    
+                    aoData.push({"name":el.name,"value":el.value});
+                });
+                
+   
+            }
+            });
+    
+};
 
 var baseurl;
 var mainModule = function (jq, is) {
@@ -114,14 +151,16 @@ var mainModule = function (jq, is) {
                 timepicker:false,
                 format:'d.m.Y'
 	}); 
-      jq("#topic").chosen({max_selected_options: 5});
+      jq("#topic,#projects").chosen({max_selected_options: 5});
       if(jq('#controller').val()==='projects' && jq('#action').val()==='index'){
         new isotopeModule(jq,is);
         }
       if(jq('#controller').val()==='projects' && jq('#action').val()==='update'){
           new projectClippings(jq);
       }
-        
+      if(jq('#controller').val()==='clippings' && jq('#action').val()==='index'){
+          new clippings(jq);
+      }  
     },
     
     // A public function utilizing privates

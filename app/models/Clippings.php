@@ -9,6 +9,8 @@ use Phalcon\Mvc\Model;
  */
 class Clippings extends Model
 {
+    
+    
     public function initialize()
     {
         $this->hasOne('mediumuid', 'reportingtool\Models\Medium', 'uid', array(

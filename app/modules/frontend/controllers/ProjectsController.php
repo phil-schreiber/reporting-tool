@@ -110,7 +110,7 @@ class ProjectsController extends ControllerBase
 		 */
 			
 
-		$sWhere = "WHERE clipping.deleted=0 AND clipping.hidden=0 AND clipping.pid = :pid: ";
+		$sWhere = "WHERE clipping.deleted=0 AND clipping.hidden=0 AND clipping.pid = :pid: AND clipping.usergroup = :usergroup: ";
 		if ( isset($_POST['sSearch']) && $_POST['sSearch'] != "" )
 		{
 			$sWhere .= " AND (";
@@ -153,6 +153,7 @@ class ProjectsController extends ControllerBase
 		
 		
 		$bindArray['pid']=$this->request->getPost('projectuid');
+                $bindArray['usergroup']=$this->session->get('auth')['usergroup'];
 		if($this->request->getPost('sSearch') != ''){
 			$bindArray['searchTerm']='%'.$this->request->getPost('sSearch').'%';
 		}

@@ -31,6 +31,7 @@ $messages = array(
         "backend" => "backend",
         "current" => "Aktuelle",
         "projectsDesc" => "Aktuelle und geplante PR-Maßnahmen",
+        "clippingsDesc" => "Lassen Sie sich sämtliche Clippings anzeigen und filtern",
         "filterShow" => "Filern und Ansicht",
         "new" => "neu",
         "inpreparation" => "in Vorbereitung",
@@ -68,6 +69,8 @@ $messages = array(
         "clippingOverview" => "Clippings-Übersicht",
         "publicationdate" => "Veröffentlichungsdatum",
         "clippingtype" => "Clipping-Typ",
-        "file" => "Datei"
+        "file" => "Datei",
+        "clippingoverview" => "Clippingübersicht",
+        "clippingoverviews" => "Clippingübersichten"
     
    );

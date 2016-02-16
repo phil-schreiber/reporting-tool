@@ -63,6 +63,28 @@ class Littlehelpers extends Component{
      return $saveFilename;
  }
  
- 
+ private function sonderzeichen($string)
+{
+$search = array("Ä", "Ö", "Ü", "ä", "ö", "ü", "ß", "´");
+$replace = array("Ae", "Oe", "Ue", "ae", "oe", "ue", "ss", "");
+return str_replace($search, $replace, $string);
+}
+public function saveFile($filearray,$time,$usergroup){
+            
+            $saveFilename='';
+            $filepath='../public/media/clippings/'.$usergroup->title;
+            
+            if(!is_dir($filepath)){
+                mkdir($filepath);
+            }
+                foreach ($filearray as $file){
+                    $nameArray=explode('.',$this->sonderzeichen($file->getName()));
+                    $filetype=array_pop($nameArray);
+                    
+                    $saveFilename=$filepath.'/'.  str_replace(' ','_',implode('.',$nameArray)).'_'.$time.'.'.$filetype;                    
+                    $file->moveTo($saveFilename);
+                }
+            return substr($saveFilename,2);
+        }
  
 }                

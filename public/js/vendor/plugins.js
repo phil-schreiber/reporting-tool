@@ -6,6 +6,7 @@ require.config({
 	datatables:'jquery.dataTables',	
         isotope:'isotope.pkgd',
         chosen:'chosen.jquery',
+        bootstrap:'bootstrap.min',
         main: 'main'
     },
     shim: {
@@ -13,11 +14,12 @@ require.config({
     'datatables':['jquery'],
     'isotope':['jquery'],
     'chosen':['jquery'],
+    'bootstrap':['jquery'],
     'main':['jquery','datatables','datetimepicker','isotope','chosen']
       }
 });
 
-require(['jquery','datetimepicker','isotope','main'], function( $,datetimepicker,isotope ) {	       
+require(['jquery','datetimepicker','isotope','bootstrap','main'], function( $,datetimepicker,isotope ) {	       
     
         $( document ).ready( function(jQuery) {
             var main=new mainModule($,isotope);

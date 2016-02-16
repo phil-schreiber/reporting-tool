@@ -13,7 +13,14 @@
         <p>{{project.estcost}} h</p>
         <label>Status</label>
         <p>{{projectstate[project.status]}}</p>
-        
+        <label>Deadline:</label>
+        <p>
+            {% if project.deadline == 0 %}
+            keine
+            {% else %}
+            {{date('d/m/Y',project.starttime)}}
+            {% endif %}
+        </p>
         
         {{ hidden_field("projectuid","value": project.uid) }}
     </div>
