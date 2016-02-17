@@ -43,12 +43,20 @@ class Projects extends Model
 	 * @var integer
 	 */
 	public $hidden = 0;
+        
+        /**
+	 * @var integer
+	 */
+	public $usergroup = 0;
 	
 	/*
 	 * @var string
 	 */
 	public $title = '';
         
+        /*
+	 * @var string
+	 */
         public $description = '';   
         
         /**
