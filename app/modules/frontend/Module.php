@@ -13,7 +13,7 @@ class Module implements ModuleDefinitionInterface
     /**
      * Registers the module auto-loader
      */
-    public function registerAutoloaders(\Phalcon\DiInterface $di = NULL)
+    public function registerAutoloaders( $di )
     {
 		
 
@@ -36,7 +36,7 @@ $this->config = include APP_PATH . "/app/config/config.php";
      *
      * @param Phalcon\DI $di
      */
-    public function registerServices(\Phalcon\DiInterface  $di = NULL)
+    public function registerServices( $di )
     {
         /**
          * Read configuration

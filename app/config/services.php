@@ -79,10 +79,10 @@ $di->set(
 
             //Listen all the database events
             
-			  $logger = new FileLogger(APP_PATH . "/app/logs/db.log");
+			  //$logger = new FileLogger(APP_PATH . "/app/logs/db.log");
 			  $eventsManager->attach(
                 'db',
-                function ($event, $connection) use ($logger) {
+                function ($event, $connection)  {
                     
                     if ($event->getType() == 'beforeQuery') {
                          

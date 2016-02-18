@@ -16,6 +16,24 @@
                     </div>
                 </div>		
 		{% endif %}
+                  {% if linkAllowed(session.get('auth'),'contractruntime','index') %}		
+		<div class="col-xs-12 col-sm-4">
+                    <div class="price-box ">
+                        <h3>Vertrag und Budget</h3>
+                        <h5>Ihre Vertragskonditionen und aktuellen Verbräuche</h5><br>
+                        {{ link_to(language~'/projects/index/', tr('retrieve'), 'title': tr('retrieve'),'class':'btn-primary btn') }}
+                    </div>
+                </div>		
+		{% endif %}
+                 {% if linkAllowed(session.get('auth'),'contractruntime','index') %}		
+		<div class="col-xs-12 col-sm-4">
+                    <div class="price-box ">
+                        <h3>Vertrag und Budget</h3>
+                        <h5>Ihre Vertragskonditionen und aktuellen Verbräuche</h5><br>
+                        {{ link_to(language~'/projects/index/', tr('retrieve'), 'title': tr('retrieve'),'class':'btn-primary btn') }}
+                    </div>
+                </div>		
+		{% endif %}
 		
 		
 		{% if session.get('auth')['superuser'] == 1 %}		

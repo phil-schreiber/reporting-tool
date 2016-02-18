@@ -13,7 +13,7 @@ class Module implements ModuleDefinitionInterface
     /**
      * Registers the module auto-loader
      */
-    public function registerAutoloaders(\Phalcon\DiInterface $dependencyInjector = NULL)
+    public function registerAutoloaders( $dependencyInjector)
     {
 		
 
@@ -37,7 +37,7 @@ class Module implements ModuleDefinitionInterface
      *
      * @param Phalcon\DI $di
      */
-    public function registerServices(\Phalcon\DiInterface $di)
+    public function registerServices( $di)
     {
         /**
          * Read configuration

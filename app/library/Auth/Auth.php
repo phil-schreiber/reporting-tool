@@ -92,7 +92,7 @@ class Auth extends Component
  
     // run the hash function on $password
     $new_hash = crypt($password, $full_salt);
-	echo($hash.' <-> '.$new_hash);
+	
     // returns true or false
     return ($hash == $new_hash);
 	}
