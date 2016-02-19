@@ -4,11 +4,11 @@ use reportingtool\Models\Medium;
 	
 
 /**
- * Class MediumController
+ * Class ContractruntimeController
  *
  * @package reporting-tool\Controllers
  */
-class MediumController extends ControllerBase
+class ContractruntimeController extends ControllerBase
 {
 	public function indexAction(){            
             

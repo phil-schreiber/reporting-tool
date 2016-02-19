@@ -23,7 +23,7 @@
             
           </li>
                     
-          <li class="xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Abstimmung</a> </li>
+          <li class="xs-hover">{{- link_to(language~'/coordinations', tr('coordinations'), 'title': tr('coordinations')) -}}              </li>
           <li class="xs-hover">
               {{- link_to(language~'/contractruntime', 'Vertrag und Budget', 'title': 'Vertrag und Budget') -}}             
           </li>

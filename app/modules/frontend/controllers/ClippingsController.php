@@ -221,7 +221,7 @@ class ClippingsController extends ControllerBase
                                         }elseif($aColumns[$i] == 'clippingtype'){
                                             $row[]=$clippingtypes[$rowArray[ $aColumns[$i] ]];
                                         }elseif($aColumns[$i] == 'filelink'){
-                                            $row[]='<a href="'.$this->baseUri.$rowArray[ $aColumns[$i] ].'" target="_blank">Download</a>';
+                                            $row[]='<a href="'.'http://' . $_SERVER['SERVER_NAME'].$this->baseUri.$rowArray[ $aColumns[$i] ].'" target="_blank">Download</a>';
                                         }elseif($aColumns[$i]== 'projectdate'){
                                              $row[] = date('d/m/Y',$rowArray[ $aColumns[$i] ]);
                                         }

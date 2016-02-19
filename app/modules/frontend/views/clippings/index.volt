@@ -14,7 +14,7 @@
               <div id="collapse{{year}}" class="panel-collapse collapse">
                 <ul class="list-group">
                   {% for month, filelink in yeararray %}
-                  <li class="list-group-item"><a href="{{baseurl}}{{filelink}}" style='display:block;'>{{month}}</a></li>                  
+                  <li class="list-group-item"><a href="{{host}}{{baseurl}}{{filelink}}" style='display:block;'>{{month}}</a></li>                  
                   {% endfor %}
                 </ul>
                 

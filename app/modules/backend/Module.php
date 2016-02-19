@@ -13,7 +13,7 @@ class Module implements ModuleDefinitionInterface
     /**
      * Registers the module auto-loader
      */
-    public function registerAutoloaders( $dependencyInjector)
+    public function registerAutoloaders( \Phalcon\DiInterface $di = NULL )
     {
 		
 
@@ -37,7 +37,7 @@ class Module implements ModuleDefinitionInterface
      *
      * @param Phalcon\DI $di
      */
-    public function registerServices( $di)
+    public function registerServices( \Phalcon\DiInterface $di = NULL )
     {
         /**
          * Read configuration
@@ -82,20 +82,22 @@ $di->set(
                 "compileAlways"     => $config->application->debug
             )
         );
-		$volt->getCompiler()->addFunction('tr', function ($key) {
+            $compiler = $volt->getCompiler();
+                $compiler->addFunction('tr', function ($key) {
 			return "reportingtool\Modules\Modules\Backend\Controllers\ControllerBase::translate({$key})";
 		});
-                $volt->getCompiler()->addFunction(
+                $compiler->addFunction(
                     'arrayKeyExists',
                     function ($resolvedArgs, $exprArgs) {
                         return 'reportingtool\Helper\Tag::arrayKeyExists(' . $resolvedArgs . ')';
                     }
                 );
+                $compiler->addFunction('in_array', 'in_array');
 
-        $volt->getCompiler()->addFunction('number_format', function($resolvedArgs) {
+        $compiler->addFunction('number_format', function($resolvedArgs) {
             return 'number_format(' . $resolvedArgs . ')';
         });
-		$volt->getCompiler()->addFunction('linkAllowed', function($args) {
+		$compiler->addFunction('linkAllowed', function($args) {
 			return "reportingtool\Acl\Acl::linkAllowed({$args})";
 		});
 

@@ -3,8 +3,8 @@ namespace reportingtool\Auth;
 
 use Phalcon\Mvc\User\Component;
 use reportingtool\Models\Feusers,
-	reportingtool\Models\SuccessLogins,
-	reportingtool\Models\FailedLogins,
+	reportingtool\Models\Successlogins,
+	reportingtool\Models\Failedlogins,
 	reportingtool\Modules\Modules\Frontend\Controllers\ControllerBase as controllerBase;
 //use reportingtool\Models\RememberTokens;
 
@@ -104,7 +104,7 @@ class Auth extends Component
      */
     public function saveSuccessLogin($user)
     {
-        $successLogin = new SuccessLogins();
+        $successLogin = new Successlogins();
         $successLogin->userid = $user->uid;
         $successLogin->ipaddress = $this->request->getClientAddress();
         $successLogin->useragent = $this->request->getUserAgent();
@@ -126,7 +126,7 @@ class Auth extends Component
     public function registerUserThrottling($userid)
     {
 		
-        $failedLogin = new FailedLogins();
+        $failedLogin = new Failedlogins();
         $failedLogin->userid = $userid;		
         $failedLogin->ipaddress = $this->request->getClientAddress();
         $failedLogin->attempted = time();
@@ -134,7 +134,7 @@ class Auth extends Component
 		$failedLogin->useragent = $_SERVER['HTTP_USER_AGENT'];
 		
 		
-        $attempts = FailedLogins::count(array(
+        $attempts = Failedlogins::count(array(
             'ipaddress = ?0 AND attempted >= ?1',
             'bind' => array(
                 $this->request->getClientAddress(),

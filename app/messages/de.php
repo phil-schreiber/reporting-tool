@@ -71,6 +71,8 @@ $messages = array(
         "clippingtype" => "Clipping-Typ",
         "file" => "Datei",
         "clippingoverview" => "Clippingübersicht",
-        "clippingoverviews" => "Clippingübersichten"
-    
+        "clippingoverviews" => "Clippingübersichten",
+        "coordinations" => "Abstimmungsgespräche",
+        "coordination" => "Abstimmungsgespräch",
+    "comments" => "Kommentare"
    );

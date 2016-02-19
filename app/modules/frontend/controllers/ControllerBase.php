@@ -75,7 +75,8 @@ class ControllerBase extends Controller
 		$this->view->setVar('language', $lang);
 		$this->view->setVar('baseurl', $baseUrl);
 		$this->view->setVar('languages_available', $languagesAvailable);		
-		
+                $this->host='http://' . $_SERVER['SERVER_NAME'];
+		$this->view->setVar('host',$this->host);
 		
 		
 	}

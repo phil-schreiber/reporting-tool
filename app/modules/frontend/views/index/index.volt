@@ -6,7 +6,7 @@
 
 <div class="loginForm">
   <form action="{{ form.getAction() }}" method="POST">
-   <label for="username">Email: </label><br>
+   <label for="username">Nutzername: </label><br>
     {{form.render('username')}}<br/><br>
     
 

@@ -16,12 +16,21 @@
                     </div>
                 </div>		
 		{% endif %}
-                  {% if linkAllowed(session.get('auth'),'contractruntime','index') %}		
+                  {% if linkAllowed(session.get('auth'),'clippings','index') %}		
 		<div class="col-xs-12 col-sm-4">
                     <div class="price-box ">
-                        <h3>Vertrag und Budget</h3>
-                        <h5>Ihre Vertragskonditionen und aktuellen Verbräuche</h5><br>
-                        {{ link_to(language~'/projects/index/', tr('retrieve'), 'title': tr('retrieve'),'class':'btn-primary btn') }}
+                        <h3>Veröffentlichungen</h3>
+                        <h5>Veröffentlichungen anzeigen und Clipping-Übersichten runterladen</h5><br>
+                        {{ link_to(language~'/clippings/index/', tr('retrieve'), 'title': tr('retrieve'),'class':'btn-primary btn') }}
+                    </div>
+                </div>		
+		{% endif %}
+                 {% if linkAllowed(session.get('auth'),'coordinations','index') %}		
+		<div class="col-xs-12 col-sm-4">
+                    <div class="price-box ">
+                        <h3>{{tr('coordinations')}}</h3>
+                        <h5>Übersicht der abgehaltenen Abstimmungsgespräche und Themen</h5><br>
+                        {{ link_to(language~'/coordinations/index/', tr('retrieve'), 'title': tr('retrieve'),'class':'btn-primary btn') }}
                     </div>
                 </div>		
 		{% endif %}

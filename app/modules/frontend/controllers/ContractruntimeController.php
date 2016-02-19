@@ -19,6 +19,7 @@ class ContractruntimeController extends ControllerBase
                     2 => time()
                 )
             ));
+            if($contract){
             $projects=Projects::find(array(
                'conditions' => 'deleted=0 AND hidden =0 AND usergroup =?1 AND crdate > ?2',
                 'bind' => array(
@@ -52,6 +53,11 @@ class ContractruntimeController extends ControllerBase
             $this->view->setVar('projectcount',$projectCount);
             $this->view->setVar('contract',$contract);
             $this->view->setVar('specscount',$specscount);
+            }else{
+                $this->view->setVar('projectcount',$projectCount= array());
+            $this->view->setVar('contract',$contract = array());
+            $this->view->setVar('specscount',$specscount = array());
+            }
 		
 	}
         
