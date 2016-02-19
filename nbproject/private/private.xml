@@ -4,25 +4,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/reporting-tool/public/js/vendor/plugins.js</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/controllers/ProjectsController.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/library/Acl/Acl.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/library/Auth/Auth.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/views/clippings/index.volt</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/views/index/index.volt</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/views/coordinations/update.volt</file>
             <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/views/clippings/create.volt</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/config/services.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Successlogins.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/views/partials/top-menu.volt</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/controllers/ClippingsController.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/views/coordinations/create.volt</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/controllers/CoordinationsController.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/views/clippings/index.volt</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Coordinations.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/controllers/ClippingsController.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/views/coordinations/index.volt</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/views/clippings/update.volt</file>
             <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/Module.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/models/Failedlogins.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/config/config.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/public/js/vendor/main.js</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/library/Helper/Tag.php</file>
             <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/views/index/overview.volt</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/controllers/SessionController.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/views/medium/index.volt</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/controllers/CoordinationsController.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/controllers/ControllerBase.php</file>
             <file>file:/C:/xampp/htdocs/reporting-tool/app/messages/de.php</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/backend/views/projecttypes/index.volt</file>
-            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/Module.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/library/Helper/Littlehelpers.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/views/coordinations/index.volt</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/controllers/ContractruntimeController.php</file>
+            <file>file:/C:/xampp/htdocs/reporting-tool/app/modules/frontend/controllers/ControllerBase.php</file>
         </group>
     </open-files>
 </project-private>
