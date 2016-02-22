@@ -111,6 +111,6 @@ class Projects extends Model
         $this->hasMany("uid", "reportingtool\Models\Notes", "pid",array('alias' => 'notes','params'=> array('conditions'=>'notetype=0')));
         
         $this->belongsTo("pid", "reportingtool\Models\Usergroups", "uid");
-		
+        $this->hasMany("uid", "reportingtool\Models\Projectstates", "pid",array('alias' => 'projectstates'));
     }
 }

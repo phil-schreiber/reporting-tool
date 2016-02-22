@@ -61,7 +61,7 @@ var isotopeModule = function(jq,is){
                     }
                     
                   }
-            })
+            });
             
         });
     
@@ -131,6 +131,59 @@ var clippings=function(jq){
     
 };
 
+var projects=function(jq,ajaxIt){
+   
+   var filters=[];
+    jq('#filterForm').on( 'submit', function(e) {           
+        e.preventDefault();
+        filters=jq(this).serializeArray();                
+        
+        dt.fnDraw();
+     });	
+     jq('#myModal').on('hide.bs.modal',function(){
+         jq('.modal-body').html('<div id="timeline-container-basic" type="text"></div>');
+     })
+     jq('#projects').on('click','.statehistory',function(e){
+         var projectid=jq(this).val();
+         ajaxIt('projects','index','projectid='+projectid,
+         function(data){
+             
+             jq('#timeline-container-basic').timelineMe({
+                
+                items:JSON.parse(data)
+            });
+         },
+         '?statusinfo=1');
+         
+     });
+    var dt = jq('#projects').dataTable({
+            "bProcessing": true,	        
+            "sAjaxSource": baseurl+"projects/index/",
+            "bServerSide": true,        
+            "sServerMethod": 'POST',
+            "oLanguage": {
+                    "sSearch": "Suchen:",
+                    "sLengthMenu": "_MENU_ Einträge anzeigen",
+                    /*"sInfo": "Es werden Einträge _START_ bis _END_ von insgesamt _TOTAL_ angezeigt",
+                    "sInfoEmpty": "keine passenden Veranstaltungen gefunden",*/
+                    "sInfoFiltered":"(gefiltert von _MAX_  Einträgen)",
+                    "oPaginate":{
+                            "sPrevious" : "Vorherige",
+                            "sNext" : "Nächste"
+                            }
+            },
+            "fnServerParams": function ( aoData ) {
+                filters.forEach(function(el){                    
+                    aoData.push({"name":el.name,"value":el.value});
+                });
+                
+   
+            }
+            });
+    
+};
+
+
 var baseurl;
 var mainModule = function (jq, is) {
  
@@ -139,32 +192,7 @@ var mainModule = function (jq, is) {
   
   var dummyEmpty=function(){};
   var lang=jq('#lang').val();
-  
-
-  
-  return {
-      
-    mainController:function(){
-      baseurl=jq('#baseurl').val();
-      jq('.datepicker').datetimepicker({
-		lang:lang,
-                timepicker:false,
-                format:'d.m.Y'
-	}); 
-      jq("#topic,#projects").chosen({max_selected_options: 5});
-      if(jq('#controller').val()==='projects' && jq('#action').val()==='index'){
-        new isotopeModule(jq,is);
-        }
-      if(jq('#controller').val()==='projects' && jq('#action').val()==='update'){
-          new projectClippings(jq);
-      }
-      if(jq('#controller').val()==='clippings' && jq('#action').val()==='index'){
-          new clippings(jq);
-      }  
-    },
-    
-    // A public function utilizing privates
-    ajaxIt: function(controller,action,formdata,successhandler, parameters) {
+  var ajaxIt= function(controller,action,formdata,successhandler, parameters) {
             parameters = typeof parameters !== 'undefined' ? '/'+parameters : '';
               if(successhandler !== dummyEmpty){
               jq('#loadingimg').show();
@@ -184,13 +212,34 @@ var mainModule = function (jq, is) {
                               jq('#loadingimg').hide();
                               }
                       });
-    },
+    }; 
+
+  
+  return {
+     // A public function utilizing privates
     
-
-      // filter functions
-      
-
-      // bind filter button click
+    mainController:function(){
+      baseurl=jq('#baseurl').val();
+      jq('.datepicker').datetimepicker({
+		lang:lang,
+                timepicker:false,
+                format:'d.m.Y'
+	}); 
+      jq("#filters #topic,#filters #projects").chosen({max_selected_options: 5});
+      if(jq('#controller').val()==='projects' && jq('#action').val()==='index'){
+        /*new isotopeModule(jq,is);*/
+          new projects(jq,ajaxIt);
+        }
+      if(jq('#controller').val()==='projects' && jq('#action').val()==='update'){
+          new projectClippings(jq);
+      }
+      if(jq('#controller').val()==='clippings' && jq('#action').val()==='index'){
+          new clippings(jq);
+      }  
+    }
+    
+    
+    
      
     
   };

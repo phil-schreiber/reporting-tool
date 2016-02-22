@@ -14,8 +14,12 @@
             {% else %}     
             <li class="dropdown-short xs-hover">
             {% endif %}
-            {{- link_to(language~'/projects', tr('currentProjects'), 'title': tr('currentProjects')) -}}             
-           
+            {{- link_to(language~'/projects', tr('currentProjects')~'<span class="caret"></span>', 'title': tr('currentProjects')) -}}             
+            <ul class="dropdown-menu">
+           {% for projecttype in projecttypes %}
+           <li>{{- link_to(language~'/projects/?projecttype='~projecttype.uid, projecttype.title, 'title': projecttype.title) -}}             </li>
+           {% endfor %}
+           </ul>
           </li>
           {% endif %}
           

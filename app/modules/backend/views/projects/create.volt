@@ -24,8 +24,14 @@
                                 <label>{{ tr('endtime') }}</label><br>
 				{{ text_field("endtime", "size": 32, "class":"datepicker") }}
 				<br><br>
-                                <label>{{ tr('status') }}</label><br>
-                                {{select('status',[ '3' : tr('completed'),'2' : tr('live'),'1' : tr('incoordination'), '0' : tr('inpreparation') ], 'value':0)}}
+                                <label>{{ tr('archive') }}</label><br>
+                                {{select('status',[ '1' : tr('yes'), '0' : tr('no') ], 'value':0)}}
+                                <br><br>
+                                <label>{{ tr('projectstate') }}</label><br>
+                                {{select('projectstate',[ '3' : tr('completed'),'2' : tr('live'),'1' : tr('incoordination'), '0' : tr('inpreparation') ], 'value':0)}}
+                                <br><br>
+                                <label>{{ tr('projectstatedescription') }}</label><br>
+				{{ text_field("projectstatedescription") }}
                                 <br><br>
                                 <label>{{ tr('projecttype') }}</label><br>
 				{{select('projecttype',projecttypes,"using":['uid','title'])}}

@@ -22,7 +22,7 @@
                                 {{select('mediumtype',[  '1' : 'print', '0' : 'online'], 'value':0)}}                                
                                 <br><br>
                                 <label>Status</label><br>
-                                {{select('mediumtype',[  '0' : 'A-Medium', '1' : 'B-Medium', '2':'C-Medium'], 'value':0)}}                                
+                                {{select('mediumtype',[  '0' : 'IT-Medium', '1' : 'Branchen-Medium', '2':'Sonstige'], 'value':0)}}                                
                                 <br><br>
                                 <label>{{ tr('url') }}</label><br>
 				{{ text_field("url") }}

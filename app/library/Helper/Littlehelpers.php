@@ -32,7 +32,11 @@ class Littlehelpers extends Component{
      
        
         $dateDataArr=explode('.',$rawdate);
+        if(count($dateDataArr)==3){
         $senddate=mktime(0,0,0,$dateDataArr[1],$dateDataArr[0],$dateDataArr[2]);
+        }else{
+            $senddate=0;
+        }
      
      return $senddate;
  }

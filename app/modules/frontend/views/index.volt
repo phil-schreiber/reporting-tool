@@ -22,7 +22,8 @@
         {{ stylesheet_link('css/owl.carousel.css') }}	
         {{ stylesheet_link('css/jquery.datetimepicker.css') }}		        
         {{ stylesheet_link('css/jquery.dataTables.css') }}		                        
-        {{ stylesheet_link('css/chosen.min.css') }}		        
+        {{ stylesheet_link('css/chosen.min.css') }}	
+        {{ stylesheet_link('css/jquery.timelineMe.css') }}		        
         {{ stylesheet_link('css/styles.css') }}     
 		{{ assets.outputCss() }}
 		
