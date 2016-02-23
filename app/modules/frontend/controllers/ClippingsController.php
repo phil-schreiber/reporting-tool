@@ -4,6 +4,7 @@ use reportingtool\Models\Clippings,
     reportingtool\Models\Usergroups,
     reportingtool\Models\Projects,
     reportingtool\Models\Medium,
+    reportingtool\Models\Mediumtypes,
     reportingtool\Models\Clippingsoverview;
 	
 
@@ -61,6 +62,24 @@ class ClippingsController extends ControllerBase
                         
             }
 	}
+        
+        public function updateAction(){
+            $mediumtypeUid = $this->dispatcher->getParam('uid');
+            $mediumtype = Mediumtypes::findFirstByUid($mediumtypeUid);
+            
+            $projects=Projects::find(array(
+               'conditions' => 'deleted=0 AND hidden=0 AND usergroup = ?1',
+                'bind' => array(
+                    1 => $this->session->get('auth')['usergroup']
+                )
+            ));
+            $clippings=new Clippings();
+            $clippingstotal=$clippings->countMediumtypeClippings($mediumtypeUid);
+            $this->view->setVar('clippingstotal',$clippingstotal);
+            $this->view->setVar('projects',$projects);
+            $this->view->setVar('mediumtype',$mediumtype);
+            
+        }
         
          private function getData(){
 		$bindArray=array();

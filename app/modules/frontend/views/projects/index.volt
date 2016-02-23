@@ -7,11 +7,12 @@
     
     
     <div class="col-xs-12">
-        <form id="filterForm">
+        <form id="filterForm" name="filterForm">
     	<div class="col-xs-12 text-right">
-            
-        <button type="reset" class="btn btn-primary sm-right"><i class="fa fa-minus-circle"></i>
+            <button type="reset" class="btn btn-primary sm-right"><i class="fa fa-minus-circle"></i>
  {{tr('resetFilters')}}</button>
+        <button type="submit" class="btn btn-primary sm-right"><i class="fa fa-minus-circle"></i>
+ {{tr('filterResults')}}</button>
  </div>
         <div class="col-xs-12">
         <div class="col-xs-12 border-box smart-forms" id="filters">
@@ -21,7 +22,7 @@
          <div class="frm-row">
                                     <div class="section colm colm12">
                                         <label class="field">
-                                            <select multiple id="topic" data-placeholder="Themenauswahl">
+                                            <select multiple id="topic" name="topics[]" data-placeholder="Themenauswahl">
                                                 {% for topic in topics %}
                                                     <option value="{{topic}}">
                                                         {{topic}}
@@ -49,7 +50,7 @@
                                 {% for projecttype in projecttypes %}
                                 <div class="col-xs-6 col-sm-3 utilisation_6 utilisation_7 utilisation_1">
                                     <label class="option block spacer-t10">
-                                        <input name="sorten" type="radio" value="{{projecttype.uid}}" {% if preselected==projecttype.uid %}checked{% endif %} >
+                                        <input name="projecttype" type="radio" value="{{projecttype.uid}}" {% if preselected==projecttype.uid %}checked{% endif %} >
                                         <span class="radio"></span> {{projecttype.title}}
                                     </label>
                                 </div>

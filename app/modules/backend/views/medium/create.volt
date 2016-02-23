@@ -18,11 +18,11 @@
                                 <label>{{ tr('reach') }}</label><br>
 				{{ text_field("reach", "size": 32, "type":"number") }}
 				<br><br>                              
-                                <label>{{ tr('type') }}</label><br>
-                                {{select('mediumtype',[  '1' : 'print', '0' : 'online'], 'value':0)}}                                
+                                <label>Status</label><br>
+                                {{select('status',[  '1' : 'print', '0' : 'online'], 'value':0)}}                                
                                 <br><br>
                                 <label>Status</label><br>
-                                {{select('mediumtype',[  '0' : 'IT-Medium', '1' : 'Branchen-Medium', '2':'Sonstige'], 'value':0)}}                                
+                                {{select('mediumtype',mediumtypes,"using":['uid','title'])}}                                
                                 <br><br>
                                 <label>{{ tr('url') }}</label><br>
 				{{ text_field("url") }}

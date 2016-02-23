@@ -34,12 +34,8 @@ class ProjectsController extends ControllerBase
                         $topics[]=$project->topic;
                     }
                     $topics=array_unique($topics);
-                    $preselect=false;
-                    if($this->request->getQuery('projecttype' )>0){
-                        $preselect=true;
-                        
-                    }
-                    $this->view->setVar('preselected',$this->request->getQuery('projecttype' ));
+                    
+                    $this->view->setVar('preselected',$this->dispatcher->getParam('uid'));
                     $this->view->setVar('path',$this->path);
                     $this->view->setVar('projects',$projects);
                     $this->view->setVar('topics',$topics);
@@ -63,7 +59,7 @@ class ProjectsController extends ControllerBase
                     $ptypesArr[$projecttype->uid]=$projecttype->title;
                 }
                 $this->view->setVar('project',$project);
-                $this->view->setVar('projecttypes',$ptypesArr);
+                $this->view->setVar('ptypesarr',$ptypesArr);
                 $this->view->setVar('projectstate',array('in Vorbereitung','in Abstimmung','live','abgeschlossen'));
             }
             
@@ -154,7 +150,7 @@ class ProjectsController extends ControllerBase
 		 * on very large tables, and MySQL's regex functionality is very limited
 		 */
 			
-
+                
 		$sWhere = "WHERE projects.deleted=0 AND projects.hidden =0 AND projects.usergroup = :usergroup: ";
 		if ( isset($_POST['sSearch']) && $_POST['sSearch'] != "" )
 		{
@@ -203,7 +199,8 @@ class ProjectsController extends ControllerBase
                         }else{
                             switch($columnname['type']){                                
                                  case 1:
-                                    $sWhere.=" AND ".$columnname['colname']." = ".implode(',',$this->request->getPost($postname)).'';
+                                     
+                                    $sWhere.=" AND ".$columnname['colname']." = ".$this->request->getPost($postname).'';
                                 break;
                                 case 2:
                                     $sWhere.=" AND ".$columnname['colname']." > ".$this->littlehelpers->processDateOnly($this->request->getPost($postname));
@@ -236,7 +233,7 @@ class ProjectsController extends ControllerBase
 		$sQuery=$this->modelsManager->createQuery($phql);
 		$rResults = $sQuery->execute($bindArray);		
 		$resultSet=array();
-                $clippingtypes=array('online','print','newsletter');
+                
 		foreach ( $rResults as $aRow )
 		{	
 			$row = array();
@@ -275,7 +272,8 @@ class ProjectsController extends ControllerBase
 		/* Total data set length */
 		$lphql = "SELECT COUNT(".$sIndexColumn.") AS countids FROM $sTable	".$sWhere." GROUP BY projects.uid";
 		$lQuery=$this->modelsManager->createQuery($lphql);
-		$rResultTotal = $lQuery->execute($bindArray);        
+		$rResultTotal = $lQuery->execute($bindArray);     
+                $iTotal=array('countids'=>0);
 		foreach ( $rResultTotal as $aRow )
 		{
 				$iTotal = (array)$aRow;

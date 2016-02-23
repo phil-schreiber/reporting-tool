@@ -3,7 +3,7 @@
 <div class="container">
 	{%- if session.get('auth') -%}
 	<div class="ceElement medium">
-		<h1>{{tr('projecttypes')}} {{tr('create')}}</h1>
+		<h1>{{tr('projects')}} {{tr('create')}}</h1>
 		<div class="listelementContainer">
 
 			

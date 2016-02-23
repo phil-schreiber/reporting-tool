@@ -81,7 +81,9 @@ class Medium extends Model
     
     public function initialize()
     {
-        
+        $this->hasOne('mediumtype', 'reportingtool\Models\Mediumtypes', 'uid', array(
+            'alias' => 'mediumtype'
+        ));
 		
     }
 }

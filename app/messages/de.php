@@ -83,5 +83,7 @@ $messages = array(
         "projectttitle" => "Titel",
         "projecttstamp" => "letzte Aktualisierung",
         "state" => "Status",
-        "typetitle" => "Projekttyp"
+        "typetitle" => "Projekttyp",
+        "mediumtypes" => "Medientypen",
+        "mediumtype" => "Medientyp"
    );

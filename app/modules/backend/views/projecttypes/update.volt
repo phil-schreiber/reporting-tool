@@ -7,7 +7,7 @@
 		<div class="listelementContainer">
 
 			
-			{{ form('backend/'~language~'/projecttypes/create/'~projecttype.uid, 'method': 'post') }}
+			{{ form('backend/'~language~'/projecttypes/update/'~projecttype.uid, 'method': 'post') }}
 
 				<label>{{ tr('title') }}</label><br>
 				{{ text_field("title", "size": 32, "value": projecttype.title) }}

@@ -4,7 +4,8 @@ use Phalcon\Mvc\Controller as Controller,
 	Phalcon\Mvc\Dispatcher,
 	Phalcon\DI\FactoryDefault as PhDi,
 	reportingtool\Models\Languages as Languages,
-        reportingtool\Models\Projecttypes;
+        reportingtool\Models\Projecttypes,
+        reportingtool\Models\Mediumtypes;
 
 class ControllerBase extends Controller
 {
@@ -66,10 +67,13 @@ class ControllerBase extends Controller
 		}
                 
                 $projectTypes = Projecttypes::find(array(
-                   'conditions' => 'deleted =0 AND hidden =0'
+                   'conditions' => 'deleted = 0 AND hidden = 0'
+                ));
+                $mediumtypes = Mediumtypes::find(array(
+                   'conditions' => 'deleted = 0 AND hidden = 0'
                 ));
                 
-                
+                $this->view->setVar('mediumtypes',$mediumtypes);
                 $this->view->setVar('projecttypes',$projectTypes);
 		$this->view->setVar('controller', $controllerName);
 		$this->view->setVar('language', $lang);

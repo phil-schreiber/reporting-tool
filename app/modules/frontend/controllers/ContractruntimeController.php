@@ -9,10 +9,10 @@ use reportingtool\Models\Contractruntime,
  *
  * @package reporting-tool\Controllers
  */
-class CoordinationsController extends ControllerBase
+class ContractruntimeController extends ControllerBase
 {
 	public function indexAction(){	       
-            $contract=Coordinations::findFirst(array(
+            $contract=Contractruntime::findFirst(array(
                "conditions" => "deleted=0 AND hidden=0 AND usergroup = ?1 AND active =1 AND (enddate > ?2 OR enddate = 0)",
                 "bind" => array(
                     1 => $this->session->get('auth')['usergroup'],

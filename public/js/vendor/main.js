@@ -131,8 +131,50 @@ var clippings=function(jq){
     
 };
 
-var projects=function(jq,ajaxIt){
+var clippingsForMediumtypes = function(jq){
    
+   var filters=jq('#filterForm').serializeArray();
+   
+	
+    var dt = jq('#clippings').dataTable({
+            "bProcessing": true,	        
+            "sAjaxSource": baseurl+"clippings/update/",
+            "bServerSide": true,        
+            "sServerMethod": 'POST',
+            "oLanguage": {
+                    "sSearch": "Suchen:",
+                    "sLengthMenu": "_MENU_ Einträge anzeigen",
+                    /*"sInfo": "Es werden Einträge _START_ bis _END_ von insgesamt _TOTAL_ angezeigt",
+                    "sInfoEmpty": "keine passenden Veranstaltungen gefunden",*/
+                    "sInfoFiltered":"(gefiltert von _MAX_  Einträgen)",
+                    "oPaginate":{
+                            "sPrevious" : "Vorherige",
+                            "sNext" : "Nächste"
+                            }
+            },
+            "fnServerParams": function ( aoData ) {
+                filters.forEach(function(el){                    
+                    aoData.push({"name":el.name,"value":el.value});
+                });
+                
+   
+            }
+            });
+    
+};
+
+
+var projects=function(jq,ajaxIt){
+   var preselect=0;
+   var getTypeVal=function(){
+       var radioGroup = document['filterForm']['projecttype'];
+       for (var i=0; i<radioGroup.length; i++)  {
+          if (radioGroup[i].checked)  {
+          return( radioGroup[i].value);
+          }
+       }
+   };
+   preselect= getTypeVal();
    var filters=[];
     jq('#filterForm').on( 'submit', function(e) {           
         e.preventDefault();
@@ -140,9 +182,23 @@ var projects=function(jq,ajaxIt){
         
         dt.fnDraw();
      });	
+     jq('#filterForm').on( 'reset', function(e) {           
+         e.preventDefault();
+        filters=[];
+        jq("#filters #topic").val('').trigger("chosen:updated");
+        jq("#filters input").val('');
+        dt.fnDraw();
+     });	
+    
+    if(preselect>0){
+         filters=jq('#filterForm').serializeArray();          
+    }
+     
      jq('#myModal').on('hide.bs.modal',function(){
          jq('.modal-body').html('<div id="timeline-container-basic" type="text"></div>');
-     })
+     });
+     
+     
      jq('#projects').on('click','.statehistory',function(e){
          var projectid=jq(this).val();
          ajaxIt('projects','index','projectid='+projectid,
@@ -236,6 +292,10 @@ var mainModule = function (jq, is) {
       if(jq('#controller').val()==='clippings' && jq('#action').val()==='index'){
           new clippings(jq);
       }  
+      
+     /* if(jq('#controller').val()==='clippings' && jq('#action').val()==='update'){
+          new clippingsForMediumtypes(jq);
+      }*/
     }
     
     

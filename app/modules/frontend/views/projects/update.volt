@@ -2,7 +2,7 @@
 {%- if session.get('auth') -%}
 <div class="container">
     <div class="col-xs-12">
-    	<h1>{{projecttypes[project.projecttype]}}: {{project.title}}</h1>
+    	<h1>{{ptypesarr[project.projecttype]}}: {{project.title}}</h1>
         <label>Titel:</label>
         <p>{{project.title}}</p>
         <label>Beschreibung:</label>

@@ -10,44 +10,103 @@
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav">
          {% if linkAllowed(session.get('auth'),'projects','index') %}		
-            {% if 'projects' == dispatcher.getControllerName() %}                            
-             <li class="dropdown-short xs-hover active">
-            {% else %}     
+           
             <li class="dropdown-short xs-hover">
-            {% endif %}
-            {{- link_to(language~'/projects', tr('currentProjects')~' <span class="caret"></span>', 'title': tr('currentProjects')) -}}             
+           
+            {{- link_to('backend/'~language~'/projects', tr('projects')~' <span class="caret"></span>', 'title': tr('projects')) -}}             
             <ul class="dropdown-menu">
-              {% for projecttype in projecttypes %}  
-                {{- link_to(language~'/projects/?type='~projecttype.uid, projecttype.title~' <span class="caret"></span>', 'title': tr('currentProjects')) -}}         
-              {% endfor %}
-              
+                <li>
+                    {{- link_to('backend/'~language~'/projects/create/', tr('create'), 'title': tr('create')) -}}         
+                </li>
             </ul>
           </li>
           {% endif %}
-          <li class="dropdown-short xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Projekt-Archiv<span class="caret"></span></a>
+           {% if linkAllowed(session.get('auth'),'projecttypes','index') %}		
+           
+            <li class="dropdown-short xs-hover">
+           
+            {{- link_to('backend/'~language~'/projecttypes', tr('projecttypes')~' <span class="caret"></span>', 'title': tr('projecttypes')) -}}             
             <ul class="dropdown-menu">
-              <li><a title="" href="#">d.velop-Lösungen</a></li>
-              <li><a title="" href="#">Success Stories</a></li>
-              <li><a title="" href="#">Events</a></li>
-              <li><a title="" href="#">Research</a></li>
-              <li><a title="" href="#">Response-Elemente</a></li>
+                <li>
+                    {{- link_to('backend/'~language~'/projecttypes/create/', tr('create'), 'title': tr('create')) -}}         
+                </li>
             </ul>
           </li>
-          <li class="dropdown-short xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="aktuelles-erkunden/">Veröffentlichungen<span class="caret"></span></a>
+          {% endif %}
+         {% if linkAllowed(session.get('auth'),'contractruntime','index') %}		
+           
+            <li class="dropdown-short xs-hover">
+           
+            {{- link_to('backend/'~language~'/contractruntime', tr('contractruntime')~' <span class="caret"></span>', 'title': tr('currentProjects')) -}}             
             <ul class="dropdown-menu">
-              <li><a title="" href="#">Pressemitteilungen</a></li>
-              <li><a title="" href="#">Artikel</a></li>
-              <li><a title="" href="#">Interviews</a></li>
-              <li><a title="" href="#">Research</a></li>
-             
+                <li>
+                    {{- link_to('backend/'~language~'/contractruntime/create/', tr('create'), 'title': tr('create')) -}}         
+                </li>
             </ul>
           </li>
-          <li class="xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Aufwand</a></li>
-          <li class="xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Leads</a> </li>
-          
-          <li class="xs-hover"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Abstimmung</a> </li>
-          
-          
+          {% endif %}
+           {% if linkAllowed(session.get('auth'),'clippings','index') %}		
+           
+            <li class="dropdown-short xs-hover">
+           
+            {{- link_to('backend/'~language~'/clippings', tr('clippings')~' <span class="caret"></span>', 'title': tr('currentProjects')) -}}             
+            <ul class="dropdown-menu">
+                <li>
+                    {{- link_to('backend/'~language~'/clippings/', tr('create'), 'title': tr('create')) -}}         
+                </li>
+            </ul>
+          </li>
+          {% endif %}
+            {% if linkAllowed(session.get('auth'),'clippingsoverview','index') %}		
+           
+            <li class="dropdown-short xs-hover">
+           
+            {{- link_to('backend/'~language~'/clippingsoverview', tr('clippingoverview')~' <span class="caret"></span>', 'title': tr('clippingoverview')) -}}             
+            <ul class="dropdown-menu">
+                <li>
+                    {{- link_to('backend/'~language~'/clippingsoverview/', tr('create'), 'title': tr('create')) -}}         
+                </li>
+            </ul>
+          </li>
+          {% endif %}
+           {% if linkAllowed(session.get('auth'),'clippingsoverview','index') %}		
+           
+            <li class="dropdown-short xs-hover">
+           
+            {{- link_to('backend/'~language~'/clippingsoverview', tr('clippingoverview')~' <span class="caret"></span>', 'title': tr('clippingoverview')) -}}             
+            <ul class="dropdown-menu">
+                <li>
+                    {{- link_to('backend/'~language~'/clippingsoverview/', tr('create'), 'title': tr('create')) -}}         
+                </li>
+            </ul>
+          </li>
+          {% endif %}
+          {% if linkAllowed(session.get('auth'),'medium','index') %}		
+           
+            <li class="dropdown-short xs-hover">
+           
+            {{- link_to('backend/'~language~'/medium', tr('medium')~' <span class="caret"></span>', 'title': tr('medium')) -}}             
+            <ul class="dropdown-menu">
+                <li>
+                    {{- link_to('backend/'~language~'/medium/create/', tr('create'), 'title': tr('create')) -}}         
+                </li>
+            </ul>
+          </li>
+          {% endif %}
+            {% if linkAllowed(session.get('auth'),'mediumtypes','index') %}		
+           
+            <li class="dropdown-short xs-hover">
+           
+            {{- link_to('backend/'~language~'/mediumtypes', tr('mediumtypes')~' <span class="caret"></span>', 'title': tr('mediumtypes')) -}}             
+            <ul class="dropdown-menu">
+                <li>
+                    {{- link_to('backend/'~language~'/mediumtypes/create/', tr('create'), 'title': tr('create')) -}}         
+                </li>
+            </ul>
+          </li>
+          {% endif %}
+           <li>{{ link_to('session/logout/', 'logout','title': 'Logout', "class": "logout") }}</li>	
+           
         </ul>
         
         

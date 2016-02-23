@@ -17,14 +17,18 @@
             {{- link_to(language~'/projects', tr('currentProjects')~'<span class="caret"></span>', 'title': tr('currentProjects')) -}}             
             <ul class="dropdown-menu">
            {% for projecttype in projecttypes %}
-           <li>{{- link_to(language~'/projects/?projecttype='~projecttype.uid, projecttype.title, 'title': projecttype.title) -}}             </li>
+           <li>{{- link_to(language~'/projects/index/'~projecttype.uid, projecttype.title, 'title': projecttype.title) -}}             </li>
            {% endfor %}
            </ul>
           </li>
           {% endif %}
           
-          <li class="dropdown-short xs-hover">{{- link_to(language~'/clippings', "Veröffentlichungen", 'title': "Veröffentlichungen") -}}             
-            
+          <li class="dropdown-short xs-hover">{{- link_to(language~'/clippings', 'Veröffentlichungen <span class="caret"></span>', 'title': "Veröffentlichungen") -}}             
+            <ul class="dropdown-menu">
+           {% for mediumtype in mediumtypes %}
+           <li>{{- link_to(language~'/clippings/update/'~mediumtype.uid, mediumtype.title, 'title': mediumtype.title) -}}             </li>
+           {% endfor %}
+           </ul>
           </li>
                     
           <li class="xs-hover">{{- link_to(language~'/coordinations', tr('coordinations'), 'title': tr('coordinations')) -}}              </li>

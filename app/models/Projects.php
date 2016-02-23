@@ -113,4 +113,17 @@ class Projects extends Model
         $this->belongsTo("pid", "reportingtool\Models\Usergroups", "uid");
         $this->hasMany("uid", "reportingtool\Models\Projectstates", "pid",array('alias' => 'projectstates'));
     }
+    
+    public function countMediumtypeClippings($mediumtype){
+        $config =  \Phalcon\DI\FactoryDefault::getDefault()->getShared('config');
+        $modelsManager=$this->getDi()->getShared('modelsManager');	
+        $phql='SELECT COUNT(clippings.uid) as clippingscount FROM reportingtool\Models\Clippings as clippings LEFT JOIN reportingtool\Models\Medium as medium ON medium.uid=clippings.mediumuid WHERE clippings.pid = ?1 AND medium.mediumtype = ?2';
+        $sQuery=$modelsManager->createQuery($phql);
+	$rResults = $sQuery->execute(array(
+            1 => $this->uid,
+            2 => $mediumtype
+        ));
+        
+        return $rResults[0]->clippingscount;
+    }
 }
