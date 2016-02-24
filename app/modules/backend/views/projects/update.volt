@@ -27,16 +27,16 @@
                                 {% endif %}
 				<br><br>
                                 <label>{{ tr('archive') }}</label><br>
-                                {{select('status',[ '1' : tr('yes'), '0' : tr('no') ])}}
+                                {{select('status',[ '1' : tr('yes'), '0' : tr('no') ],"value":project.status)}}
                                 <br><br>
                                 <label>{{ tr('projectstate') }}</label><br>
-                                {{select('projectstate',[ '3' : tr('completed'),'2' : tr('live'),'1' : tr('incoordination'), '0' : tr('inpreparation') ], 'value':0)}}
+                                {{select('projectstate',[ '3' : tr('completed'),'2' : tr('live'),'1' : tr('incoordination'), '0' : tr('inpreparation') ], 'value':projectstate.statetype)}}
                                 <br><br>
                                 <label>{{ tr('projectstatedescription') }}</label><br>
-				{{ text_field("projectstatedescription","value":projectstatedesc) }}
+				{{ text_field("projectstatedescription","value":projectstate.description) }}
                                 <br><br>
                                 <label>{{ tr('projecttype') }}</label><br>
-				{{select('projecttype',projecttypes,"using":['uid','title'])}}
+				{{select('projecttype',projecttypes,"using":['uid','title'],"value":project.projecttype)}}
                                 <br><br>
                                 <label>{{ tr('topic') }}</label><br>
 				{{ text_field("topic", "value":project.topic) }}

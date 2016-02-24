@@ -4,14 +4,9 @@
 <div class="col-xs-12">
     	<h1>{{tr('projectsTitle')}}</h1>
     </div>
-    {% if preselected %}
+    
+    
     <div class="col-xs-12">
-        <h2>Soll: {{soll}}</h2>
-        <h2>  Ist: {{ist}}</h2>
-        
-    </div>
-    {% endif %}
-    <div class="col-xs-12" {% if preselected %} style="display:none" {% endif %}>
         <form id="filterForm" name="filterForm">
     	<div class="col-xs-12 text-right">
             <button type="reset" class="btn btn-primary sm-right"><i class="fa fa-minus-circle"></i>
@@ -44,7 +39,7 @@
                                 </div>
         
         
-        <div class="frm-row" >
+        <div class="frm-row" {% if preselected %} style="display:none" {% endif %}>
 
 
 
@@ -97,9 +92,9 @@
                 <th>{{tr('starttime')}}</th>	                
                 <th>{{tr('projecttstamp')}}</th>
                 <th>{{tr('topic')}}</th>                
-                <th>{{tr('typetitle')}}</th>                	
+                <th>{{tr('typetitle')}}</th>
+                <th>{{tr('estcost')}}</th>		
                 <th>{{tr('state')}}</th>
-                <th>Details</th>
             </tr>
         </thead>
  
@@ -109,9 +104,9 @@
                 <th>{{tr('starttime')}}</th>	                
                 <th>{{tr('projecttstamp')}}</th>
                 <th>{{tr('topic')}}</th>                
-                <th>{{tr('typetitle')}}</th>                
+                <th>{{tr('typetitle')}}</th>
+                <th>{{tr('estcost')}}</th>		
                 <th>{{tr('state')}}</th>
-                <th>Details</th>
             </tr>
         </tfoot>
     </table>

@@ -30,13 +30,13 @@ html, body{
 	box-sizing: border-box;
 }
 
-.smart-forms {
+/*.smart-forms {
 	font-family: Arial, Sans-Serif;
 	line-height: 1.231;
 	font-weight: 400;
 	font-size: 16px;
 	color: #626262;
-}
+}*/
 
 .smart-container{
 	margin:0 auto;	
@@ -102,7 +102,7 @@ html, body{
 }
 	
 .smart-forms .form-header h4 { 
-	font-family:Arial, Sans-Serif;
+	/*font-family:Arial, Sans-Serif;*/
 	text-align:left;
 	font-weight:300; 
 	font-size:32px; 
@@ -197,12 +197,12 @@ html, body{
 .smart-forms button,
 .smart-forms select,  
 .smart-forms textarea {
-	margin: 0;  
+	/*margin: 0;  
 	font-size: 16px;
 	font-family:  Arial, Sans-Serif;
 	font-weight:400;
 	color: #626262;
-	outline:none;
+	outline:none;*/
 }
 
 /* @remove browser specific styling

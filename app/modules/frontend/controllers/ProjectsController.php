@@ -30,11 +30,32 @@ class ProjectsController extends ControllerBase
                             "order" => "crdate DESC"
                     ));
                    $topics=array();
+                   $projectTypeCount=array();
                     foreach($projects as $project){
                         $topics[]=$project->topic;
+                        $projectTopicCount[$project->projecttype]=isset($projectTopicCount[$project->projecttype]) ? $projectTopicCount[$project->projecttype]+1 : 1;
                     }
                     $topics=array_unique($topics);
-                    
+                    if($this->dispatcher->getParam('uid')){
+                       $contractruntime=  \reportingtool\Models\Contractruntime::findFirst(array(
+                           'conditions' => 'deleted=0 AND hidden =0 AND usergroup = ?1 AND active =1',
+                           'bind' => array(
+                               1 => $this->session->get('auth')['usergroup']
+                           )
+                       ));
+                        $budget=$contractruntime->getBudget();
+                        $specs=$budget->getBudgetcount(array(
+                            'conditions' => 'uid_foreign = :projecttype:',
+                            'bind' => array(
+                                'projecttype' => $this->dispatcher->getParam('uid')
+                            )
+                        ));
+                        foreach($specs as $spec){
+                            $this->view->setVar('soll',$spec->amount);
+                        }
+                        $this->view->setVar('ist',$projectTopicCount[$this->dispatcher->getParam('uid')]);
+                       
+                    }
                     $this->view->setVar('preselected',$this->dispatcher->getParam('uid'));
                     $this->view->setVar('path',$this->path);
                     $this->view->setVar('projects',$projects);
@@ -96,7 +117,7 @@ class ProjectsController extends ControllerBase
         
          private function getData(){
 		$bindArray=array();
-		$aColumns=array('projectttitle','starttime','projecttstamp','topic','typetitle','estcost','statetype','active','statedescription','statetstamp');
+		$aColumns=array('projectttitle','starttime','projecttstamp','topic','typetitle','statetype','projectid','active','statedescription','statetstamp');
         
         $aColumnsSelect=array('clippingtype','filelink');
         $aColumnsFilter=array('projects.title','medium.title','clipping.title');
@@ -249,9 +270,12 @@ class ProjectsController extends ControllerBase
                                         }elseif($aColumns[$i] == 'projecttstamp'){
                                               $row[] = date('d/m/Y H:i',$rowArray[ $aColumns[$i] ]);
                                         }elseif($aColumns[$i] == 'statetype'){
-                                            $row[]='<button class="statehistory" value="'.$rowArray['projectid'].'" data-toggle="modal" data-target="#myModal">Status</button>';
+                                            $row[]='<button class="statehistory btn btn-default" value="'.$rowArray['projectid'].'" data-toggle="modal" data-target="#myModal">Status</button>';
                                         }elseif($aColumns[$i]== 'projectdate'){
                                              $row[] = date('d/m/Y',$rowArray[ $aColumns[$i] ]);
+                                        }elseif($aColumns[$i] == 'projectid'){
+                                            $row[] = '<a href="'.$this->baseUri.$this->lang.'/projects/update/'.$rowArray[ $aColumns[$i] ].'" class="btn btn-default">Details</a>';
+                                            
                                         }
                                         else{
                                             

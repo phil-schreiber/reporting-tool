@@ -1,4 +1,5 @@
 {%- if session.get('auth') -%}
+<div id="header"><img src="{{baseurl}}img/header_df.jpg" width="2604" height="541" alt="" class="img-responsive"/> </div>
 <div id="navigation">
   <nav class="navbar denkfabrikscheme no-border no-active-arrow no-open-arrow dropdown-onhover" id="main_navbar" role="navigation">
     
@@ -33,7 +34,7 @@
                     
           <li class="xs-hover">{{- link_to(language~'/coordinations', tr('coordinations'), 'title': tr('coordinations')) -}}              </li>
           <li class="xs-hover">
-              {{- link_to(language~'/contractruntime', 'Vertrag und Budget', 'title': 'Vertrag und Budget') -}}             
+              {{- link_to(language~'/otherprojects', 'Sonstige Projekte', 'title': 'Sonstige Projekte') -}}             
           </li>
           <li>{{ link_to('session/logout/', 'logout','title': 'Logout', "class": "logout") }}</li>			
         </ul>
@@ -47,19 +48,7 @@
       
   </nav>
   
-  <nav class="navbar no-border no-active-arrow no-open-arrow dropdown-onhover" role="navigation">
-    <div class="container"> 
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        					
-					<a class="navbar-brand navbar-left" href="#"><img width="130" src="{{baseurl}}img/logo_df.svg"></a>
-				</div>
-                
-             
-      
-      
-    </div>
-  </nav>
+  
 </div>
-<div id="header"><img src="{{baseurl}}img/header_df.jpg" width="2604" height="541" alt="" class="img-responsive"/> </div>
+
 {%- endif -%}

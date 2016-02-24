@@ -50,7 +50,7 @@ class ClippingsController extends ControllerBase
                     'pid' => $this->request->getPost('project'),
                     'cruser_id' => $this->session->get('auth')['uid'],
                     'usergroup' => $this->request->getPost('usergroup'),
-                    'tstamp' => $this->littlehelpers->processDate($this->request->getPost('tstamp')),
+                    'tstamp' => $this->littlehelpers->processDateOnly($this->request->getPost('tstamp')),
                     'crdate' => $time,
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),

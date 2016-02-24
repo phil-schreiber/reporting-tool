@@ -5,18 +5,18 @@
 	<div class="ceElement medium">
 		<h1>{{tr('contractruntime')}} {{tr('update')}}</h1>
 		<div class="listelementContainer">			
-			{{ form('backend/'~language~'/contractruntime/create/'~contractruntime.uid, 'method': 'post') }}
+			{{ form('backend/'~language~'/contractruntime/update/'~contractruntime.uid, 'method': 'post') }}
 
 				
                                 <label>{{ tr('usergroup') }}</label><br>
 				{{select('usergroup',usergroups,"using":['uid','title'])}}
                                 <br><br>                                
                                  <label>{{ tr('startdate') }}</label><br>
-				{{ text_field("startdate", "value":date('d/m/Y H:i',contractruntime.startdate),"class":"datepicker") }}
+				{{ text_field("startdate", "value":date('d.m.Y',contractruntime.startdate),"class":"datepicker") }}
 				<br><br>
                                 <label>{{ tr('enddate') }}</label><br>
                                 {% if contractruntime.enddate > 0 %}
-				{{ text_field("enddate", "value":date('d/m/Y H:i',contractruntime.enddate),"class":"datepicker") }}
+				{{ text_field("enddate", "value":date('d.m.Y',contractruntime.enddate),"class":"datepicker") }}
                                 {% else %}
                                 {{ text_field("enddate", "class":"datepicker") }}
                                 {% endif %}

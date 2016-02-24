@@ -109,3 +109,13 @@ input[type="checkbox"], input[type="radio"]{
 input.amountInput{
    width:3vw; 
 }
+
+button.statehistory,.btn.btn-default{
+    background:none;
+    border:1px solid;
+    border-radius: 0;
+}
+.modal-content{
+    border-radius:0;
+}
+

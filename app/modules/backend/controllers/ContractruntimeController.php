@@ -32,8 +32,8 @@ class ContractruntimeController extends ControllerBase
                     'usergroup' => $this->request->hasPost('usergroup') ? $this->request->getPost('usergroup') : 0,
                     'tstamp' => $time,
                     'crdate' => $time,                    
-                    'startdate' => $this->request->hasPost('startdate') ? $this->littlehelpers->processDate($this->request->getPost('startdate')) : 0,
-                    'enddate' => $this->request->hasPost('enddate') ? $this->littlehelpers->processDate($this->request->getPost('enddate')) : 0,
+                    'startdate' => $this->request->hasPost('startdate') ? $this->littlehelpers->processDateOnly($this->request->getPost('startdate')) : 0,
+                    'enddate' => $this->request->hasPost('enddate') ? $this->littlehelpers->processDateOnly($this->request->getPost('enddate')) : 0,
                     'active' => $this->request->hasPost('active') ? $this->request->getPost('active') : 0                    
                 ));    
                 
@@ -85,8 +85,8 @@ class ContractruntimeController extends ControllerBase
                         'cruser_id' => $this->session->get('auth')['uid'],
                         'usergroup' => $this->request->hasPost('usergroup') ? $this->request->getPost('usergroup') : 0,
                         'tstamp' => time(),                        
-                        'startdate' => $this->request->hasPost('startdate') ? $this->littlehelpers->processDate($this->request->getPost('startdate')) : 0,
-                        'enddate' => $this->request->hasPost('enddate') ? $this->littlehelpers->processDate($this->request->getPost('enddate')) : 0,
+                        'startdate' => $this->request->hasPost('startdate') ? $this->littlehelpers->processDateOnly($this->request->getPost('startdate')) : 0,
+                        'enddate' => $this->request->hasPost('enddate') ? $this->littlehelpers->processDateOnly($this->request->getPost('enddate')) : 0,
                         'active' => $this->request->hasPost('active') ? $this->request->getPost('active') : 0                    
                     ));   
                     if(!$contractruntime->update()){

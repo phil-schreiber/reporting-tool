@@ -72,11 +72,11 @@ class ControllerBase extends Controller
                 $mediumtypes = Mediumtypes::find(array(
                    'conditions' => 'deleted = 0 AND hidden = 0'
                 ));
-                
+                $this->lang=$lang;
                 $this->view->setVar('mediumtypes',$mediumtypes);
                 $this->view->setVar('projecttypes',$projectTypes);
 		$this->view->setVar('controller', $controllerName);
-		$this->view->setVar('language', $lang);
+		$this->view->setVar('language', $this->lang);
 		$this->view->setVar('baseurl', $baseUrl);
 		$this->view->setVar('languages_available', $languagesAvailable);		
                 $this->host='http://' . $_SERVER['SERVER_NAME'];

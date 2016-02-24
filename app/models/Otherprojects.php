@@ -2,14 +2,14 @@
 namespace reportingtool\Models;
 
 use Phalcon\Mvc\Model;
-Model::setup(['notNullValidations' => false]);
+
 /**
- * reportingtool\Models\Medium
+ * reportingtool\Models\Projects
  * 
  */
-class Medium extends Model
+class Otherprojects extends Model
 {
-     /**
+    /**
      * @var integer
      */
     public $uid;
@@ -38,16 +38,16 @@ class Medium extends Model
 	 * @var integer
 	 */
 	public $deleted = 0;
-        
-        /**
-	 * @var integer
-	 */
-	public $usergroup = 0;
 	
 	/**
 	 * @var integer
 	 */
 	public $hidden = 0;
+        
+        /**
+	 * @var integer
+	 */
+	public $usergroup = 0;
 	
 	/*
 	 * @var string
@@ -57,38 +57,27 @@ class Medium extends Model
         /*
 	 * @var string
 	 */
-        public $description = '';        
+        public $description = '';   
         
         /**
 	 * @var integer
 	 */
-	public $reach = 0;
-        
-        /*
-	 * @var string
-	 */
-        public $url = '';        
-        
-        /**
+	public $starttime = 0;
+	
+	/**
 	 * @var integer
 	 */
-	public $mediumtype = 0;
+	public $endtime = 0;
         
-        /*
-	 * @var string
-	 */
-        public $icon = ''; 
-        
-        /*
-	 * @var integer
-	 */
-        public $mediumstatus = 0; 
+       
     
     public function initialize()
     {
-        $this->hasOne('mediumtype', 'reportingtool\Models\Mediumtypes', 'uid', array(
-            'alias' => 'mediumtype'
-        ));
-		
+       
+        
+        $this->belongsTo("pid", "reportingtool\Models\Usergroups", "uid");
+        
     }
+    
+        
 }

@@ -69,18 +69,8 @@
             </ul>
           </li>
           {% endif %}
-           {% if linkAllowed(session.get('auth'),'clippingsoverview','index') %}		
            
-            <li class="dropdown-short xs-hover">
-           
-            {{- link_to('backend/'~language~'/clippingsoverview', tr('clippingoverview')~' <span class="caret"></span>', 'title': tr('clippingoverview')) -}}             
-            <ul class="dropdown-menu">
-                <li>
-                    {{- link_to('backend/'~language~'/clippingsoverview/', tr('create'), 'title': tr('create')) -}}         
-                </li>
-            </ul>
-          </li>
-          {% endif %}
+          
           {% if linkAllowed(session.get('auth'),'medium','index') %}		
            
             <li class="dropdown-short xs-hover">
@@ -105,6 +95,30 @@
             </ul>
           </li>
           {% endif %}
+           {% if linkAllowed(session.get('auth'),'otherprojects','index') %}		
+           
+            <li class="dropdown-short xs-hover">
+           
+            {{- link_to('backend/'~language~'/otherprojects/', 'Sonstige Projekte <span class="caret"></span>', 'title': 'Sonstige Projekte') -}}             
+            <ul class="dropdown-menu">
+                <li>
+                    {{- link_to('backend/'~language~'/otherprojects/create', tr('create'), 'title': tr('create')) -}}         
+                </li>
+            </ul>
+          </li>
+          {% endif %}
+           {% if linkAllowed(session.get('auth'),'mediacontacts','index') %}		
+           
+            <li class="dropdown-short xs-hover">
+           
+            {{- link_to('backend/'~language~'/mediacontacts/', 'Medienkontakte <span class="caret"></span>', 'title': 'Medienkontakte') -}}             
+            <ul class="dropdown-menu">
+                <li>
+                    {{- link_to('backend/'~language~'/mediacontacts/', tr('create'), 'title': tr('create')) -}}         
+                </li>
+            </ul>
+          </li>
+          {% endif %}
            <li>{{ link_to('session/logout/', 'logout','title': 'Logout', "class": "logout") }}</li>	
            
         </ul>
@@ -115,32 +129,7 @@
       </div>
     
   </nav>
-  
-  <nav class="navbar no-border no-active-arrow no-open-arrow dropdown-onhover" role="navigation">
-    <div class="container"> 
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        					
-					<a class="navbar-brand navbar-left" href="#"><img width="130" src="{{baseurl}}img/logo_df.svg"></a>
-				</div>
-                
-                
-                <ul class="nav navbar-nav navbar-right">
-        				<li>
-        				<form class="navbar-form-expanded navbar-form navbar-left visible-lg-block visible-md-block visible-xs-block" role="search">
-        					<div class="input-group">
-        						<input name="query" class="form-control" type="text" placeholder="Schnellsuche" data-width="120px" data-width-expanded="200px">
-        						<span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i>&nbsp;</button></span>
-        					</div>
-        				</form>
-                        </li>
-        				
-        				
-        				
-        			</ul>
-      
-    </div>
-  </nav>
+
 </div>
-<div id="header"><img src="{{baseurl}}img/header_df.jpg" width="2604" height="541" alt="" class="img-responsive"/> </div>
+
 {%- endif -%}

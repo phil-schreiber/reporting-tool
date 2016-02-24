@@ -189,10 +189,12 @@ var projects=function(jq,ajaxIt){
         jq("#filters input").val('');
         dt.fnDraw();
      });	
-    
+    var hideSearch="f";
     if(preselect>0){
-         filters=jq('#filterForm').serializeArray();          
+         filters=jq('#filterForm').serializeArray();         
+         hideSearch='<"hidden"f';
     }
+    
      
      jq('#myModal').on('hide.bs.modal',function(){
          jq('.modal-body').html('<div id="timeline-container-basic" type="text"></div>');
@@ -215,7 +217,9 @@ var projects=function(jq,ajaxIt){
     var dt = jq('#projects').dataTable({
             "bProcessing": true,	        
             "sAjaxSource": baseurl+"projects/index/",
-            "bServerSide": true,        
+            "bServerSide": true,    
+            "bPaginate": false,
+            "sDom":hideSearch,
             "sServerMethod": 'POST',
             "oLanguage": {
                     "sSearch": "Suchen:",
@@ -280,6 +284,10 @@ var mainModule = function (jq, is) {
 		lang:lang,
                 timepicker:false,
                 format:'d.m.Y'
+	}); 
+         jq('.datetimepicker').datetimepicker({
+		lang:lang,                
+                format:'d.m.Y H:i'
 	}); 
       jq("#filters #topic,#filters #projects").chosen({max_selected_options: 5});
       if(jq('#controller').val()==='projects' && jq('#action').val()==='index'){

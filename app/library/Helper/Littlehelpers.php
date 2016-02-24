@@ -22,8 +22,8 @@ class Littlehelpers extends Component{
      $senddate=0;
      if(count($dateArr)>1){
         $dateTimeArr=explode(':',$dateArr[1]);
-        $dateDataArr=explode('/',$dateArr[0]);
-        $senddate=mktime($dateTimeArr[0],$dateTimeArr[1],0,$dateDataArr[1],$dateDataArr[2],$dateDataArr[0]);
+        $dateDataArr=explode('.',$dateArr[0]);
+        $senddate=mktime($dateTimeArr[0],$dateTimeArr[1],0,$dateDataArr[1],$dateDataArr[0],$dateDataArr[2]);
      }
      return $senddate;
  }
@@ -56,10 +56,10 @@ class Littlehelpers extends Component{
 						$saveFilename='public/media/'.$controllername.'_'.$uid.'_L.'.$filetype;
 						
 						$imageS = new GDAdapter($tmpFile);
-						$imageS->resize(300,10000);
+						$imageS->resize(300,1000);
 						$imageS->save($thumbFilenameS);
 						$imageL = new GDAdapter($tmpFile);
-						$imageL->resize(600,10000);
+						$imageL->resize(600,1000);
 						$imageL->save($thumbFilenameL);
                       
 						 unlink($tmpFile);

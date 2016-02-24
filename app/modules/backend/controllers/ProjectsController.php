@@ -126,18 +126,17 @@ class ProjectsController extends ControllerBase
                 $projectstateArr=$project->getProjectstates(array(
                     'conditions' => 'deleted=0 AND hidden=0 AND active=1'
                 ));
-                $projectstate=$projectstate[0];
+                $projectstate=$projectstateArr[0];
             }    
             $usergroups=Usergroups::find(array(
                     'conditions' =>array(
                         'deleted=0 AND hidden =0'
                     )
                  ));
+            
                 $this->tag->setDefault("usergroup", $project->usergroup);
-                $this->tag->setDefault("status", $project->status);
-                $this->tag->setDefault("projectstate", $projectstate->statetype);
-                $this->tag->setDefault("projecttype", $project->projecttype);
-                $this->view->setVar('projectstatedesc',$projectstate->description);
+                $this->tag->setDefault("status", $project->status);                
+                $this->view->setVar("projectstate", $projectstate);
                 $this->view->setVar('usergroups',$usergroups);
                 $this->view->setVar('project',$project);
             

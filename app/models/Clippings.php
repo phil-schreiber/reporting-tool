@@ -2,7 +2,7 @@
 namespace reportingtool\Models;
 
 use Phalcon\Mvc\Model;
-
+Model::setup(['notNullValidations' => false]);
 /**
  * reportingtool\Models\Clippings
  * 
@@ -10,7 +10,87 @@ use Phalcon\Mvc\Model;
 class Clippings extends Model
 {
     
-    
+     /**
+     * @var integer
+     */
+    public $uid;
+
+    /**
+     * @var integer
+     */
+    public $pid = 0;
+
+    /**
+     * @var integer
+     */
+    public $tstamp = 0;
+	
+	/**
+	 * @var integer
+	 */
+	public $crdate = 0;
+	
+	/**
+	 * @var integer
+	 */
+	public $cruser_id = 0;
+	
+	/**
+	 * @var integer
+	 */
+	public $deleted = 0;
+        
+        /**
+	 * @var integer
+	 */
+	public $usergroup = 0;
+	
+	/**
+	 * @var integer
+	 */
+	public $hidden = 0;
+	
+	/*
+	 * @var string
+	 */
+	public $title = '';
+        
+        /*
+	 * @var string
+	 */
+        public $description = '';        
+        
+        /**
+	 * @var integer
+	 */
+	public $documentuid = 0;
+        
+        /**
+	 * @var integer
+	 */
+	public $clippingtype = 0;
+        
+        /**
+	 * @var integer
+	 */
+	public $mediumuid = 0;
+        
+        /*
+	 * @var string
+	 */
+        public $url = '';        
+        
+        /*
+	 * @var string
+	 */
+        public $filelink = '';        
+        
+        /**
+	 * @var integer
+	 */
+	public $doctype = 0;
+        
+        
     public function initialize()
     {
         $this->hasOne('mediumuid', 'reportingtool\Models\Medium', 'uid', array(
