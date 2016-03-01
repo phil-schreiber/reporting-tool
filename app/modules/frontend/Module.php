@@ -96,6 +96,10 @@ $di->set(
                         return 'reportingtool\Helper\Tag::arrayKeyExists(' . $resolvedArgs . ')';
                     }
                 );
+                $volt->getCompiler()->addFunction(
+                    'isset',
+                    'isset'
+                );
                 
         $volt->getCompiler()->addFunction('number_format', function($resolvedArgs) {
             return 'number_format(' . $resolvedArgs . ')';

@@ -79,9 +79,11 @@ class ProjectsController extends ControllerBase
                 foreach($projecttypes as $projecttype){
                     $ptypesArr[$projecttype->uid]=$projecttype->title;
                 }
+                
                 $this->view->setVar('project',$project);
                 $this->view->setVar('ptypesarr',$ptypesArr);
-                $this->view->setVar('projectstate',array('in Vorbereitung','in Abstimmung','live','abgeschlossen'));
+                $this->view->setVar('projectstates',array('in Vorbereitung','in Abstimmung','live','abgeschlossen'));
+                $this->view->setVar('projectstate',$project->getProjectstates(array('conditions'=>'deleted=0 AND hidden=0 AND active=1'))[0]);
             }
             
             

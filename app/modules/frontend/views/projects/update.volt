@@ -3,24 +3,30 @@
 <div class="container">
     <div class="col-xs-12">
     	<h1>{{ptypesarr[project.projecttype]}}: {{project.title}}</h1>
-        <label>Titel:</label>
-        <p>{{project.title}}</p>
-        <label>Beschreibung:</label>
-        <p>{{project.description}}</p>
-        <label>Beginn:</label>
-        <p>{{date('d/m/Y',project.starttime)}}</p>
-        <label>Aufwand:</label>
-        <p>{{project.estcost}} h</p>
-        <label>Status</label>
-        <p>{{projectstate[project.status]}}</p>
-        <label>Deadline:</label>
-        <p>
-            {% if project.deadline == 0 %}
+        <table>
+            <tr>
+                <td>Titel:</td><td>{{project.title}}</td>
+            </tr>
+            <tr>
+                <td>Beschreibung:</td><td>{{project.description}}</td>
+             </tr>
+             <tr>
+                <td>Thema:</td><td>{{project.topic}}</td>
+             </tr>
+             <tr>
+                <td>Beginn:</td><td>{{date('d/m/Y',project.starttime)}}</td>
+            </tr>
+            <tr>
+                <td>Status:</td><td>{{projectstates[projectstate.statetype]}} / {{projectstate.description}}</td>
+            </tr>
+            <tr>
+                <td>Deadline:</td><td>{% if project.deadline == 0 %}
             keine
             {% else %}
             {{date('d/m/Y',project.starttime)}}
-            {% endif %}
-        </p>
+            {% endif %}</td>
+            </tr>
+        </table>
         
         {{ hidden_field("projectuid","value": project.uid) }}
     </div>
@@ -34,7 +40,7 @@
                 <th>{{tr('title')}}</th>
                 <th>{{tr('clippingtype')}}</th>
                 <th>{{tr('file')}}</th>		
-                <th>{{tr('url')}}</th>
+                
             </tr>
         </thead>
  
@@ -45,7 +51,7 @@
                 <th>{{tr('title')}}</th>
                 <th>{{tr('clippingtype')}}</th>                
 		<th>{{tr('file')}}</th>		
-                <th>{{tr('url')}}</th>
+                
             </tr>
         </tfoot>
     </table>

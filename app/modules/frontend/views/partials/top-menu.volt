@@ -20,6 +20,7 @@
            {% for projecttype in projecttypes %}
            <li>{{- link_to(language~'/projects/index/'~projecttype.uid, projecttype.title, 'title': projecttype.title) -}}             </li>
            {% endfor %}
+           <li>{{- link_to(language~'/otherprojects', 'Sonstige Projekte', 'title': 'Sonstige Projekte') -}}     </li>
            </ul>
           </li>
           {% endif %}
@@ -33,9 +34,7 @@
           </li>
                     
           <li class="xs-hover">{{- link_to(language~'/coordinations', tr('coordinations'), 'title': tr('coordinations')) -}}              </li>
-          <li class="xs-hover">
-              {{- link_to(language~'/otherprojects', 'Sonstige Projekte', 'title': 'Sonstige Projekte') -}}             
-          </li>
+          
           <li>{{ link_to('session/logout/', 'logout','title': 'Logout', "class": "logout") }}</li>			
         </ul>
         

@@ -32,7 +32,9 @@
     list-style: none;
 }
 
-
+.dropdown-menu li{
+    width:100%;
+}
 
 .border-box {
 	border:1px solid rgba(82,82,79,0.5);
