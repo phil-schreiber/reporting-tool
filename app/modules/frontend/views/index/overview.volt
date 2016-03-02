@@ -5,7 +5,7 @@
     	<h1>Projektübersicht {{date('Y')}}</h1>        
         
         
-            <table>
+            <table class="display dataTable">
                 <thead>
                     <tr>
                         <th>{{tr('projecttype')}}</th>
@@ -14,17 +14,18 @@
                         <th>Themen</th>
                     </tr>
                 </thead>
+                <tbody>
                 {% for index,spec in specscount %}
-                <tr>
+                <tr {% if index %2 ==0 %}class="even"{% else %} class="odd"{% endif %}>
                     <td>{{spec["title"]}}</td>
-                    <td style="text-align: center;">
+                    <td>
                         {%if arrayKeyExists(index,projectcount) %}
                         {{projectcount[index]}}
                         {% else %}
                         0
                         {% endif %}
                     </td>
-                    <td style="text-align: center;">{{spec["amount"]}}</td>
+                    <td>{{spec["amount"]}}</td>
                     <td>
                         <ul>
                             {% if isset(projects[index]) %}
@@ -36,6 +37,8 @@
                     </td>
                 </tr>
                 {% endfor %}
+                
+                </tbody>
             </table>
         </div>
     </div>    

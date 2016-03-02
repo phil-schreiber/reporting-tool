@@ -2,7 +2,7 @@
 namespace reportingtool\Models;
 
 use Phalcon\Mvc\Model;
-
+Model::setup(['notNullValidations' => false]);
 /**
  * reportingtool\Models\Budgets
  * 

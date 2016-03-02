@@ -54,11 +54,15 @@ class ClippingsController extends ControllerBase
                 foreach($clippingoverviews as $overview){
                     $overviewArray[$overview->overviewyear][$monthmap[$overview->overviewmonth]]=$overview->filelink;
                 }
-                
+                $publishableprojecttypes= \reportingtool\Models\Projecttypes::find(array(
+                   'conditions'  =>'deleted=0 AND hidden =0 AND publishable=1'
+                ));
                 $topics=array_unique($topics);
                 $this->view->setVar('topics',$topics);
                 $this->view->setVar('projects',$projects);
                 $this->view->setVar('overviewarray',$overviewArray);
+                $this->view->setVar('publishableprojecttypes',$publishableprojecttypes);
+                
                         
             }
 	}
@@ -83,10 +87,10 @@ class ClippingsController extends ControllerBase
         
          private function getData(){
 		$bindArray=array();
-		$aColumns=array('mediumtitle','clippingtitle','publicationdate','projecttitle','projectdate','clippingtype','filelink','clippingurl');
+		$aColumns=array('projecttitle','projecttopic','mediumtitle','mediumtype','clippingtitle','publicationdate','clippingtype','filelink','projectdate');
         
         $aColumnsSelect=array('clippingtype','filelink');
-        $aColumnsFilter=array('projects.title','medium.title','clipping.title');
+        $aColumnsFilter=array('projects.title','projects.topic','medium.title','clipping.title');
 		$time=time();
 		/* Indexed column (used for fast and accurate table cardinality) */
 		$sIndexColumn = "clipping.uid";
@@ -213,7 +217,7 @@ class ClippingsController extends ControllerBase
 		 * SQL queries
 		 * Get data to display
 		 */
-		$phql = "SELECT ".str_replace(" , ", " ", implode(", ", $aColumnsSelect)).", clipping.uid as clippinguid, medium.title AS mediumtitle,clipping.tstamp as publicationdate, clipping.title AS clippingtitle, clipping.url as clippingurl, projects.title AS projecttitle, projects.starttime AS projectdate FROM $sTable ".$sWhere." ".$sOrder." ".$sLimit;
+		$phql = "SELECT ".str_replace(" , ", " ", implode(", ", $aColumnsSelect)).", clipping.uid as clippinguid, medium.title AS mediumtitle,mediumtype,clipping.tstamp as publicationdate, clipping.title AS clippingtitle, clipping.url as clippingurl, projects.title AS projecttitle, projects.starttime AS projectdate,projects.topic as projecttopic FROM $sTable ".$sWhere." ".$sOrder." ".$sLimit;
 		
 		
 		
@@ -240,9 +244,12 @@ class ClippingsController extends ControllerBase
                                         }elseif($aColumns[$i] == 'clippingtype'){
                                             $row[]=$clippingtypes[$rowArray[ $aColumns[$i] ]];
                                         }elseif($aColumns[$i] == 'filelink'){
-                                            $row[]='<a href="'.'http://' . $_SERVER['SERVER_NAME'].$this->baseUri.$rowArray[ $aColumns[$i] ].'" target="_blank">Download</a>';
+                                            $row[]='<a href="'.$this->host.$this->baseUri.$rowArray[ $aColumns[$i] ].'" target="_blank">Download</a>';
                                         }elseif($aColumns[$i]== 'projectdate'){
                                              $row[] = date('d/m/Y',$rowArray[ $aColumns[$i] ]);
+                                        }elseif($aColumns[$i]== 'mediumtype'){
+                                            $mediumtype= \reportingtool\Models\Mediumtypes::findFirstByUid($rowArray[ $aColumns[$i] ]);
+                                             $row[] = $mediumtype->title;
                                         }
                                         else{
                                             $row[] = $rowArray[ $aColumns[$i] ];

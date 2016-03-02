@@ -9,6 +9,9 @@
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav">
+            <li class="dropdown-short xs-hover">
+                {{- link_to('', 'Übersicht', 'title': 'Übersicht') -}}             
+            </li>   
          {% if linkAllowed(session.get('auth'),'projects','index') %}		
             {% if 'projects' == dispatcher.getControllerName() %}                            
              <li class="dropdown-short xs-hover active">
@@ -20,7 +23,7 @@
            {% for projecttype in projecttypes %}
            <li>{{- link_to(language~'/projects/index/'~projecttype.uid, projecttype.title, 'title': projecttype.title) -}}             </li>
            {% endfor %}
-           <li>{{- link_to(language~'/otherprojects', 'Sonstige Projekte', 'title': 'Sonstige Projekte') -}}     </li>
+           
            </ul>
           </li>
           {% endif %}

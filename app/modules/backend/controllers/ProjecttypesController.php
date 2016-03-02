@@ -26,10 +26,11 @@ class ProjecttypesController extends ControllerBase
                 $projecttype->assign(array(
                     'cruser_id' => $this->session->get('auth')['uid'],
                     'usergroup' => $this->session->get('auth')['usergroup'],
-                    'time' => $time,
+                    'tstamp' => $time,
                     'crdate' => $time,
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
+                    'publishable' => $this->request->getPost('publishable'),
                     'icon' =>$this->request->getPost('icon')
                 ));                
                 if(!$projecttype->save()){
@@ -51,6 +52,7 @@ class ProjecttypesController extends ControllerBase
                        'tstamp' => time(),
                        'title' => $this->request->hasPost('title') ? $this->request->getPost('title') : '',
                        'description' => $this->request->hasPost('description') ? $this->request->getPost('description') : '',
+                        'publishable' => $this->request->getPost('publishable'),
                         'icon' =>$this->request->hasPost('icon') ? $this->request->getPost('icon') : '',
                     ));
                     if(!$projecttype->update()){
@@ -60,8 +62,9 @@ class ProjecttypesController extends ControllerBase
             }else{
                 $projecttypeUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;
                 $projecttype=Projecttypes::findFirstByUid($projecttypeUid);
-                $this->view->setVar('projecttype',$projecttype);
+                
             }
+            $this->view->setVar('projecttype',$projecttype);
         }
 
 	

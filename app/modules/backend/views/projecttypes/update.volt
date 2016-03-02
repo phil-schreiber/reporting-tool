@@ -19,6 +19,9 @@
                                 <label>{{ tr('icon') }}</label><br>
 				{{ text_field("icon") }}
                                 <br><br>
+                                <label>kann Veröffentlicheungen haben?</label><br>
+				{{select('publishable',[ '1' : tr('yes'), '0' : tr('no') ], 'value':projecttype.publishable)}}
+                                <br><br>
                                 {{ hidden_field('uid',"value":projecttype.uid) }}
 				 {{ submit_button(tr('ok')) }}
 

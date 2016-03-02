@@ -82,7 +82,7 @@
                         <div class="section colm colm12">
 
                             <div class="option-group field sorten" id="sorten_selektoren">
-                                {% for projecttype in projecttypes %}
+                                {% for projecttype in publishableprojecttypes %}
                                 <div class="col-xs-6 col-sm-3 utilisation_6 utilisation_7 utilisation_1">
                                     <label class="option block spacer-t10">
                                         <input name="projecttype" type="radio" value="{{projecttype.uid}}">
@@ -125,27 +125,31 @@
         <table id="clippings" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
+                <th>{{tr('project')}}</th>
+                <th>{{tr('topic')}}</th>
                 <th>{{tr('medium')}}</th>
+                <th>{{tr('mediumtype')}}</th>
                 <th>{{tr('title')}}</th>
                 <th>{{tr('publicationdate')}}</th>	                
-                <th>{{tr('project')}}</th>
-                <th>{{tr('startdate')}}</th>                
+                
+                
                 <th>{{tr('clippingtype')}}</th>
                 <th>{{tr('file')}}</th>		
-                <th>{{tr('url')}}</th>
+                
             </tr>
         </thead>
  
         <tfoot>
             <tr>
-                <th>{{tr('medium')}}</th>
-                <th>{{tr('title')}}</th>
-                <th>{{tr('publicationdate')}}</th>
                 <th>{{tr('project')}}</th>
-                <th>{{tr('startdate')}}</th>                		
+                <th>{{tr('topic')}}</th>
+                <th>{{tr('medium')}}</th>
+                <th>{{tr('mediumtype')}}</th>
+                <th>{{tr('title')}}</th>
+                <th>{{tr('publicationdate')}}</th>                                
                 <th>{{tr('clippingtype')}}</th>                
 		<th>{{tr('file')}}</th>		
-                <th>{{tr('url')}}</th>
+                
             </tr>
         </tfoot>
     </table>

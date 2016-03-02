@@ -58,6 +58,11 @@ class Projecttypes extends Model
 	 * @var string
 	 */
         public $icon = '';        
+        
+        /**
+	 * @var integer
+	 */
+	public $publishable = 0;
     
     public function initialize()
     {
