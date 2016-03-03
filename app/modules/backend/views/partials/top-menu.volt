@@ -21,6 +21,18 @@
             </ul>
           </li>
           {% endif %}
+           {% if linkAllowed(session.get('auth'),'projects','index') %}		
+           
+            <li class="dropdown-short xs-hover">
+           
+            {{- link_to('backend/'~language~'/documents', tr('documents')~' <span class="caret"></span>', 'title': tr('documents')) -}}             
+            <ul class="dropdown-menu">
+                <li>
+                    {{- link_to('backend/'~language~'/documents/', tr('create'), 'title': tr('create')) -}}         
+                </li>
+            </ul>
+          </li>
+          {% endif %}
            {% if linkAllowed(session.get('auth'),'projecttypes','index') %}		
            
             <li class="dropdown-short xs-hover">
