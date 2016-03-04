@@ -6,6 +6,11 @@
         <table>
             <tr>
                 <td>Titel:</td><td>{{project.title}}</td>
+                {% if document != '' %}
+                <td rowspan="6">
+                    <a href="{{baseurl}}{{document}}" title="Download letzte Dokumentversion"><img src="{{baseurl}}public/img/icon_pm.svg" class="category_icon"></a>
+                </td>
+                {% endif %}
             </tr>
             <tr>
                 <td>Beschreibung:</td><td>{{project.description}}</td>

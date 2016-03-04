@@ -141,6 +141,14 @@ class ProjectsController extends ControllerBase
                 $this->view->setVar('project',$project);
             
         }
+        
+        public function deleteAction(){
+            if($this->request->isPost()){
+                    $element=Projects::findFirstByUid($this->request->getPost('uid'));
+                    $element->deleted=1;
+                    $element->save();
+                }
+           }
 
 	
 	

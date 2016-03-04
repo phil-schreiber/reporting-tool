@@ -3,7 +3,7 @@ namespace reportingtool\Modules\Modules\Backend\Controllers;
 use reportingtool\Models\Documents,
     reportingtool\Models\Usergroups,
     reportingtool\Models\Projects,
-    reportingtool\Models\Medium;
+    reportingtool\Models\Documentversions;
 	
 
 /**
@@ -88,6 +88,7 @@ class DocumentsController extends ControllerBase
                 $filename=$this->littlehelpers->saveFile($this->request->getUploadedFiles(),$time,$usergroup);
                 $documentUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;
                 $document=Documents::findFirstByUid($documentUid);
+                $oldfile=$document->filelink;
                 $document->assign(array(
                     'pid' => $this->request->getPost('pid'),
                     'cruser_id' => $this->session->get('auth')['uid'],
@@ -97,7 +98,8 @@ class DocumentsController extends ControllerBase
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),                                                            
                     'filelink'=>$filename
-                ));                
+                ));
+                $this->createOldVersion($document->uid,$oldfile,$time);
                 if(!$document->update()){
                     $this->flashSession->error($document->getMessages());
                 }else{
@@ -123,6 +125,27 @@ class DocumentsController extends ControllerBase
             }
         }
 
+        public function deleteAction(){
+            if($this->request->isPost()){
+                    $element=Documents::findFirstByUid($this->request->getPost('uid'));
+                    $element->deleted=1;
+                    $element->save();
+                }
+           }
+        
+        private function createOldVersion($documentid,$oldfile,$time){
+            $documentversion=new Documentversions();
+            $documentversion->assign(array(
+              'pid' => $documentid,
+                'cruser_id' => $this->session->get('auth')['uid'],                
+                'tstamp' => $time,
+                'crdate' => $time,                
+                'filelink'=>$oldfile   
+            ));
+            $documentversion->save();
+        }
+        
+        
         private function saveFile($filearray,$time,$usergroup){
             
             $saveFilename='';

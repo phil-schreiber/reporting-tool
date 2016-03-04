@@ -112,5 +112,11 @@ class MediacontactsController extends ControllerBase
         }
 
         
-	
+	public function deleteAction(){
+            if($this->request->isPost()){
+                    $element=Mediacontacts::findFirstByUid($this->request->getPost('uid'));
+                    $element->deleted=1;
+                    $element->save();
+                }
+           }
 }

@@ -136,6 +136,14 @@ class ClippingsController extends ControllerBase
             }
         }
 
+        public function deleteAction(){
+            if($this->request->isPost()){
+                $clipping=Clippings::findFirstByUid($this->request->getPost('uid'));
+                $clipping->deleted=1;
+                $clipping->save();
+            }
+        }
+        
         private function saveFile($filearray,$time,$usergroup){
             
             $saveFilename='';

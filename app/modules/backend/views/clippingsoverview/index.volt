@@ -15,9 +15,12 @@
 </form>
 {% else %}
 <a href="{{path}}/create/{{usergroup.uid}}">Neue Clippingübersicht für {{usergroup.title}}</a>
-<table>
-    
-</table>    
+<br><br>
+<ul>
+    {% for clippingsoverview in clippingsoverviews %}
+    <li><a href="{{path}}/update/{{clippingsoverview.uid}}">{{clippingsoverview.title}}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{clippingsoverview.uid}}">X</span></li>
+    {% endfor %}
+</ul>  
 {% endif %}
 </div>
 

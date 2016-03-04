@@ -113,7 +113,13 @@ class FeusersController extends ControllerBase
 		$this->view->setVar('usergroups',$usergroups);
 		
 	}
-	
+	public function deleteAction(){
+            if($this->request->isPost()){
+                    $element=Feusers::findFirstByUid($this->request->getPost('uid'));
+                    $element->deleted=1;
+                    $element->save();
+                }
+           }
 	private function myhash($password, $unique_salt) {
 		return crypt($password, '$2a$10$'.$unique_salt);
 	}

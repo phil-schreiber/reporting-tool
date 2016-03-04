@@ -273,6 +273,15 @@ var mainModule = function (jq, is) {
                               }
                       });
     }; 
+    
+    var deleteItem=function(e){
+        var element = jq(this).attr('data-element');
+        if (window.confirm("Sicher?!")) { 
+            jq(this).parent().html('Element exterminiert');
+        ajaxIt('backend/'+jq('#lang').val()+'/'+jq('#controller').val(),'delete','uid='+element,dummyEmpty);
+          }
+        
+    };
 
   
   return {
@@ -300,6 +309,7 @@ var mainModule = function (jq, is) {
       if(jq('#controller').val()==='clippings' && jq('#action').val()==='index'){
           new clippings(jq);
       }  
+      jq('.deleteListItem').click(deleteItem);
       
      /* if(jq('#controller').val()==='clippings' && jq('#action').val()==='update'){
           new clippingsForMediumtypes(jq);

@@ -15,9 +15,10 @@
 </form>
 {% else %}
 <a href="{{path}}/create/{{usergroup.uid}}">Neues {{tr('coordination')}} für {{usergroup.title}}</a>
+<br><br>
    <ul class="listviewList">
 	{% for coordination in coordinations %}
-	<li><a href='{{ path }}/update/{{ coordination.uid }}'>>> {{coordination.title}} | {{ date('d.m.Y',coordination.tstamp) }}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}"><input type="hidden" value="{{coordination.uid}}"></span></li>
+	<li><a href='{{ path }}/update/{{ coordination.uid }}'>>> {{coordination.title}} | {{ date('d.m.Y',coordination.tstamp) }}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{coordination.uid}}">X</span></li>
 	{% endfor %}
 </ul>
 {% endif %}

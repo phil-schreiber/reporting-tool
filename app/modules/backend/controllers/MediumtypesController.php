@@ -60,6 +60,13 @@ class MediumtypesController extends ControllerBase
             }
         }
 
+        public function deleteAction(){
+            if($this->request->isPost()){
+                    $element=Mediumtypes::findFirstByUid($this->request->getPost('uid'));
+                    $element->deleted=1;
+                    $element->save();
+                }
+           }
 	
 	
 }

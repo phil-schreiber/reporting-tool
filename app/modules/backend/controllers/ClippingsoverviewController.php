@@ -24,7 +24,7 @@ class ClippingsoverviewController extends ControllerBase
                 ));
                 $usergroup=Usergroups::findFirstByUid($this->request->getPost('usergroup'));
                 $this->view->setVar('usergroup',$usergroup);   
-                $this->view->setVar('clippings',$clippings);   
+                $this->view->setVar('clippingsoverviews',$clippings);   
                 $this->view->setVar('customerselect',false);   
             }else{
                 $usergroups=  Usergroups::find(array(
@@ -68,6 +68,14 @@ class ClippingsoverviewController extends ControllerBase
              
             }
         }
+        
+          public function deleteAction(){
+            if($this->request->isPost()){
+                    $element=Clippingsoverview::findFirstByUid($this->request->getPost('uid'));
+                    $element->deleted=1;
+                    $element->save();
+                }
+           }
         
         public function updateAction(){
             if($this->request->isPost()){

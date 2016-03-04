@@ -146,6 +146,14 @@ class ContractruntimeController extends ControllerBase
                 $this->view->setVar('budgetspecs',$budgetspecs);
         }
         
+        public function deleteAction(){
+            if($this->request->isPost()){
+                    $element=  Contractruntime::findFirstByUid($this->request->getPost('uid'));
+                    $element->deleted=1;
+                    $element->save();
+                }
+           }
+        
         private function clearBudgetamounts($cid){
             Budgets_projecttypes_lookup::find(array(
                'conditions' => 'uid_local=?1',

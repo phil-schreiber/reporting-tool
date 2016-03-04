@@ -87,6 +87,12 @@ class MediumController extends ControllerBase
                 $this->view->setVar('medium',$medium);
         }
 
-	
+	public function deleteAction(){
+            if($this->request->isPost()){
+                    $element=Medium::findFirstByUid($this->request->getPost('uid'));
+                    $element->deleted=1;
+                    $element->save();
+                }
+           }
 	
 }

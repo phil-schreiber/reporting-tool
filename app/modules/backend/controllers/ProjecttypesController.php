@@ -67,6 +67,13 @@ class ProjecttypesController extends ControllerBase
             $this->view->setVar('projecttype',$projecttype);
         }
 
+        public function deleteAction(){
+            if($this->request->isPost()){
+                    $element=Projecttypes::findFirstByUid($this->request->getPost('uid'));
+                    $element->deleted=1;
+                    $element->save();
+                }
+           }
 	
 	
 }

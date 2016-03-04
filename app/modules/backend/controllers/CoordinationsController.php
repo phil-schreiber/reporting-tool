@@ -87,7 +87,13 @@ class CoordinationsController extends ControllerBase
                 $this->view->setVar('projects',$projects);
             }
         }
-        
+        public function deleteAction(){
+            if($this->request->isPost()){
+                    $element=  Coordinations::findFirstByUid($this->request->getPost('uid'));
+                    $element->deleted=1;
+                    $element->save();
+                }
+           }
         public function updateAction(){
             if($this->request->isPost()){
                 $coordinationsUid=$this->request->hasPost('uid') ? $this->request->getPost('uid') : 0;

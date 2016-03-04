@@ -15,9 +15,10 @@
 </form>
 {% else %}
 <a href="{{path}}/create/{{usergroup.uid}}">Neuen Medienkontakt für {{usergroup.title}}</a>
+<br><br>
 <ul>
         {% for mediacontact in mediacontacts %}
-        <li><a href="{{path}}/update/{{mediacontact.uid}}" >>> {{mediacontact.title}}</a>
+        <li><a href="{{path}}/update/{{mediacontact.uid}}" >>> {{mediacontact.title}}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{mediacontact.uid}}">X</span></li>
             {% endfor %}
 </ul>            
 {% endif %}

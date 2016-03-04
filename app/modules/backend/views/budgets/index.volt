@@ -6,7 +6,7 @@
 
 <ul class="listviewList">
 	{% for budget in budgets %}
-	<li><a href='{{ path }}{{ budget.uid }}'>>> Kunde: {{budget.getUsergroup().title}} | zugehöriger Vertrag: {{ date('d/m/Y',budget.getContractruntime().startdate) }} (Startdatum) </a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}"><input type="hidden" value="{{budget.uid}}"></span></li>
+	<li><a href='{{ path }}{{ budget.uid }}'>>> Kunde: {{budget.getUsergroup().title}} | zugehöriger Vertrag: {{ date('d/m/Y',budget.getContractruntime().startdate) }} (Startdatum) </a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}"><input type="hidden" value="{{budget.uid}}">X</span></li>
 	{% endfor %}
 </ul>
 </div>

@@ -30,7 +30,7 @@
                         <ul>
                             {% if isset(projects[index]) %}
                             {% for project in projects[index] %}
-                            <li><a href="{{host}}{{baseurl}}projects/update/{{project.uid}}">{{project.title}}</a></li>
+                            <li><a href="{{host}}{{baseurl}}{{language}}/projects/update/{{project.uid}}">{{project.title}}</a></li>
                             {% endfor %}
                             {% endif %}
                         </ul>

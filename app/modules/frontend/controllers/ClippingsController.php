@@ -85,6 +85,8 @@ class ClippingsController extends ControllerBase
             
         }
         
+       
+        
          private function getData(){
 		$bindArray=array();
 		$aColumns=array('projecttitle','projecttopic','mediumtitle','mediumtype','clippingtitle','publicationdate','clippingtype','filelink','projectdate');

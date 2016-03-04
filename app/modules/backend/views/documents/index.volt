@@ -14,10 +14,12 @@
     <input type="submit" value="Ok">
 </form>
 {% else %}
-<a href="{{path}}/create/{{usergroup.uid}}">Neues Dokument für {{usergroup.title}}</a>
-<table>
-    
-</table>    
+<a href="{{path}}/create/{{usergroup.uid}}">Neues Dokument für {{usergroup.title}}</a><br><br>
+<ul>
+    {% for document in documents %}
+    <li><a href="{{path}}/update/{{document.uid}}">{{document.title}}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{document.uid}}">X</span></li>
+    {% endfor %}
+</ul>    
 {% endif %}
 </div>
 

@@ -107,18 +107,7 @@
             </ul>
           </li>
           {% endif %}
-           {% if linkAllowed(session.get('auth'),'otherprojects','index') %}		
-           
-            <li class="dropdown-short xs-hover">
-           
-            {{- link_to('backend/'~language~'/otherprojects/', 'Sonstige Projekte <span class="caret"></span>', 'title': 'Sonstige Projekte') -}}             
-            <ul class="dropdown-menu">
-                <li>
-                    {{- link_to('backend/'~language~'/otherprojects/create', tr('create'), 'title': tr('create')) -}}         
-                </li>
-            </ul>
-          </li>
-          {% endif %}
+          
            {% if linkAllowed(session.get('auth'),'mediacontacts','index') %}		
            
             <li class="dropdown-short xs-hover">
