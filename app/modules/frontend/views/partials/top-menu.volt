@@ -37,6 +37,9 @@
           </li>
                     
           <li class="xs-hover">{{- link_to(language~'/coordinations', tr('coordinations'), 'title': tr('coordinations')) -}}              </li>
+          {% if session.get('auth')['superuser'] == 1 %}				                			
+            <li>{{ link_to('backend', tr('backend'), 'title': tr('backend')) }}	
+          {% endif %}
           
           <li>{{ link_to('session/logout/', 'logout','title': 'Logout', "class": "logout") }}</li>			
         </ul>
