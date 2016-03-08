@@ -129,29 +129,16 @@
                 <th>{{tr('topic')}}</th>
                 <th>{{tr('medium')}}</th>
                 <th>{{tr('mediumtype')}}</th>
+                <th>{{tr('reach')}}</th>
                 <th>{{tr('title')}}</th>
-                <th>{{tr('publicationdate')}}</th>	                
-                
-                
+                <th>{{tr('publicationdate')}}</th>	                                                
                 <th>{{tr('clippingtype')}}</th>
                 <th>{{tr('file')}}</th>		
                 
             </tr>
         </thead>
  
-        <tfoot>
-            <tr>
-                <th>{{tr('project')}}</th>
-                <th>{{tr('topic')}}</th>
-                <th>{{tr('medium')}}</th>
-                <th>{{tr('mediumtype')}}</th>
-                <th>{{tr('title')}}</th>
-                <th>{{tr('publicationdate')}}</th>                                
-                <th>{{tr('clippingtype')}}</th>                
-		<th>{{tr('file')}}</th>		
-                
-            </tr>
-        </tfoot>
+        
     </table>
     </div>
 </div>

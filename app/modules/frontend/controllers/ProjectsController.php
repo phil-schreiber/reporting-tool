@@ -125,7 +125,7 @@ class ProjectsController extends ControllerBase
         
          private function getData(){
 		$bindArray=array();
-		$aColumns=array('projectttitle','starttime','projecttstamp','topic','typetitle','statetype','projectid','active','statedescription','statetstamp');
+		$aColumns=array('projectttitle','starttime','topic','typetitle','statetype','projectid','active','statedescription','statetstamp');
         
         $aColumnsSelect=array('clippingtype','filelink');
         $aColumnsFilter=array('projects.title','medium.title','clipping.title');
@@ -333,7 +333,7 @@ class ProjectsController extends ControllerBase
         
         private function getClippingData(){
 		$bindArray=array();
-		$aColumns=array('publicationdate','mediumtitle','clippingtitle','clippingtype','filelink','clippingurl');
+		$aColumns=array('publicationdate','mediumtitle','clippingtitle','reach','clippingtype','filelink','clippingurl');
         
         $aColumnsSelect=array('clippingtype','filelink');
         $aColumnsFilter=array('clippingtype','filelink');
@@ -426,7 +426,7 @@ class ProjectsController extends ControllerBase
 		 * SQL queries
 		 * Get data to display
 		 */
-		$phql = "SELECT ".str_replace(" , ", " ", implode(", ", $aColumnsSelect)).", clipping.uid as clippinguid, medium.title AS mediumtitle,clipping.tstamp as publicationdate, clipping.title AS clippingtitle, clipping.url as clippingurl FROM $sTable ".$sWhere." ".$sOrder." ".$sLimit;
+		$phql = "SELECT ".str_replace(" , ", " ", implode(", ", $aColumnsSelect)).", clipping.uid as clippinguid, medium.title AS mediumtitle,reach,clipping.tstamp as publicationdate, clipping.title AS clippingtitle, clipping.url as clippingurl FROM $sTable ".$sWhere." ".$sOrder." ".$sLimit;
 		
 		
 		
@@ -455,6 +455,8 @@ class ProjectsController extends ControllerBase
                                             $row[]=$clippingtypes[$rowArray[ $aColumns[$i] ]];
                                         }elseif($aColumns[$i] == 'filelink'){
                                             $row[]='<a href="'.$this->baseUri.$rowArray[ $aColumns[$i] ].'" target="_blank">Download</a>';
+                                        }elseif($aColumns[$i] == 'reach' && $rowArray[ $aColumns[$i] ]==0){
+                                            $row[]='k.A.';
                                         }
                                         else{
                                             $row[] = $rowArray[ $aColumns[$i] ];

@@ -6,8 +6,8 @@
     </div>
     {% if preselected %}
     <div class="col-xs-12">
-        <h2>Soll: {{soll}}</h2>
-        <h2>  Ist: {{ist}}</h2>
+        <span class="btn btn-default" style="margin-right:10px;background:#333;color:#fff">Ist: {{ist}}</span>
+        <span class="btn btn-default" style="background:#333;color:#fff">Soll: {{soll}}</span>
         
     </div>
     {% endif %}
@@ -94,26 +94,14 @@
         <thead>
             <tr>                
                 <th>{{tr('projectttitle')}}</th>
-                <th>{{tr('starttime')}}</th>	                
-                <th>{{tr('projecttstamp')}}</th>
+                <th>{{tr('starttime')}}</th>	                                
                 <th>{{tr('topic')}}</th>                
                 <th>{{tr('typetitle')}}</th>                	
                 <th>{{tr('state')}}</th>
                 <th>Details</th>
             </tr>
         </thead>
- 
-        <tfoot>
-            <tr>                
-                <th>{{tr('projectttitle')}}</th>
-                <th>{{tr('starttime')}}</th>	                
-                <th>{{tr('projecttstamp')}}</th>
-                <th>{{tr('topic')}}</th>                
-                <th>{{tr('typetitle')}}</th>                
-                <th>{{tr('state')}}</th>
-                <th>Details</th>
-            </tr>
-        </tfoot>
+         
     </table>
     </div>
     <div id="myModal" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

@@ -1,4 +1,9 @@
+<div id="header"><img src="{{baseurl}}img/header_df.jpg" width="2604" height="541" alt="" class="img-responsive"/> </div>
+<div id="navigation">
+    <nav class="navbar denkfabrikscheme no-border no-active-arrow no-open-arrow dropdown-onhover" id="main_navbar" role="navigation"></nav>
+</div>
 {% include 'partials/flash-messages.volt' %}
+
 <div class="container">
 	{{ content() }}
 <h1>{{tr('loginTitle')}}</h1>

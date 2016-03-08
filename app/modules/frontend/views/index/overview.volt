@@ -10,7 +10,7 @@
                     <tr>
                         <th>{{tr('projecttype')}}</th>
                         <th>erbracht</th>
-                        <th>insgesamt</th>
+                        <th>plan</th>
                         <th>Themen</th>
                     </tr>
                 </thead>

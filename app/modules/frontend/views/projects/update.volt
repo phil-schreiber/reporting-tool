@@ -43,22 +43,14 @@
                 <th>{{tr('publicationdate')}}</th>
 		<th>{{tr('medium')}}</th>
                 <th>{{tr('title')}}</th>
+                <th>{{tr('reach')}}</th>
                 <th>{{tr('clippingtype')}}</th>
                 <th>{{tr('file')}}</th>		
                 
             </tr>
         </thead>
  
-        <tfoot>
-            <tr>
-                <th>{{tr('publicationdate')}}</th>
-		<th>{{tr('medium')}}</th>
-                <th>{{tr('title')}}</th>
-                <th>{{tr('clippingtype')}}</th>                
-		<th>{{tr('file')}}</th>		
-                
-            </tr>
-        </tfoot>
+        
     </table>
     </div>
 </div>

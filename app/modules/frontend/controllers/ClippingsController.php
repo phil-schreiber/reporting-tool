@@ -89,7 +89,7 @@ class ClippingsController extends ControllerBase
         
          private function getData(){
 		$bindArray=array();
-		$aColumns=array('projecttitle','projecttopic','mediumtitle','mediumtype','clippingtitle','publicationdate','clippingtype','filelink','projectdate');
+		$aColumns=array('projecttitle','projecttopic','mediumtitle','mediumtype','reach','clippingtitle','publicationdate','clippingtype','filelink','projectdate');
         
         $aColumnsSelect=array('clippingtype','filelink');
         $aColumnsFilter=array('projects.title','projects.topic','medium.title','clipping.title');
@@ -219,7 +219,7 @@ class ClippingsController extends ControllerBase
 		 * SQL queries
 		 * Get data to display
 		 */
-		$phql = "SELECT ".str_replace(" , ", " ", implode(", ", $aColumnsSelect)).", clipping.uid as clippinguid, medium.title AS mediumtitle,mediumtype,clipping.tstamp as publicationdate, clipping.title AS clippingtitle, clipping.url as clippingurl, projects.title AS projecttitle, projects.starttime AS projectdate,projects.topic as projecttopic FROM $sTable ".$sWhere." ".$sOrder." ".$sLimit;
+		$phql = "SELECT ".str_replace(" , ", " ", implode(", ", $aColumnsSelect)).", clipping.uid as clippinguid, medium.title AS mediumtitle,mediumtype,reach,clipping.tstamp as publicationdate, clipping.title AS clippingtitle, clipping.url as clippingurl, projects.title AS projecttitle, projects.starttime AS projectdate,projects.topic as projecttopic FROM $sTable ".$sWhere." ".$sOrder." ".$sLimit;
 		
 		
 		
@@ -252,6 +252,8 @@ class ClippingsController extends ControllerBase
                                         }elseif($aColumns[$i]== 'mediumtype'){
                                             $mediumtype= \reportingtool\Models\Mediumtypes::findFirstByUid($rowArray[ $aColumns[$i] ]);
                                              $row[] = $mediumtype->title;
+                                        }elseif($aColumns[$i] == 'reach' && $rowArray[ $aColumns[$i] ]==0){
+                                            $row[]='k.A.';
                                         }
                                         else{
                                             $row[] = $rowArray[ $aColumns[$i] ];
