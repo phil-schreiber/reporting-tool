@@ -27,7 +27,7 @@ class Auth extends Component
 		
 
         // Check if the user exist
-        $user = Feusers::findFirstByEmail($credentials['username']);
+        $user = Feusers::findFirstByUsername($credentials['username']);
         if ($user == false) {
             $this->registerUserThrottling(0);
             throw new Exception('Wrong email/password combination');
