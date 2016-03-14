@@ -17,7 +17,7 @@
 <a href="{{path}}/create/{{usergroup.uid}}">Neues Clipping für {{usergroup.title}}</a><br><br>
 <ul>
     {% for clipping in clippings %}
-    <li><a href="{{path}}/update/{{clipping.uid}}">{{clipping.title}}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{clipping.uid}}">X</span></li>
+    <li><a href="{{path}}/update/{{clipping.uid}}">{{clipping.title}} | {{clipping.getType().title}}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{clipping.uid}}">X</span></li>
     {% endfor %}
 </ul>    
 

@@ -35,7 +35,7 @@
                                 
                                  <label>Datei</label><br>
                                  {{ file_field("file") }}<br>
-                                 <a href="{{baseurl}}{{clipping.filelink}}">Download</a>
+                                 <a href="{{host}}{{baseurl}}{{clipping.filelink}}">Download</a>
                                 <br><br>
 				 {{ submit_button(tr('ok')) }}
 
