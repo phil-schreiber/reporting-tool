@@ -54,7 +54,12 @@ class FeusersController extends ControllerBase
 				'superuser' => $this->request->getPost('superuser'),
 				'userlanguage' => $this->request->getPost('userlanguage')
 			));
-			$feuserRecord->update();
+                        if(!$feuserRecord->update()){
+				$this->flashSession->error($feuserRecord->getMessages());
+			}else{
+				$this->flashSession->success("successUpdate");
+			}
+			
 		}
 		$this->view->form = new FeusersForm($feuserRecord, array(
             'edit' => true
@@ -89,9 +94,9 @@ class FeusersController extends ControllerBase
 				
 			));
 			if(!$feuser->save()){
-				$this->flash->error($feuser->getMessages());
+				$this->flashSession->error($feuser->getMessages());
 			}else{
-				$this->flash->success("Feuser was created successfully");
+				$this->flashSession->success("Feuser was created successfully");
 			}
 			
 			/*Forces to rewrite ACL list on next request*/

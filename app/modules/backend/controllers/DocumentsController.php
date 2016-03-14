@@ -59,9 +59,9 @@ class DocumentsController extends ControllerBase
                 if(!$document->save()){
                     $this->flashSession->error($document->getMessages());
                 }else{
-                    $this->response->redirect('backend/'.$this->view->language.'/documents/update/'.$document->uid.'/'); 
+                    //$this->response->redirect('backend/'.$this->view->language.'/documents/update/'.$document->uid.'/'); 
                     $this->flashSession->success($this->translate('successCreate'));
-                    $this->view->disable();
+                    //$this->view->disable();
                 }
             }else{
                 $usergroupUid=$this->dispatcher->getParam("uid");
@@ -103,8 +103,8 @@ class DocumentsController extends ControllerBase
                 if(!$document->update()){
                     $this->flashSession->error($document->getMessages());
                 }else{
-                    $this->response->redirect('backend/'.$this->view->language.'/documents/update/'.$document->uid.'/'); 
-                    $this->flashSession->success($this->translate('successCreate'));
+                    //$this->response->redirect('backend/'.$this->view->language.'/documents/update/'.$document->uid.'/'); 
+                    $this->flashSession->success($this->translate('successUpdate'));
                     $this->view->disable();
                 }
             }else{

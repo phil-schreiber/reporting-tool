@@ -57,9 +57,9 @@ class MediacontactsController extends ControllerBase
                 if(!$mediacontacts->save()){
                     $this->flashSession->error($clipping->getMessages());
                 }else{
-                    $this->response->redirect('backend/'.$this->view->language.'/mediacontacts/update/'.$mediacontacts->uid.'/'); 
+                    //$this->response->redirect('backend/'.$this->view->language.'/mediacontacts/update/'.$mediacontacts->uid.'/'); 
                     $this->flashSession->success($this->translate('successCreate'));
-                    $this->view->disable();
+                    //$this->view->disable();
                 }
             }else{
                 $usergroupUid=$this->dispatcher->getParam("uid");
@@ -94,6 +94,8 @@ class MediacontactsController extends ControllerBase
                 ));              
                 if(!$mediacontacts->update()){
                     $this->flashSession->error($mediacontacts->getMessages());
+                }else{
+                    $this->flashSession->success($this->translate('successUpdate'));
                 }
             }else{
                 $mediacontactsUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;

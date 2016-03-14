@@ -44,9 +44,9 @@ class MediumController extends ControllerBase
                 }else{
                     $medium->icon =$this->littlehelpers->saveImages($this->request->getUploadedFiles(),'medium',$medium->uid);
                     $medium->update();
-                    $this->response->redirect('backend/'.$this->view->language.'/medium/update/'.$medium->uid.'/'); 
+                    //$this->response->redirect('backend/'.$this->view->language.'/medium/update/'.$medium->uid.'/'); 
                     $this->flashSession->success($this->translate('successCreate'));
-                    $this->view->disable();
+                    //$this->view->disable();
                 }
             }else{
                 $mediumtypes=  Mediumtypes::find(array(
@@ -73,6 +73,7 @@ class MediumController extends ControllerBase
                     }else{
                         $medium->icon =$this->littlehelpers->saveImages($this->request->getUploadedFiles(),'medium',$medium->uid);
                         $medium->update();
+                        $this->flashSession->success($this->translate('successUpdate'));
                     }
                 }
             }else{

@@ -33,9 +33,9 @@ class MediumtypesController extends ControllerBase
                 if(!$mediumtype->save()){
                     $this->flashSession->error($mediumtype->getMessages());
                 }else{
-                    $this->response->redirect('backend/'.$this->view->language.'/mediumtypes/update/'.$mediumtype->uid.'/'); 
+                    //$this->response->redirect('backend/'.$this->view->language.'/mediumtypes/update/'.$mediumtype->uid.'/'); 
                     $this->flashSession->success($this->translate('successCreate'));
-                    $this->view->disable();
+                    //$this->view->disable();
                 }
             }
         }
@@ -51,6 +51,8 @@ class MediumtypesController extends ControllerBase
                     ));
                     if(!$mediumtype->update()){
                         $this->flashSession->error($projecttype->getMessages());
+                    }else{
+                          $this->flashSession->success($this->translate('successUpdate'));
                     }
                 }
             }else{

@@ -44,9 +44,9 @@ class BudgetsController extends ControllerBase
                 if(!$project->save()){
                     $this->flash->error($project->getMessages());
                 }else{
-                    $this->response->redirect('backend/'.$this->view->language.'/projects/update/'.$project->uid.'/'); 
-                    $this->flash->success($this->translate('successCreate'));
-                    $this->view->disable();
+                    //$this->response->redirect('backend/'.$this->view->language.'/projects/update/'.$project->uid.'/'); 
+                    $this->flashSession->success($this->translate('successCreate'));
+                    //$this->view->disable();
                 }
             }else{
                 $usergroups=Usergroups::find(array(

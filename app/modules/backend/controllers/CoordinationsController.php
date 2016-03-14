@@ -65,9 +65,9 @@ class CoordinationsController extends ControllerBase
                         $lookupEntry->save();
                     }
                     
-                    $this->response->redirect('backend/'.$this->view->language.'/coordinations/update/'.$coordination->uid.'/'); 
+                    //$this->response->redirect('backend/'.$this->view->language.'/coordinations/update/'.$coordination->uid.'/'); 
                     $this->flashSession->success($this->translate('successCreate'));
-                    $this->view->disable();
+                    //$this->view->disable();
                 }
             }else{
                 $usergroupUid=$this->dispatcher->getParam("uid");
@@ -105,8 +105,10 @@ class CoordinationsController extends ControllerBase
                        'description' => $this->request->hasPost('description') ? $this->request->getPost('description') : '',
                         'icon' =>$this->request->hasPost('icon') ? $this->request->getPost('icon') : '',
                     ));
-                    if(!$medium->update()){
+                    if(!$coordination->update()){
                         $this->flashSession->error($medium->getMessages());
+                    }else{
+                         $this->flashSession->success($this->translate('successUpdate'));
                     }
                 }
             }else{

@@ -36,9 +36,9 @@ class ProjecttypesController extends ControllerBase
                 if(!$projecttype->save()){
                     $this->flashSession->error($projecttype->getMessages());
                 }else{
-                    $this->response->redirect('backend/'.$this->view->language.'/projecttypes/update/'.$projecttype->uid.'/'); 
+                   // $this->response->redirect('backend/'.$this->view->language.'/projecttypes/update/'.$projecttype->uid.'/'); 
                     $this->flashSession->success($this->translate('successCreate'));
-                    $this->view->disable();
+                    //$this->view->disable();
                 }
             }
         }
@@ -57,6 +57,8 @@ class ProjecttypesController extends ControllerBase
                     ));
                     if(!$projecttype->update()){
                         $this->flashSession->error($projecttype->getMessages());
+                    }else{
+                        $this->flashSession->success($this->translate('successUpdate'));
                     }
                 }
             }else{

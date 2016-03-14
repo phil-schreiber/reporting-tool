@@ -59,9 +59,9 @@ class ProjectsController extends ControllerBase
                     ));
                             
                     $projectstate->save();
-                    $this->response->redirect('backend/'.$this->view->language.'/projects/update/'.$project->uid.'/'); 
-                    $this->flash->success($this->translate('successCreate'));
-                    $this->view->disable();
+                    //$this->response->redirect('backend/'.$this->view->language.'/projects/update/'.$project->uid.'/'); 
+                    $this->flashSession->success($this->translate('successCreate'));
+                    //$this->view->disable();
                 }
             }else{
                 $usergroups=Usergroups::find(array(
@@ -115,6 +115,7 @@ class ProjectsController extends ControllerBase
                         ));
 
                         $projectstate->save();
+                        $this->flashSession->success($this->translate('successUpdate'));
                     }
                     
                 }

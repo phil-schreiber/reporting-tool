@@ -28,6 +28,7 @@ $messages = array(
         "title" => "Titel",
         "description" => "Beschreibung",
         "successCreate" => "Datensatz wurde erfolgreich angelegt",
+        "successUpdate" => "Überarbeitung abgeschlossen",
         "backend" => "backend",
         "current" => "Aktuelle",
         "projectsDesc" => "Aktuelle und geplante PR-Maßnahmen",

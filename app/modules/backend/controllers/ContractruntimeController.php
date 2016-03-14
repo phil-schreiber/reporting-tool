@@ -62,9 +62,9 @@ class ContractruntimeController extends ControllerBase
                         ));
                         $budgetAmount->save();
                     }
-                    $this->response->redirect('backend/'.$this->view->language.'/contractruntime/update/'.$contractruntime->uid.'/'); 
+                    //$this->response->redirect('backend/'.$this->view->language.'/contractruntime/update/'.$contractruntime->uid.'/'); 
                     $this->flash->success($this->translate('successCreate'));
-                    $this->view->disable();
+                    //$this->view->disable();
                 }
             }else{
                 $usergroups=Usergroups::find(array(
