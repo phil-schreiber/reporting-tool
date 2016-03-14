@@ -44,16 +44,16 @@ class MediumController extends ControllerBase
                 }else{
                     $medium->icon =$this->littlehelpers->saveImages($this->request->getUploadedFiles(),'medium',$medium->uid);
                     $medium->update();
-                    //$this->response->redirect('backend/'.$this->view->language.'/medium/update/'.$medium->uid.'/'); 
+                    
                     $this->flashSession->success($this->translate('successCreate'));
-                    //$this->view->disable();
+                    
                 }
-            }else{
+            }
                 $mediumtypes=  Mediumtypes::find(array(
                    'conditions' => 'deleted=0 AND hidden=0'
                 ));
                 $this->view->setVar('mediumtypes',$mediumtypes);
-            }
+            
         }
         
         public function updateAction(){

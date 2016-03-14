@@ -18,7 +18,7 @@
 <br><br>
 <ul>
     {% for clippingsoverview in clippingsoverviews %}
-    <li><a href="{{path}}/update/{{clippingsoverview.uid}}">{{clippingsoverview.title}}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{clippingsoverview.uid}}">X</span></li>
+    <li><a href="{{path}}/update/{{clippingsoverview.uid}}">{{clippingsoverview.overviewmonth}}/{{clippingsoverview.overviewyear}}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{clippingsoverview.uid}}">X</span></li>
     {% endfor %}
 </ul>  
 {% endif %}

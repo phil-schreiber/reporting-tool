@@ -56,7 +56,7 @@ class ClippingsoverviewController extends ControllerBase
                 if(!$clipping->save()){
                     $this->flashSession->error($clipping->getMessages());
                 }else{
-                    //$this->response->redirect('backend/'.$this->view->language.'/clippingsoverview/update/'.$clipping->uid.'/'); 
+                    $this->response->redirect('backend/'.$this->view->language.'/clippingsoverview/create/'.$this->request->getPost('usergroup').'/'); 
                     $this->flashSession->success($this->translate('successCreate'));
                     $this->view->disable();
                 }
@@ -97,9 +97,9 @@ class ClippingsoverviewController extends ControllerBase
                 if(!$clipping->update()){
                     $this->flashSession->error($clipping->getMessages());
                 }else{
-                    //$this->response->redirect('backend/'.$this->view->language.'/clippings/update/'.$clipping->uid.'/'); 
+                    $this->response->redirect('backend/'.$this->view->language.'/clippings/update/'.$clipping->uid.'/'); 
                     $this->flashSession->success($this->translate('successUpdate'));
-                    //$this->view->disable();
+                    $this->view->disable();
                 }
             }else{
                 $clippingUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;

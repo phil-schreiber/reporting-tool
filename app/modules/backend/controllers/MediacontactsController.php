@@ -57,9 +57,9 @@ class MediacontactsController extends ControllerBase
                 if(!$mediacontacts->save()){
                     $this->flashSession->error($clipping->getMessages());
                 }else{
-                    //$this->response->redirect('backend/'.$this->view->language.'/mediacontacts/update/'.$mediacontacts->uid.'/'); 
+                    $this->response->redirect('backend/'.$this->view->language.'/mediacontacts/create/'.$this->request->getPost('usergroup').'/'); 
                     $this->flashSession->success($this->translate('successCreate'));
-                    //$this->view->disable();
+                    $this->view->disable();
                 }
             }else{
                 $usergroupUid=$this->dispatcher->getParam("uid");

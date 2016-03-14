@@ -65,9 +65,9 @@ class CoordinationsController extends ControllerBase
                         $lookupEntry->save();
                     }
                     
-                    //$this->response->redirect('backend/'.$this->view->language.'/coordinations/update/'.$coordination->uid.'/'); 
+                    $this->response->redirect('backend/'.$this->view->language.'/coordinations/create/'.$this->request->getPost('usergroup').'/'); 
                     $this->flashSession->success($this->translate('successCreate'));
-                    //$this->view->disable();
+                    $this->view->disable();
                 }
             }else{
                 $usergroupUid=$this->dispatcher->getParam("uid");

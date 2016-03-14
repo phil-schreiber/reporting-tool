@@ -66,14 +66,14 @@ class ContractruntimeController extends ControllerBase
                     $this->flash->success($this->translate('successCreate'));
                     //$this->view->disable();
                 }
-            }else{
+            }
                 $usergroups=Usergroups::find(array(
                     'conditions' =>array(
                         'deleted=0 AND hidden =0'
                     )
                  ));
                  $this->view->setVar('usergroups',$usergroups);
-            }
+            
         }
         
         public function updateAction(){
