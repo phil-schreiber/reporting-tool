@@ -21,7 +21,7 @@ class ClippingsController extends ControllerBase
                     'bind' => array(
                         1 => $this->request->getPost('usergroup')
                     ),
-                    'order' => 'tstamp DESC,pid ASC'
+                    'order' => 'pid ASC, tstamp DESC'
                     
                 ));
                 $usergroup=Usergroups::findFirstByUid($this->request->getPost('usergroup'));
