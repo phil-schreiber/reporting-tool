@@ -67,7 +67,8 @@ class ControllerBase extends Controller
 		}
                 
                 $projectTypes = Projecttypes::find(array(
-                   'conditions' => 'deleted = 0 AND hidden = 0'
+                   'conditions' => 'deleted = 0 AND hidden = 0',
+                    'order' => 'tstamp ASC'
                 ));
                 $mediumtypes = Mediumtypes::find(array(
                    'conditions' => 'deleted = 0 AND hidden = 0'

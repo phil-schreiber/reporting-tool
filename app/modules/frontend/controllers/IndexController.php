@@ -89,12 +89,17 @@ class IndexController extends ControllerBase
             $specs=$budget->getBudgetcount();
             $specscount=array();
             foreach($specs as $spec){
-                $title=$spec->getProjecttype()->title;
+                $projecttype=$spec->getProjecttype();
+                if($projecttype->deleted==0){
+                    
+                
+                $title=$projecttype->title;
                 
                 $specscount[$spec->uid_foreign]=array(
                   'amount' => $spec->amount,
                   'title' => $title
                 );
+                }
                 
             }
             $this->view->setVar('projects',$projectArr);
