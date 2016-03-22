@@ -20,8 +20,8 @@ use reportingtool\Helper\Littlehelpers;
 $di->set('session', function() use ($config) {
     $environment= $config['application']['debug'] ? 'development' : 'production';
     $baseUri = $config['application'][$environment]['staticBaseUri'];
-    
-    session_set_cookie_params(3600,$baseUri,$_SERVER['HTTP_HOST']);
+    ini_set('session.gc_maxlifetime', 3600);
+    session_set_cookie_params(0,$baseUri,$_SERVER['HTTP_HOST']);
     
     $session = new \Phalcon\Session\Adapter\Files(
              array(

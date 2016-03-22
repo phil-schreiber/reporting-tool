@@ -110,7 +110,7 @@ class Projects extends Model
         $this->hasMany("uid", "reportingtool\Models\Documents", "pid",array('alias' => 'documents'));
         $this->hasMany("uid", "reportingtool\Models\Notes", "pid",array('alias' => 'notes','params'=> array('conditions'=>'notetype=0')));
         
-        $this->belongsTo("pid", "reportingtool\Models\Usergroups", "uid");
+        $this->belongsTo("usergroup", "reportingtool\Models\Usergroups", "uid",array('alias' => 'usergroup'));
         $this->hasMany("uid", "reportingtool\Models\Projectstates", "pid",array('alias' => 'projectstates'));
     }
     

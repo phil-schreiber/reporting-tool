@@ -3,12 +3,22 @@
 {%- if session.get('auth') -%}
 <div class="ceElement medium">
 <h1>{{tr('projects')}}</h1>
+<table class="display dataTable">
+    <thead><th>Kunde</th><th>Erstelldatum</th><th>Titel</th><th>Projekttyp</th></thead>
+<tbody>
+    {% for index,project in projects %}
+    <tr {% if index%2==0 %}class="even"{% else %}class="odd"{% endif %}>
+        <td>{{project.getUsergroup().title}}</td>
+        <td>{{ date('d.m.Y',project.crdate) }}</td>
+        <td><a href='{{ path }}/update/{{ project.uid }}'>{{project.title}}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{project.uid}}">X</span></td>
+        <td>{{project.getType().title}}</td>
+    </tr>
 
-<ul class="listviewList">
-	{% for project in projects %}
-	<li><a href='{{ path }}/update/{{ project.uid }}'>>> {{project.title}} | {{ date('d.m.Y',project.tstamp) }}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{project.uid}}">X</span></li>
+	
+	
 	{% endfor %}
-</ul>
+</tbody>
+</table>
 </div>
 
 {%- endif -%}
