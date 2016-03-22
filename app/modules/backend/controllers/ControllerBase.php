@@ -71,7 +71,8 @@ class ControllerBase extends Controller
 			$languagesAvailable .= "<option value='{$href}'{$selected}>{$value}</option>";
 		}
                 $projectTypes = Projecttypes::find(array(
-                   'conditions' => 'deleted =0 AND hidden =0'
+                   'conditions' => 'deleted =0 AND hidden =0',
+                    'order' => 'tstamp ASC'
                 ));
                 
                 $this->view->setVar('projecttypes',$projectTypes);

@@ -91,7 +91,7 @@ class ContractruntimeController extends ControllerBase
                         'active' => $this->request->hasPost('active') ? $this->request->getPost('active') : 0                    
                     ));   
                     if(!$contractruntime->update()){
-                        $this->flash->error($contractruntime->getMessages());
+                        $this->flashSession->error($contractruntime->getMessages());
                     }else{
                         $this->clearBudgetamounts($contractruntime->uid);
                         $budget= Budgets::findFirstByContractruntimeuid($contractruntime->uid);
@@ -115,7 +115,7 @@ class ContractruntimeController extends ControllerBase
                             $budgetAmount->save();
                         }
                         $this->response->redirect('backend/'.$this->view->language.'/contractruntime/update/'.$contractruntime->uid.'/'); 
-                        $this->flash->success($this->translate('successCreate'));
+                        $this->flashSession->success($this->translate('successUpdate'));
                         $this->view->disable();
                     }
                     
