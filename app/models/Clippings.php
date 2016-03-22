@@ -98,7 +98,9 @@ class Clippings extends Model
         ));
                 
         
-        $this->belongsTo("pid", "reportingtool\Models\Projects", "uid");
+        $this->belongsTo("pid", "reportingtool\Models\Projects", "uid", array(
+            'alias' => 'project'
+        ));
         
         $this->belongsTo("documentuid", "reportingtool\Models\Documents", "uid");
 		
