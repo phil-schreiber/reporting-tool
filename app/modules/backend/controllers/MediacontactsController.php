@@ -65,7 +65,8 @@ class MediacontactsController extends ControllerBase
                 $usergroupUid=$this->dispatcher->getParam("uid");
                 $usergroup=Usergroups::findFirstByUid($usergroupUid);
                 $medium=Medium::find(array(
-                   'conditions' => 'deleted=0 AND hidden=0'
+                   'conditions' => 'deleted=0 AND hidden=0',
+                    'order' => 'title ASC'                    
                 ));
                 
                 $this->view->setVar('usergroup',$usergroup);

@@ -3,7 +3,7 @@
 <div class="container">
 	{%- if session.get('auth') -%}
 	<div class="ceElement medium">
-		<h1>{{tr('clippingoverview')}} {{tr('create')}} für {{usergroup.title}}</h1>
+		<h1>{{tr('mediacontacts')}} {{tr('create')}} für {{usergroup.title}}</h1>
 		<div class="listelementContainer">
 
 			

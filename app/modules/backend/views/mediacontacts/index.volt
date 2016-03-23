@@ -18,7 +18,7 @@
 <br><br>
 <ul>
         {% for mediacontact in mediacontacts %}
-        <li><a href="{{path}}/update/{{mediacontact.uid}}" >>> {{mediacontact.title}}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{mediacontact.uid}}">X</span></li>
+        <li><a href="{{path}}/update/{{mediacontact.uid}}" >>> {{date('d.m.Y',mediacontact.starttime)}} | {{mediacontact.getMedium().title}}</a><span class="glyphicon glyphicon-remove deleteListItem" title="{{tr('delete')}}" data-element="{{mediacontact.uid}}">X</span></li>
             {% endfor %}
 </ul>            
 {% endif %}

@@ -86,5 +86,6 @@ $messages = array(
         "state" => "Status",
         "typetitle" => "Projekttyp",
         "mediumtypes" => "Medientypen",
-        "mediumtype" => "Medientyp"
+        "mediumtype" => "Medientyp",
+        "mediacontacts" => "Medienkontakte"
    );
