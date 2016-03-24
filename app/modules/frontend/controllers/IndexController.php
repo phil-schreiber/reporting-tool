@@ -85,6 +85,7 @@ class IndexController extends ControllerBase
                 $projectArr[$project->projecttype][]=$project;
             }
             
+            
             $budget=$contract->getBudget();
             $specs=$budget->getBudgetcount();
             $specscount=array();
@@ -94,7 +95,14 @@ class IndexController extends ControllerBase
                     
                 
                 $title=$projecttype->title;
-                
+                if($title=="Redaktionskontakte"){
+                    $projectCount[$projecttype->uid]= \reportingtool\Models\Mediacontacts::count(array(
+                       'conditions' => 'deleted=0 AND hidden=0 AND usergroup = ?1',
+                        'bind' => array(
+                            1=>$this->session->get('auth')['usergroup']
+                        )
+                    ));
+                }
                 $specscount[$spec->uid_foreign]=array(
                   'amount' => $spec->amount,
                   'title' => $title
