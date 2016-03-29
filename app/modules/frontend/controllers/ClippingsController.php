@@ -57,7 +57,21 @@ class ClippingsController extends ControllerBase
                 $publishableprojecttypes= \reportingtool\Models\Projecttypes::find(array(
                    'conditions'  =>'deleted=0 AND hidden =0 AND publishable=1'
                 ));
+                $mediumtypes=  Mediumtypes::find(array(
+                   'conditions' => 'deleted=0 AND hidden=0'
+                ));
+                $clippingstotal=array();
+                foreach($mediumtypes as $mediumtype){
+                    $clippingobj=new Clippings();
+                    $clippingstotal[$mediumtype->uid]=$clippingobj->countMediumtypeClippings($mediumtype->uid);
+                }
+                
+                
+                
+                
                 $topics=array_unique($topics);
+                $this->view->setVar('mediumtypes',$mediumtypes);
+                $this->view->setVar('clippingstotal',$clippingstotal);
                 $this->view->setVar('topics',$topics);
                 $this->view->setVar('projects',$projects);
                 $this->view->setVar('overviewarray',$overviewArray);

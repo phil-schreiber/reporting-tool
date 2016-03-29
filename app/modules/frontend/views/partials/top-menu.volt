@@ -1,5 +1,5 @@
 {%- if session.get('auth') -%}
-<div id="header"><img src="{{baseurl}}img/header_df.jpg" width="2604" height="541" alt="" class="img-responsive"/> </div>
+<div id="header"><img src="{{baseurl}}img/{% if dispatcher.getControllerName() == 'index' %}header_df.jpg{% else %}header_df_sm.jpg{%endif%}" width="2604" height="541" alt="" class="img-responsive"/> </div>
 <div id="navigation">
   <nav class="navbar denkfabrikscheme no-border no-active-arrow no-open-arrow dropdown-onhover" id="main_navbar" role="navigation">
     
@@ -28,12 +28,8 @@
           </li>
           {% endif %}
           
-          <li class="dropdown-short xs-hover">{{- link_to(language~'/clippings', 'Veröffentlichungen <span class="caret"></span>', 'title': "Veröffentlichungen") -}}             
-            <ul class="dropdown-menu">
-           {% for mediumtype in mediumtypes %}
-           <li>{{- link_to(language~'/clippings/update/'~mediumtype.uid, mediumtype.title, 'title': mediumtype.title) -}}             </li>
-           {% endfor %}
-           </ul>
+          <li class="dropdown-short xs-hover">{{- link_to(language~'/clippings', 'Veröffentlichungen', 'title': "Veröffentlichungen") -}}             
+            
           </li>
                     
           <li class="xs-hover">{{- link_to(language~'/coordinations', tr('coordinations'), 'title': tr('coordinations')) -}}              </li>

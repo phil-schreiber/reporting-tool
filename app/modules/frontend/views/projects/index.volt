@@ -11,7 +11,10 @@
         
     </div>
     {% endif %}
-    <div class="col-xs-12" {% if preselected %} style="display:none" {% endif %}>
+
+
+    
+    <div class="col-xs-12" style="display:none">
         <form id="filterForm" name="filterForm">
     	<div class="col-xs-12 text-right">
             <button type="reset" class="btn btn-primary sm-right"><i class="fa fa-minus-circle"></i>
@@ -98,7 +101,7 @@
                 <th>{{tr('topic')}}</th>                
                 <th>{{tr('typetitle')}}</th>                	
                 <th>{{tr('state')}}</th>
-                <th>Details</th>
+                
             </tr>
         </thead>
          

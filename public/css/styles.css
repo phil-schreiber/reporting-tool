@@ -125,3 +125,11 @@ button.statehistory,.btn.btn-default{
     margin-left:10px;
     cursor:pointer;
 }
+
+.panel-heading{
+    border-top-right-radius: 0; 
+     border-top-left-radius: 0; 
+}
+.panel-group .panel{
+    border-radius:0;
+}
