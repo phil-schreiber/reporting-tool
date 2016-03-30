@@ -28,6 +28,13 @@ class Littlehelpers extends Component{
      return $senddate;
  }
  
+ public function getCurrentYear(){
+    $currentyear=date('Y');
+    $starttstamp=mktime(0,0,0,1,1 ,$currentyear);
+    $endtstamp=$starttstamp+(365*24*60*60);
+    return array($starttstamp,$endtstamp);
+ }
+ 
  public function processDateOnly($rawdate){
      
        

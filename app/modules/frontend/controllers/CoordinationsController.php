@@ -11,36 +11,21 @@ use reportingtool\Models\Coordinations;
 class CoordinationsController extends ControllerBase
 {
 	public function indexAction(){	       
+            $currentyear=$this->littlehelpers->getCurrentYear();
+            
             $coordinations=Coordinations::find(array(
-               "conditions" => "deleted=0 AND hidden=0 AND usergroup = ?1",
+               "conditions" => "deleted=0 AND hidden=0 AND usergroup = ?1 AND tstamp >= ?2 AND tstamp <= ?3",
                 "bind" => array(
-                    1 => $this->session->get('auth')['usergroup']                    
-                )
+                    1 => $this->session->get('auth')['usergroup'],
+                    2 => $currentyear[0],
+                    3 => $currentyear[1]
+                ),
+                "order" => "tstamp DESC"
             ));
-            if($coordinations){
-                $monthmap=array(
-                  1 => 'Januar',
-                  2 => 'Februar',
-                  3 => 'März',
-                  4 => 'April',
-                  5 => 'Mai',
-                  6 => 'Juni',
-                  7 => 'Juli',
-                  8 => 'August',
-                  9 => 'September',
-                  10 => 'Oktober',
-                  11 => 'November',
-                  12 => 'Dezember'
-                );
-                $coordinationsarray=array();
-                foreach($coordinations as $coordination){
-                    
-                    $dateArray=getdate($coordination->tstamp);
-                    $coordinationsarray[$dateArray['year']][$monthmap[$dateArray['mon']]][]=$coordination;
-                }
+            
                         
-              $this->view->setVar('coordinationsarray',$coordinationsarray);
-            }
+             $this->view->setVar('coordinations',$coordinations);
+            
 		
 	}
         

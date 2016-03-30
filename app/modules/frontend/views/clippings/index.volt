@@ -2,16 +2,12 @@
 {%- if session.get('auth') -%}
 <div class="container">
     <div class="col-xs-12">
-        <h1>{{tr('clippingoverviews')}}</h1>
+        <h1>{{tr('clippingoverviews')}} 2016</h1>
         <div class="panel-group">
             {% for year,yeararray in overviewarray %}
             <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" href="#collapse{{year}}" style="display:block;">{{year}}</a>
-                </h4>
-              </div>
-              <div id="collapse{{year}}" class="panel-collapse collapse">
+              
+              <div id="collapse{{year}}" class="panel-collapse">
                 <ul class="list-group">
                   {% for month, filelink in yeararray %}
                   <li class="list-group-item"><a href="{{host}}{{baseurl}}{{filelink}}" target="_blank" style='display:block;'>{{month}}</a></li>                  
@@ -29,13 +25,30 @@
     
     
     <div class="col-xs-12">
-        <h1>{{tr('clippings')}} insgesamt</h1>
-        <p>
-    	{% for index,mediumtype in mediumtypes %}
-        <strong>{% if index>0 %},&nbsp;{% endif %}{{mediumtype.title}}: {{clippingstotal[mediumtype.uid]}}</strong>
+        <h1>{{tr('clippings')}} 2016 insgesamt</h1>
+        <table  class="dataTable display" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>{{tr('mediumtype')}}</th>
+                <th>Anzahl der Veröffentlichungen</th>
+                <th>Reichweite</th>		
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for index,mediumtype in mediumtypes %}
+            <tr {% if index%2==0 %}class="even"{% else %}class="odd"{% endif %}>
+                <td>{{mediumtype.title}}:</td>
+                <td>{{clippingstotal[mediumtype.uid]['clippingscount']}}</td>
+                <td>{{clippingstotal[mediumtype.uid]['mediumreach']}}</td>
+            </tr>
+        
         {% endfor %}
+        </tbody>
+        </table>
+    	
         <br><br>
-        </p>
+        
     </div>
     <div class="col-xs-12">
         
@@ -46,8 +59,7 @@
                 <th>{{tr('topic')}}</th>
                 <th>{{tr('medium')}}</th>
                 <th>{{tr('mediumtype')}}</th>
-                <th>{{tr('reach')}}</th>
-                <th>{{tr('title')}}</th>
+                <th>{{tr('reach')}}</th>                
                 <th>{{tr('publicationdate')}}</th>	                                                
                 <th>{{tr('clippingtype')}}</th>
                 <th>{{tr('file')}}</th>		

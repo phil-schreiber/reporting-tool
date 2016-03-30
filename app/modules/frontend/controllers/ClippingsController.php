@@ -60,10 +60,13 @@ class ClippingsController extends ControllerBase
                 $mediumtypes=  Mediumtypes::find(array(
                    'conditions' => 'deleted=0 AND hidden=0'
                 ));
+                
                 $clippingstotal=array();
                 foreach($mediumtypes as $mediumtype){
                     $clippingobj=new Clippings();
-                    $clippingstotal[$mediumtype->uid]=$clippingobj->countMediumtypeClippings($mediumtype->uid);
+                    $stuff=$clippingobj->countMediumtypeClippings($mediumtype->uid);
+                    $clippingstotal[$mediumtype->uid]['clippingscount']=number_format ( $stuff->clippingscount , 0 ,  "," ,  "." );
+                    $clippingstotal[$mediumtype->uid]['mediumreach']=number_format ( $stuff->mediumreach , 0 ,  "," ,  "." );
                 }
                 
                 
@@ -103,7 +106,7 @@ class ClippingsController extends ControllerBase
         
          private function getData(){
 		$bindArray=array();
-		$aColumns=array('projecttitle','projecttopic','mediumtitle','mediumtype','reach','clippingtitle','publicationdate','clippingtype','filelink','projectdate');
+		$aColumns=array('projecttitle','projecttopic','mediumtitle','mediumtype','reach','publicationdate','clippingtype','filelink','projectdate');
         
         $aColumnsSelect=array('clippingtype','filelink');
         $aColumnsFilter=array('projects.title','projects.topic','medium.title','clipping.title');

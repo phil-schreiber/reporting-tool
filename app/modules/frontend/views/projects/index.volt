@@ -97,8 +97,7 @@
         <thead>
             <tr>                
                 <th>{{tr('projectttitle')}}</th>
-                <th>{{tr('starttime')}}</th>	                                
-                <th>{{tr('topic')}}</th>                
+                <th>{{tr('starttime')}}</th>	                                                
                 <th>{{tr('typetitle')}}</th>                	
                 <th>{{tr('state')}}</th>
                 

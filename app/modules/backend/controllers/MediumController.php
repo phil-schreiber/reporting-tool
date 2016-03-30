@@ -66,6 +66,7 @@ class MediumController extends ControllerBase
                        'title' => $this->request->hasPost('title') ? $this->request->getPost('title') : '',
                        'description' => $this->request->hasPost('description') ? $this->request->getPost('description') : '',
                         'mediumtype'=>$this->request->getPost('mediumtype'),
+                        'reach' =>$this->request->getPost('reach'),
                         'mediumstatus'=>$this->request->getPost('status')
                     ));
                     if(!$medium->update()){

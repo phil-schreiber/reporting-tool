@@ -113,7 +113,12 @@ class Projects extends Model
         $this->belongsTo("usergroup", "reportingtool\Models\Usergroups", "uid",array('alias' => 'usergroup'));
         $this->hasMany("uid", "reportingtool\Models\Projectstates", "pid",array('alias' => 'projectstates'));
     }
-    
+    public function getProjectstate(){
+        $projectstate=  $this->getProjectstates(array(
+            'conditions' => "deleted = 0 AND hidden =0 AND active =1"
+        ));
+        return $projectstate->getFirst();
+    }
     public function countMediumtypeClippings($mediumtype){
         $config =  \Phalcon\DI\FactoryDefault::getDefault()->getShared('config');
         $modelsManager=$this->getDi()->getShared('modelsManager');	

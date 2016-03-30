@@ -20,7 +20,7 @@ class MediacontactsController extends ControllerBase
                 'bind' => array(
                     1 => $this->session->get('auth')['usergroup']
                 ),
-                'order' => 'tstamp DESC'
+                'order' => 'starttime DESC'
             ));
             
             $this->view->setVar('projects',$projects);

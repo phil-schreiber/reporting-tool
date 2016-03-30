@@ -2,38 +2,30 @@
 {%- if session.get('auth') -%}
 <div class="container">
     <div class="col-xs-12">
-        <h1>{{tr('coordinations')}}</h1>
-        <div class="panel-group">
-            {% for year,yeararray in coordinationsarray %}
-            <b>{{year}}:</b>
-            {% for month, coordinations in yeararray %}
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" href="#collapse{{month}}" style="display:block;">{{month}}</a>
-                </h4>
-              </div>
-              <div id="collapse{{month}}" class="panel-collapse collapse">
-                <ul class="list-group">
-                  {% for coordination in coordinations %}
-                  <li class="list-group-item">
-                      {{date('d/m/Y',coordination.tstamp)}} - {{coordination.title}}
-                      <br>thematisierte Projekte:
-                      <ul>
-                          {% for project in coordination.getProjects() %}
-                          <li><a href="{{host}}{{baseurl}}{{language}}/projects/update/{{project.uid}}">{{project.title}}</a></li>
-                          {% endfor %}
-                      </ul>
-                  </li>                  
-                  {%  endfor %}
-                </ul>
-                
-              </div>
-            </div>
-            {% endfor %}
-            {% endfor %}
+        <h1>{{tr('coordinations')}} 2016</h1>
+        
+            <table id="clippings" class="display dataTable" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Datum</th>                
+                <th>Thema</th>                
+            </tr>
+        </thead>
+        <tbody>
+            {% for index,coordination in coordinations %}
+            <tr {% if index%2==0 %}class="even"{% else %}class="odd"{% endif %}>
+                <td>{{date('d/m/Y',coordination.tstamp)}}</td>
+                <td>{{coordination.title}}</td>
+            </tr>
+             {% endfor %}   
+        </tbody>
+            </table>            
+                  
+                  
             
-          </div>
+            
+            
+          
         
     </div>
     

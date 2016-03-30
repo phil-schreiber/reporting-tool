@@ -109,12 +109,12 @@ class Clippings extends Model
      public  function countMediumtypeClippings($mediumtype){
         $config =  \Phalcon\DI\FactoryDefault::getDefault()->getShared('config');
         $modelsManager=$this->getDi()->getShared('modelsManager');		
-        $phql='SELECT COUNT(clippings.uid) as clippingscount FROM reportingtool\Models\Clippings as clippings LEFT JOIN reportingtool\Models\Medium as medium ON medium.uid=clippings.mediumuid WHERE medium.mediumtype = ?1';
+        $phql='SELECT COUNT(clippings.uid) as clippingscount, SUM(medium.reach) as mediumreach FROM reportingtool\Models\Clippings as clippings LEFT JOIN reportingtool\Models\Medium as medium ON medium.uid=clippings.mediumuid WHERE medium.mediumtype = ?1';
         $sQuery=$modelsManager->createQuery($phql);
 	$rResults = $sQuery->execute(array(            
             1 => $mediumtype
         ));
         
-        return $rResults[0]->clippingscount;
+        return $rResults[0];
     }
 }

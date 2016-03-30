@@ -75,12 +75,23 @@ class IndexController extends ControllerBase
             ));
             
             $projectCount=array();
+            $projectPrepCount=array();
             $projectArr=array();
             foreach($projects as $project){
-                if(isset($projectCount[$project->projecttype])){
-                    $projectCount[$project->projecttype]=$projectCount[$project->projecttype]+1;
+                if($project->getProjectstate()->statetype ==3){
+                    if(isset($projectCount[$project->projecttype])){
+
+                            $projectCount[$project->projecttype]=$projectCount[$project->projecttype]+1;                    
+                    }else{
+                        $projectCount[$project->projecttype]=1;
+                    }
                 }else{
-                    $projectCount[$project->projecttype]=1;
+                    if(isset($projectPrepCount[$project->projecttype])){
+
+                            $projectPrepCount[$project->projecttype]=$projectPrepCount[$project->projecttype]+1;                    
+                    }else{
+                        $projectPrepCount[$project->projecttype]=1;
+                    }
                 }
                 $projectArr[$project->projecttype][]=$project;
             }
@@ -103,11 +114,13 @@ class IndexController extends ControllerBase
                 }
                 
             }
-            $this->view->setVar('projects',$projectArr);
+            $this->view->setVar('projects',$projectArr);            
+            $this->view->setVar('projectprepcount',$projectPrepCount);
             $this->view->setVar('projectcount',$projectCount);
             $this->view->setVar('contract',$contract);
             $this->view->setVar('specscount',$specscount);
             }else{
+                $this->view->setVar('projectprepcount',$projectPrepCount=array());
                 $this->view->setVar('projectcount',$projectCount= array());
             $this->view->setVar('contract',$contract = array());
             $this->view->setVar('specscount',$specscount = array());

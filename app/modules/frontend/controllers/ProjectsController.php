@@ -125,7 +125,7 @@ class ProjectsController extends ControllerBase
         
          private function getData(){
 		$bindArray=array();
-		$aColumns=array('projectttitle','starttime','topic','typetitle','statetype','projectid','active','statedescription','statetstamp');
+		$aColumns=array('projectttitle','starttime','typetitle','statetype','projectid','active','statedescription','statetstamp');
         
         $aColumnsSelect=array('clippingtype','filelink');
         $aColumnsFilter=array('projects.title','medium.title','clipping.title');
