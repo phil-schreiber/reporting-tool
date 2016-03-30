@@ -2,7 +2,7 @@
 {%- if session.get('auth') -%}
 <div class="container">
     <div class="col-xs-12">
-        <h1>{{tr('clippingoverviews')}} 2016</h1>
+        <h1>{{tr('clippingoverviews')}} {{date('Y')}}</h1>
         <div class="panel-group">
             {% for year,yeararray in overviewarray %}
             <div class="panel panel-default">

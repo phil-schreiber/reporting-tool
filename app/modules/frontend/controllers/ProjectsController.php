@@ -22,18 +22,23 @@ class ProjectsController extends ControllerBase
                     $output=json_encode($result,true);			
                     die($output);
                 }
-                
+                $currentyear=$this->littlehelpers->getCurrentYear();
                 
                     $projects = Projects::find(array(
-                            "conditions" => "deleted=0 AND hidden=0 AND usergroup = ?1 AND status < ?2",
-                            "bind" => array(1 => $this->session->get('auth')['usergroup'],2 => 4),
+                            "conditions" => "deleted=0 AND hidden=0 AND usergroup = ?1 AND status = 0 AND starttime >= ?2 AND starttime <= ?3",
+                            "bind" => array(1 => $this->session->get('auth')['usergroup'],2 => $currentyear[0],3 => $currentyear[1]),
                             "order" => "crdate DESC"
                     ));
                    $topics=array();
                    $projectTypeCount=array();
+                   $projectTypeInprocessCount=array();
                     foreach($projects as $project){
                         $topics[]=$project->topic;
-                        $projectTopicCount[$project->projecttype]=isset($projectTopicCount[$project->projecttype]) ? $projectTopicCount[$project->projecttype]+1 : 1;
+                        if($project->getProjectstate()->statetype>=2){
+                            $projectTopicCount[$project->projecttype]=isset($projectTopicCount[$project->projecttype]) ? $projectTopicCount[$project->projecttype]+1 : 1;
+                        }else{
+                            $projectTypeInprocessCount[$project->projecttype]=isset($projectTypeInprocessCount[$project->projecttype]) ? $projectTypeInprocessCount[$project->projecttype]+1 : 1;
+                        }
                     }
                     $topics=array_unique($topics);
                     if($this->dispatcher->getParam('uid')){
@@ -54,6 +59,7 @@ class ProjectsController extends ControllerBase
                             $this->view->setVar('soll',$spec->amount);
                         }
                         $this->view->setVar('ist',$projectTopicCount[$this->dispatcher->getParam('uid')]);
+                        $this->view->setVar('inprocess',$projectTypeInprocessCount[$this->dispatcher->getParam('uid')]);
                        
                     }
                     $this->view->setVar('preselected',$this->dispatcher->getParam('uid'));
@@ -124,6 +130,7 @@ class ProjectsController extends ControllerBase
         }
         
          private function getData(){
+             $currentyear=$this->littlehelpers->getCurrentYear();
 		$bindArray=array();
 		$aColumns=array('projectttitle','starttime','typetitle','statetype','projectid','active','statedescription','statetstamp');
         
@@ -180,7 +187,7 @@ class ProjectsController extends ControllerBase
 		 */
 			
                 
-		$sWhere = "WHERE projects.deleted=0 AND projects.hidden =0 AND projects.usergroup = :usergroup: ";
+		$sWhere = "WHERE projects.deleted=0 AND projects.hidden =0 AND projects.usergroup = :usergroup: AND  starttime >= :starttstamp: AND starttime <= :endtstamp: ";
 		if ( isset($_POST['sSearch']) && $_POST['sSearch'] != "" )
 		{
 			$sWhere .= " AND (";
@@ -255,6 +262,8 @@ class ProjectsController extends ControllerBase
 		
 		
 		$bindArray['usergroup']=$this->session->get('auth')['usergroup'];
+                $bindArray['starttstamp'] = $currentyear[0];
+                $bindArray['endtstamp'] = $currentyear[1];
 		if($this->request->getPost('sSearch') != ''){
 			$bindArray['searchTerm']='%'.$this->request->getPost('sSearch').'%';
 		}

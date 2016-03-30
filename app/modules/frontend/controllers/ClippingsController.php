@@ -21,6 +21,7 @@ class ClippingsController extends ControllerBase
                 $output=json_encode($result,true);			
                 die($output);
             }else{
+                $currentyear=$this->littlehelpers->getCurrentYear();
                 $projects=Projects::find(array(
                     "conditions" => "deleted=0 AND hidden=0 AND usergroup=?1",
                     "bind" => array(1 => $this->session->get('auth')['usergroup'])
@@ -31,9 +32,10 @@ class ClippingsController extends ControllerBase
                     array_push($topics, $project->topic);
                 }
                 $clippingoverviews=Clippingsoverview::find(array(
-                   'conditions' => 'deleted = 0 AND hidden = 0 AND usergroup = ?1',
+                   'conditions' => 'deleted = 0 AND hidden = 0 AND usergroup = ?1 AND overviewyear = ?2',
                     'bind' => array(
-                        1 => $this->session->get('auth')['usergroup']
+                        1 => $this->session->get('auth')['usergroup'],
+                        2 => date('Y')                        
                     )
                 ));
                 $overviewArray=array();
@@ -105,6 +107,7 @@ class ClippingsController extends ControllerBase
        
         
          private function getData(){
+             $currentyear=$this->littlehelpers->getCurrentYear();
 		$bindArray=array();
 		$aColumns=array('projecttitle','projecttopic','mediumtitle','mediumtype','reach','publicationdate','clippingtype','filelink','projectdate');
         
@@ -161,7 +164,7 @@ class ClippingsController extends ControllerBase
 		 */
 			
 
-		$sWhere = "WHERE clipping.deleted=0 AND clipping.hidden=0 AND projects.deleted=0 AND projects.hidden =0 AND clipping.usergroup = :usergroup: ";
+		$sWhere = "WHERE clipping.deleted=0 AND clipping.hidden=0 AND clipping.tstamp >= :starttstamp: AND clipping.tstamp <= :endtstamp: AND projects.deleted=0 AND projects.hidden =0 AND clipping.usergroup = :usergroup: ";
 		if ( isset($_POST['sSearch']) && $_POST['sSearch'] != "" )
 		{
 			$sWhere .= " AND (";
@@ -241,6 +244,8 @@ class ClippingsController extends ControllerBase
 		
 		
 		$bindArray['usergroup']=$this->session->get('auth')['usergroup'];
+                $bindArray['starttstamp'] = $currentyear[0];
+                $bindArray['endtstamp'] = $currentyear[1];
 		if($this->request->getPost('sSearch') != ''){
 			$bindArray['searchTerm']='%'.$this->request->getPost('sSearch').'%';
 		}

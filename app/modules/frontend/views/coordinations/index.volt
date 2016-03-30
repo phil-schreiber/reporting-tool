@@ -2,7 +2,7 @@
 {%- if session.get('auth') -%}
 <div class="container">
     <div class="col-xs-12">
-        <h1>{{tr('coordinations')}} 2016</h1>
+        <h1>{{tr('coordinations')}} {{date('Y')}}</h1>
         
             <table id="clippings" class="display dataTable" cellspacing="0" width="100%">
         <thead>

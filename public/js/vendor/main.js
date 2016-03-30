@@ -221,6 +221,7 @@ var projects=function(jq,ajaxIt){
             "bPaginate": false,
             "sDom":hideSearch,
             "sServerMethod": 'POST',
+            "order": [[ 1, "desc" ]],
             "oLanguage": {
                     "sSearch": "Suchen:",
                     "sLengthMenu": "_MENU_ Einträge anzeigen",
