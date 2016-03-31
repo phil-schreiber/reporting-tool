@@ -25,7 +25,7 @@ class ProjectsController extends ControllerBase
                 $currentyear=$this->littlehelpers->getCurrentYear();
                 
                     $projects = Projects::find(array(
-                            "conditions" => "deleted=0 AND hidden=0 AND usergroup = ?1 AND status = 0 AND starttime >= ?2 AND starttime <= ?3",
+                            "conditions" => "deleted=0 AND hidden=0 AND usergroup = ?1 AND starttime >= ?2 AND starttime <= ?3",
                             "bind" => array(1 => $this->session->get('auth')['usergroup'],2 => $currentyear[0],3 => $currentyear[1]),
                             "order" => "crdate DESC"
                     ));
@@ -34,6 +34,8 @@ class ProjectsController extends ControllerBase
                    $projectTypeInprocessCount=array();
                     foreach($projects as $project){
                         $topics[]=$project->topic;
+                        
+                        
                         if($project->getProjectstate()->statetype>=2){
                             $projectTopicCount[$project->projecttype]=isset($projectTopicCount[$project->projecttype]) ? $projectTopicCount[$project->projecttype]+1 : 1;
                         }else{
@@ -58,8 +60,11 @@ class ProjectsController extends ControllerBase
                         foreach($specs as $spec){
                             $this->view->setVar('soll',$spec->amount);
                         }
+                        $projecttype=  Projecttypes::findFirstByUid($this->dispatcher->getParam('uid'));
+                        
                         $this->view->setVar('ist',$projectTopicCount[$this->dispatcher->getParam('uid')]);
-                        $this->view->setVar('inprocess',$projectTypeInprocessCount[$this->dispatcher->getParam('uid')]);
+                        $this->view->setVar('inprocess',isset($projectTypeInprocessCount[$this->dispatcher->getParam('uid')]) ? $projectTypeInprocessCount[$this->dispatcher->getParam('uid')] : 0);
+                        $this->view->setVar('projecttype',$projecttype->title);
                        
                     }
                     $this->view->setVar('preselected',$this->dispatcher->getParam('uid'));

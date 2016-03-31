@@ -146,14 +146,14 @@ button.statehistory,.btn.btn-default{
     height:10px;
 }
 .legend.inprocess{
-    background:blue;
+    background:#333;
 }
 .legend.done{
-    background:yellowgreen;
+    background:blue;
 }
 .inprocess{
-    color:blue;
+    color:#333;
 }
 .done{
-    color:greenyellow;
+    color:blue;
 }

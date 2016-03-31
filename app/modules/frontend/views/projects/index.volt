@@ -3,14 +3,17 @@
 <div class="container">
 <div class="col-xs-12">
     	<h1>{{tr('projectsTitle')}} {{date('Y')}}</h1>
-    </div>
+        
+    
     {% if preselected %}
-    <div class="col-xs-12">
+    
+    
+    <h2>>> {{projecttype}}</h2><br>
         <span class="btn btn-default" style="margin-right:10px;background:#333;color:#fff">Ist: {{ist}}</span>
         <span class="btn btn-default" style="margin-right:10px;background:#333;color:#fff">in Arbeit: {{inprocess}}</span>
         <span class="btn btn-default" style="background:#333;color:#fff">Soll: {{soll}}</span>
         
-    </div>
+    
     {% endif %}
 
 

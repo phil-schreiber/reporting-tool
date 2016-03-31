@@ -79,7 +79,7 @@ class IndexController extends ControllerBase
             $projectArr=array();
             foreach($projects as $project){
                 if(!empty($project->getProjectstate())){
-                    if($project->getProjectstate()->statetype ==3){
+                    if($project->getProjectstate()->statetype >=2){
                         
                         if(isset($projectCount[$project->projecttype])){
                                 
