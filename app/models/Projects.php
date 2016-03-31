@@ -117,6 +117,7 @@ class Projects extends Model
         $projectstate=  $this->getProjectstates(array(
             'conditions' => "deleted = 0 AND hidden =0 AND active =1"
         ));
+        
         return $projectstate->getFirst();
     }
     public function countMediumtypeClippings($mediumtype){

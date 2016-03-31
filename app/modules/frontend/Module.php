@@ -100,6 +100,10 @@ $di->set(
                     'isset',
                     'isset'
                 );
+                $volt->getCompiler()->addFunction(
+                    'isempty',
+                    'empty'
+                );
                 
         $volt->getCompiler()->addFunction('number_format', function($resolvedArgs) {
             return 'number_format(' . $resolvedArgs . ')';

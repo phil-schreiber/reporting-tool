@@ -81,6 +81,7 @@ class Auth extends Component
 			'superuser' =>$user->superuser,
 			'profile' =>$user->getProfile()->title,
 			'usergroup' =>$user->usergroup,
+                        'title' =>$user->getUsergroup()->title
         ));
     }
 	

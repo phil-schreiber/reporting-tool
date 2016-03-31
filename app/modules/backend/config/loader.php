@@ -9,7 +9,7 @@ $loader = new \Phalcon\Loader();
 $loader->registerNamespaces(
     array(
 		'reportingtool\Models'        => $this->config->application->modelsDir,
-		'reportingtool\Forms'        => $this->config->application->formsDir,		
+		'reportingtool\Forms'        => $this->config->application->formsDir,		        
 		'reportingtool\Controllers'   => $this->config->application->controllersDir,
 		'reportingtool\Modules\Modules\Frontend'=>$this->config->application->frontendDir,
 		'reportingtool\Modules\Modules\Frontend\Controllers'=>$this->config->application->frontendControllersDir,

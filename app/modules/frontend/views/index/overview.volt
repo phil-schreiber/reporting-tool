@@ -12,7 +12,7 @@
                         <th>erbracht</th>
                         <th width="70">in Arbeit</th>
                         <th>Plan</th>
-                        <th>Projekte</th>
+                        <th>Projekte <div id="legend"><span class="legend done"></span> erbracht / <span class="legend inprocess"></span> in Arbeit</div></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +39,13 @@
                         <ul style="margin:0;padding-left:13px">
                             {% if isset(projects[index]) %}
                             {% for project in projects[index] %}
+                            
+                            {% if isempty(project.getProjectstate())  %}
                             <li>{{project.title}}</li>
+                            
+                            {% else %}
+                            <li {% if project.getProjectstate().statetype > 2 %} class="done" {% elseif project.getProjectstate().statetype > 1 %} class="inprocess" {% endif %}>{{project.title}}</li>
+                            {% endif %}
                             {% endfor %}
                             {% endif %}
                         </ul>

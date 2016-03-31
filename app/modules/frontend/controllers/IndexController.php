@@ -78,19 +78,22 @@ class IndexController extends ControllerBase
             $projectPrepCount=array();
             $projectArr=array();
             foreach($projects as $project){
-                if($project->getProjectstate()->statetype ==3){
-                    if(isset($projectCount[$project->projecttype])){
-
-                            $projectCount[$project->projecttype]=$projectCount[$project->projecttype]+1;                    
+                if(!empty($project->getProjectstate())){
+                    if($project->getProjectstate()->statetype ==3){
+                        
+                        if(isset($projectCount[$project->projecttype])){
+                                
+                                $projectCount[$project->projecttype]=$projectCount[$project->projecttype]+1;                    
+                        }else{
+                            $projectCount[$project->projecttype]=1;
+                        }
                     }else{
-                        $projectCount[$project->projecttype]=1;
-                    }
-                }else{
-                    if(isset($projectPrepCount[$project->projecttype])){
+                        if(isset($projectPrepCount[$project->projecttype])){
 
-                            $projectPrepCount[$project->projecttype]=$projectPrepCount[$project->projecttype]+1;                    
-                    }else{
-                        $projectPrepCount[$project->projecttype]=1;
+                                $projectPrepCount[$project->projecttype]=$projectPrepCount[$project->projecttype]+1;                    
+                        }else{
+                            $projectPrepCount[$project->projecttype]=1;
+                        }
                     }
                 }
                 $projectArr[$project->projecttype][]=$project;

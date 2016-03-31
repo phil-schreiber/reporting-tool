@@ -136,3 +136,24 @@ button.statehistory,.btn.btn-default{
 #clippings_info{
     color:#fff;
 }
+#legend{
+    display:inline-block;
+    float:right;
+}
+.legend{
+    display:inline-block;
+    width:10px;
+    height:10px;
+}
+.legend.inprocess{
+    background:blue;
+}
+.legend.done{
+    background:yellowgreen;
+}
+.inprocess{
+    color:blue;
+}
+.done{
+    color:greenyellow;
+}
