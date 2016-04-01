@@ -62,7 +62,7 @@ class ProjectsController extends ControllerBase
                         }
                         $projecttype=  Projecttypes::findFirstByUid($this->dispatcher->getParam('uid'));
                         
-                        $this->view->setVar('ist',$projectTopicCount[$this->dispatcher->getParam('uid')]);
+                        $this->view->setVar('ist',isset($projectTopicCount[$this->dispatcher->getParam('uid')]) ? $projectTopicCount[$this->dispatcher->getParam('uid')] :0);
                         $this->view->setVar('inprocess',isset($projectTypeInprocessCount[$this->dispatcher->getParam('uid')]) ? $projectTypeInprocessCount[$this->dispatcher->getParam('uid')] : 0);
                         $this->view->setVar('projecttype',$projecttype->title);
                        
