@@ -44,7 +44,7 @@
                             <li>{{project.title}}</li>
                             
                             {% else %}
-                            <li {% if project.getProjectstate().statetype >= 2 %} class="done" {% endif %}>{{project.title}}</li>
+                            <li {% if project.getProjectstate().statetype >= 2 %} class="done"{% else%}class="inprocess" {% endif %}>{{project.title}}</li>
                             {% endif %}
                             {% endfor %}
                             {% endif %}

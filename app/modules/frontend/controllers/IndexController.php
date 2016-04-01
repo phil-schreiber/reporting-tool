@@ -105,7 +105,7 @@ class IndexController extends ControllerBase
             $specscount=array();
             foreach($specs as $spec){
                 $projecttype=$spec->getProjecttype();
-                if($projecttype->deleted==0){
+                if($projecttype->deleted==0 && $projecttype->hidden==0){
                     
                 
                 $title=$projecttype->title;

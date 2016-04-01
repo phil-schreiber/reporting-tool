@@ -145,15 +145,16 @@ button.statehistory,.btn.btn-default{
     width:10px;
     height:10px;
 }
-.legend.inprocess{
-    background:#333;
-}
-.legend.done{
+.legend.inprocess{    
     background:blue;
 }
+.legend.done{
+    background:#333;
+}
 .inprocess{
-    color:#333;
+    color:blue;
 }
 .done{
-    color:blue;
+    color:#333;
+    
 }

@@ -23,7 +23,7 @@ class ClippingsController extends ControllerBase
             }else{
                 $currentyear=$this->littlehelpers->getCurrentYear();
                 $projects=Projects::find(array(
-                    "conditions" => "deleted=0 AND hidden=0 AND usergroup=?1",
+                    "conditions" => "deleted=0  AND usergroup=?1",
                     "bind" => array(1 => $this->session->get('auth')['usergroup'])
                     
                 ));  

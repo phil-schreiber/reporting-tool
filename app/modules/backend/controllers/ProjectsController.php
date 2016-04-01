@@ -14,7 +14,7 @@ class ProjectsController extends ControllerBase
 {
 	public function indexAction(){            
             $projects=  Projects::find(array(
-                    'conditions' => 'deleted = 0 AND hidden = 0',
+                    'conditions' => 'deleted = 0',
                     'order' => 'tstamp DESC'                  
             ));
             

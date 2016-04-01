@@ -90,14 +90,14 @@ class ClippingsoverviewController extends ControllerBase
                     'usergroup' => $this->request->getPost('usergroup'),
                     'tstamp' => $this->littlehelpers->processDate($this->request->getPost('tstamp')),
                     'crdate' => $time,
-                    'overviewyear' => $this->post('overviewyear'),
-                    'overviewmonth' => $this->post('overviewmonth'),
+                    'overviewyear' => $this->request->getPost('overviewyear'),
+                    'overviewmonth' => $this->request->getPost('overviewmonth'),
                     'filelink'=>$filename
                 ));           
                 if(!$clipping->update()){
                     $this->flashSession->error($clipping->getMessages());
                 }else{
-                    $this->response->redirect('backend/'.$this->view->language.'/clippings/update/'.$clipping->uid.'/'); 
+                    $this->response->redirect('backend/'.$this->view->language.'/clippingsoverview/update/'.$clipping->uid.'/'); 
                     $this->flashSession->success($this->translate('successUpdate'));
                     $this->view->disable();
                 }

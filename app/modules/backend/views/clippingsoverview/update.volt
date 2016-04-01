@@ -7,7 +7,7 @@
 		<div class="listelementContainer">
 
 			
-			{{ form('backend/'~language~'/clippingsoverview/update/', 'method': 'post',"enctype":"multipart/form-data") }}
+			{{ form('backend/'~language~'/clippingsoverview/update/'~clipping.uid, 'method': 'post',"enctype":"multipart/form-data") }}
 				                                                            
                                 <label>Jahr</label><br>
 				{{ text_field("overviewyear", "size": 32,"value":clipping.overviewyear) }}

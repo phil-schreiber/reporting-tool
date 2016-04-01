@@ -71,7 +71,7 @@ class ClippingsController extends ControllerBase
                 $usergroup=Usergroups::findFirstByUid($usergroupUid);
                 
                 $projects= Projects::find(array(
-                   'conditions' => 'deleted=0 AND hidden =0 AND usergroup =?1',
+                   'conditions' => 'deleted=0  AND usergroup =?1',
                    'bind' => array(
                        1=>$usergroupUid
                    )
@@ -96,6 +96,7 @@ class ClippingsController extends ControllerBase
                 $clippingUid=$this->dispatcher->getParam("uid")?$this->dispatcher->getParam("uid"):0;
                 $clipping=Clippings::findFirstByUid($clippingUid);
                 $clipping->assign(array(
+                    'pid' => $this->request->getPost('project'),
                     'cruser_id' => $this->session->get('auth')['uid'],
                     'usergroup' => $this->request->getPost('usergroup'),
                     'tstamp' => $this->littlehelpers->processDateOnly($this->request->getPost('tstamp')),
@@ -109,8 +110,8 @@ class ClippingsController extends ControllerBase
                 ));                
                 if(!$clipping->update()){
                     $this->flashSession->error($clipping->getMessages());
-                }else{
-                    $this->response->redirect('backend/'.$this->view->language.'/clippings/update/'.$clipping->uid.'/'); 
+                }else{                    
+                    $this->response->redirect('backend/'.$this->view->language.'/clippings/'); 
                     $this->flashSession->success($this->translate('successUpdate'));
                     $this->view->disable();
                 }
@@ -119,7 +120,7 @@ class ClippingsController extends ControllerBase
                 $clipping=Clippings::findFirstByUid($clippingUid);
                 $usergroup=Usergroups::findFirstByUid($clipping->usergroup);
                 $projects= Projects::find(array(
-                   'conditions' => 'deleted=0 AND hidden =0 AND usergroup =?1',
+                   'conditions' => 'deleted=0 AND usergroup =?1',
                    'bind' => array(
                        1=>$usergroup->uid
                    )
