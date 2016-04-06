@@ -20,7 +20,7 @@
     {{form.render('username')}}<br/><br>
     
 
-    <label for="password">Password: </label><br>
+    <label for="password">Passwort: </label><br>
     {{form.render('password')}}<br><br>
     {{form.render('redirect')}}
 

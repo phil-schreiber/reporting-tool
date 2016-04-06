@@ -117,11 +117,32 @@ class IndexController extends ControllerBase
                 }
                 
             }
+            $lastProject= \reportingtool\Models\Projects::findFirst(array(
+               'conditions' => 'deleted=0 AND hidden =0 AND usergroup =?1 AND crdate > ?2',
+                'bind' => array(
+                    1 => $this->session->get('auth')['usergroup'],
+                    2 => $contract->startdate
+                    
+                ),
+                'order' => 'tstamp DESC'
+            ));
+            
+            $lastClipping = \reportingtool\Models\Clippings::findFirst(array(
+               'conditions' => 'deleted=0 AND hidden =0 AND usergroup =?1 AND crdate > ?2',
+                'bind' => array(
+                    1 => $this->session->get('auth')['usergroup'],
+                    2 => $contract->startdate
+                    
+                ),
+                'order' => 'tstamp DESC'
+            ));
+            
             $this->view->setVar('projects',$projectArr);            
             $this->view->setVar('projectprepcount',$projectPrepCount);
             $this->view->setVar('projectcount',$projectCount);
             $this->view->setVar('contract',$contract);
             $this->view->setVar('specscount',$specscount);
+            $this->view->setVar('lastupdate',$lastClipping->tstamp > $lastProject->tstamp ? date('d.m.Y H:i',$lastClipping->tstamp) : date('d.m.Y H:i',$lastProject->tstamp));
             }else{
                 $this->view->setVar('projectprepcount',$projectPrepCount=array());
                 $this->view->setVar('projectcount',$projectCount= array());

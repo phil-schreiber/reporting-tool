@@ -2,6 +2,10 @@
 {%- if session.get('auth') -%}
 <div class="container">
     <div class="col-xs-12">
+        <h1>Leads {{date('Y')}}</h1>
+        <span class="btn btn-default" style="margin-right:10px;background:#333;color:#fff">Gesamt: {{leads}}</span>
+    </div>
+    <div class="col-xs-12">
         <h1>{{tr('clippingoverviews')}} {{date('Y')}}</h1>
         <div class="panel-group">
             {% for year,yeararray in overviewarray %}
@@ -25,7 +29,8 @@
     
     
     <div class="col-xs-12">
-        <h1>{{tr('clippings')}} 2016 insgesamt</h1>
+        <h1>{{tr('clippings')}} {{date('Y')}}</h1>
+         <span class="btn btn-default" style="margin-right:10px;background:#333;color:#fff">Gesamt: {{total}}</span>
         <table  class="dataTable display" cellspacing="0" width="100%">
             <thead>
             <tr>

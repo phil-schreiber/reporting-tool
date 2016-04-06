@@ -64,17 +64,26 @@ class ClippingsController extends ControllerBase
                 ));
                 
                 $clippingstotal=array();
+                $clippingstotalTotal=0;
                 foreach($mediumtypes as $mediumtype){
                     $clippingobj=new Clippings();
                     $stuff=$clippingobj->countMediumtypeClippings($mediumtype->uid);
+                    $clippingstotalTotal +=$stuff->clippingscount;
                     $clippingstotal[$mediumtype->uid]['clippingscount']=number_format ( $stuff->clippingscount , 0 ,  "," ,  "." );
                     $clippingstotal[$mediumtype->uid]['mediumreach']=number_format ( $stuff->mediumreach , 0 ,  "," ,  "." );
                 }
                 
-                
+                $lead=\reportingtool\Models\Documents::findFirst(array(
+                        'conditions'=>'usergroup = ?1',
+                        'bind' => array(
+                                    1=>$this->session->get('auth')['usergroup'])
+                                )
+                        );
                 
                 
                 $topics=array_unique($topics);
+                $this->view->setVar('leads',$lead->title);
+                $this->view->setVar('total',number_format ( $clippingstotalTotal , 0 ,  "," ,  "." ));
                 $this->view->setVar('mediumtypes',$mediumtypes);
                 $this->view->setVar('clippingstotal',$clippingstotal);
                 $this->view->setVar('topics',$topics);
