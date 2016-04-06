@@ -1,7 +1,7 @@
 {%- if session.get('auth') -%}
 <div id="header" style="position:relative;">
     <div class="container" style="position:relative;">
-        <h1 style="position:absolute;font-size:4em;color:#50504F;font-weight:400;left:6vw;top:-1vh;">{{ session.get('auth')['title']}}<span style="color:#E07E26">Reporting</span>Portal{% if dispatcher.getControllerName() == 'index' %}<br><span class="btn btn-default" style="margin-right:10px;background:#333;color:#fff">Letzte Aktualisierung: {{lastupdate}}</span>{% endif %}</h1>
+        <h1 style="position:absolute;font-size:4em;color:#50504F;font-weight:400;left:6vw;top:-1vh;">{{ session.get('auth')['title']}}<span style="color:#E07E26">Reporting</span>Portal{% if dispatcher.getControllerName() == 'index' %}<br><span class="btn btn-default" style="margin-right:10px;background:#E27D26;color:#fff">Letzte Aktualisierung: {{lastupdate}}</span>{% endif %}</h1>
     
     </div>
     <img src="{{baseurl}}img/{% if dispatcher.getControllerName() == 'index' %}header_df.jpg{% else %}header_df_sm.jpg{%endif%}" width="2604" height="541" alt="" class="img-responsive"/> 
@@ -34,7 +34,7 @@
           </li>
           {% endif %}
           
-          <li class="dropdown-short xs-hover">{{- link_to(language~'/clippings', 'Veröffentlichungen/Leads', 'title': "Veröffentlichungen") -}}             
+          <li class="dropdown-short xs-hover">{{- link_to(language~'/clippings', 'Clippings/Leads', 'title': "Clippings/Leads") -}}             
             
           </li>
                     
