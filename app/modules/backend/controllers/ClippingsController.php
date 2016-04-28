@@ -78,7 +78,8 @@ class ClippingsController extends ControllerBase
                 ));
                 
                 $medium=Medium::find(array(
-                    'conditions' => 'deleted=0 AND hidden=0'
+                    'conditions' => 'deleted=0 AND hidden=0',
+                    'order' => 'title ASC'
                 ));
                 
                 $this->view->setVar('medium',$medium);

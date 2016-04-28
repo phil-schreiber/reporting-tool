@@ -142,7 +142,7 @@ class IndexController extends ControllerBase
             $this->view->setVar('projectcount',$projectCount);
             $this->view->setVar('contract',$contract);
             $this->view->setVar('specscount',$specscount);
-            $this->view->setVar('lastupdate',$lastClipping->tstamp > $lastProject->tstamp ? date('d.m.Y',$lastClipping->tstamp) : date('d.m.Y',$lastProject->tstamp));
+            $this->view->setVar('lastupdate',$lastClipping->crdate > $lastProject->crdate ? date('d.m.Y',$lastClipping->crdate) : date('d.m.Y',$lastProject->crdate));
             }else{
                 $this->view->setVar('projectprepcount',$projectPrepCount=array());
                 $this->view->setVar('projectcount',$projectCount= array());
