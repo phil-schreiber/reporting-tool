@@ -5,26 +5,7 @@
         <h1>Leads {{date('Y')}}</h1>
         <span class="btn btn-default" style="margin-right:10px;background:#333;color:#fff">Gesamt: {{leads}}</span>
     </div>
-    <div class="col-xs-12">
-        <h1>{{tr('clippingoverviews')}} {{date('Y')}}</h1>
-        <div class="panel-group">
-            {% for year,yeararray in overviewarray %}
-            <div class="panel panel-default">
-              
-              <div id="collapse{{year}}" class="panel-collapse">
-                <ul class="list-group">
-                  {% for month, filelink in yeararray %}
-                  <li class="list-group-item"><a href="{{host}}{{baseurl}}{{filelink}}" target="_blank" style='display:block;'>{{month}}</a></li>                  
-                  {% endfor %}
-                </ul>
-                
-              </div>
-            </div>
-            {% endfor %}
-            
-          </div>
-        
-    </div>
+ 
     
     
     
