@@ -65,12 +65,17 @@ class ClippingsController extends ControllerBase
                 
                 $clippingstotal=array();
                 $clippingstotalTotal=0;
+                $typecount=0;
                 foreach($mediumtypes as $mediumtype){
+                    $add=0;
+                    if($typecount<2){
+                        $add=1000000;
+                    }
                     $clippingobj=new Clippings();
                     $stuff=$clippingobj->countMediumtypeClippings($mediumtype->uid);
                     $clippingstotalTotal +=$stuff->clippingscount;
                     $clippingstotal[$mediumtype->uid]['clippingscount']=number_format ( $stuff->clippingscount , 0 ,  "," ,  "." );
-                    $clippingstotal[$mediumtype->uid]['mediumreach']=number_format ( $stuff->mediumreach , 0 ,  "," ,  "." );
+                    $clippingstotal[$mediumtype->uid]['mediumreach']=number_format ( $stuff->mediumreach+$add , 0 ,  "," ,  "." );
                 }
                 
                 $lead=\reportingtool\Models\Documents::findFirst(array(

@@ -120,6 +120,18 @@
             </ul>
           </li>
           {% endif %}
+          {% if linkAllowed(session.get('auth'),'coordinations','index') %}		
+           
+            <li class="dropdown-short xs-hover">
+           
+            {{- link_to('backend/'~language~'/coordinations/', 'Abstimmungsgespräche <span class="caret"></span>', 'title': 'Abstimmungsgespräche') -}}             
+            <ul class="dropdown-menu">
+                <li>
+                    {{- link_to('backend/'~language~'/coordinations/', tr('create'), 'title': tr('create')) -}}         
+                </li>
+            </ul>
+          </li>
+          {% endif %}
            <li>{{ link_to('session/logout/', 'logout','title': 'Logout', "class": "logout") }}</li>	
            
         </ul>
