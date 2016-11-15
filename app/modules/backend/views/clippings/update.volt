@@ -26,7 +26,7 @@
 				{{select('medium',medium,"using":['uid','title'],"value":clipping.mediumuid)}}
                                 <br><br>
                                 <label>{{ tr('type') }}</label><br>
-                                {{select('clippingtype',[  '1' : 'print', '0' : 'online'], 'value':clipping.clippingtype)}}                                
+                                {{select('clippingtype',[ '2':'newsletter', '1' : 'print', '0' : 'online'], 'value':clipping.clippingtype)}}                                
                                 <br><br>
                                 <label>{{ tr('url') }}</label><br>
 				{{ text_field("url", "size": 32,"value":clipping.url) }}
